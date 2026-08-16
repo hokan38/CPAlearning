@@ -1,0 +1,63 @@
+{"page": 11, "type": "highlight", "search": "総点数の60％を基準として", "occurrence": 0, "color": "yellow"}
+{"page": 11, "type": "highlight", "search": "絶対評価の試験であることが示されている", "occurrence": 0, "color": "green"}
+{"page": 11, "type": "note", "search": "絶対評価の試験であることが示されている", "occurrence": 0, "text": "講師メモ(0:03:12/0:04:39): 配点は事前に決まっておらず、試験後に出題の先生が答案をざっと見てから決める。多くの人が書けた問題に高い配点という「配慮」がある。表向きは絶対評価だが、戦い方は「他の人ができるところを正答する」＝事実上の相対試験として対策する。これが一番大事。", "color": "orange"}
+{"page": 11, "type": "note", "search": "実質合格率", "occurrence": 0, "text": "講師メモ(0:05:19): R1・R2の合格率低下は受験者レベルではなく実施母体内部の問題。すでに水準は戻っており、この凹みはもう考える必要なし。「7割が受かる相対試験」という頭で考えてよい。(なお素点6割は本来きついハードル。合格素点は実質5割前後・0:02:43)", "color": "orange"}
+{"page": 12, "type": "highlight", "search": "法令基準集は配布されない", "occurrence": 0, "color": "yellow"}
+{"page": 12, "type": "highlight", "search": "試験範囲は短答式試験・論文式試験よりも広い", "occurrence": 0, "color": "yellow"}
+{"page": 12, "type": "highlight", "search": "国際財務報告基準（ＩＦＲＳ）が出題範囲に含", "occurrence": 0, "color": "green"}
+{"page": 12, "type": "highlight", "search": "早期適用期間中の会計基準等も出題範囲に含まれる", "occurrence": 0, "color": "green"}
+{"page": 12, "type": "note", "search": "法令基準集は配布されない", "occurrence": 0, "text": "講師メモ(0:08:44/0:09:47): 基準集なし・範囲は短答論文より広い・時間は限られる→「修了考査はそもそも制度設計に無理がある」「正面から立ち向かって6割を取る試験ではない」。現場の立ち回り: 計算は易しい箇所を絶対取る。記述は書けば点が入る場合があるから白紙は絶対ダメ、何かしら書く。", "color": "orange"}
+{"page": 12, "type": "note", "search": "総合問題が出題される", "occurrence": 0, "text": "講師メモ(0:11:00): 第一問の形式は変化中。R4頃から実質は分断された複数論点、R6は第二問と同じ完全な論点別に。R5・R6は易しめだったがR7は一転、対策のしようがない論点のオンパレード。「実際のところは読めない。形式が変わっていることだけ頭に入れておく」。", "color": "orange"}
+{"page": 12, "type": "note", "search": "国際財務報告基準（ＩＦＲＳ）が出題範囲に含", "occurrence": 0, "text": "講師メモ(0:14:27): IFRSは闇雲に全部を学習するのではなく、日本基準と差がある部分、しかもその中でも代表的な部分を押さえておけば、過去の出題を見る限りおおむね大丈夫。", "color": "orange"}
+{"page": 13, "type": "note", "search": "過去の出題分析", "occurrence": 0, "text": "頻出の骨格: 税効果会計はほぼ毎年(第一問の定番)、連結は毎回。固定資産の減損・収益認識・退職給付・リース・企業結合・事業分離が繰り返し出題。IFRS関連(波線表示)も毎年含まれる。", "color": "blue"}
+{"page": 14, "type": "highlight", "search": "固定資産の減損", "occurrence": 0, "color": "green"}
+{"page": 14, "type": "highlight", "search": "収益認識", "occurrence": 0, "color": "green"}
+{"page": 14, "type": "highlight", "search": "税効果会計，法人税等", "occurrence": 0, "color": "green"}
+{"page": 14, "type": "highlight", "search": "連結財務諸表", "occurrence": 0, "color": "green"}
+{"page": 14, "type": "note", "search": "分野別の過去の出題状況", "occurrence": 0, "text": "講師メモ(0:15:37): 出題分野には偏りがある。減損は当然多い。税効果は短答・論文でやらなかった実務寄りの論点を修了考査対策では結構時間をかけて学習する。収益認識はもう定番論点化。連結は当然出るし、企業結合・事業分離も意外と出ている。", "color": "orange"}
+{"page": 14, "type": "note", "search": "分配可能額", "occurrence": 0, "text": "講師メモ(0:16:13): R6の分配可能額の問題を見たときはひっくり返りそうになったが、周りができなければ自分もできる必要がない。逆に多くの人が対策していそうな頻出論点に時間をかける——メリハリのつけ方は論文式対策と同じ。", "color": "orange"}
+{"page": 15, "type": "badge", "search": "会計実務の攻略法", "occurrence": 0, "text": "【最重要・方針】", "color": "red"}
+{"page": 15, "type": "underline", "search": "できるだけ早くから計算の勉強を始める。", "occurrence": 0, "color": "red"}
+{"page": 15, "type": "highlight", "search": "遅くとも３月までには手を付け始めたい", "occurrence": 0, "color": "yellow"}
+{"page": 15, "type": "highlight", "search": "財務計算や租税法を得意にしてい", "occurrence": 0, "color": "green"}
+{"page": 15, "type": "highlight", "search": "規定そのものを覚えていなければ書く", "occurrence": 0, "color": "yellow"}
+{"page": 15, "type": "underline", "search": "一般論として困難なのである", "occurrence": 0, "color": "red"}
+{"page": 15, "type": "note", "search": "武勇伝をよく耳にする", "occurrence": 0, "text": "講師メモ(0:17:23): 落ちる人の方が少なく「落ちたら恥ずかしい」と言われる試験。仕事熱心な方ほど受からない、そんな悲劇も伝え聞く。短答・論文とは違う種類のプレッシャー。合格可能性を100%にしにいく。", "color": "orange"}
+{"page": 15, "type": "note", "search": "勉強の習慣を身に付ける", "occurrence": 0, "text": "講師メモ(0:18:33): 繁忙期に突入する前から、平日は1時間でもいいから机に向かう。土日どちらか1日はまる1日勉強する。それを習慣づけて計算をやる。", "color": "orange"}
+{"page": 16, "type": "highlight", "search": "２年間のブランクで計算力はかなり衰えている", "occurrence": 0, "color": "yellow"}
+{"page": 16, "type": "highlight", "search": "だから早く始めなければな", "occurrence": 0, "color": "yellow"}
+{"page": 16, "type": "note", "search": "２年間のブランク", "occurrence": 0, "text": "講師メモ(0:19:42): 記述は暗記が必要で対策時間がないのに対し、計算は思い出し中心。税効果やIFRSの処理など短答・論文で扱わなかった内容を除けば、当時の力を思い出すことで十分お釣りがくる。ただし思い出しには時間がかかる、だから早く。", "color": "orange"}
+{"page": 16, "type": "note", "search": "かつての感覚を取り戻す", "occurrence": 0, "text": "講師メモ(0:21:06): かつての教材で思い出しができれば「余裕で合格ラインを超える」。スタートが夏や試験休暇にずれ込むと計算の思い出しは絶対にできず、合否に運の要素が入る。それが嫌なら計算をやっておきましょう。", "color": "orange"}
+{"page": 17, "type": "badge", "search": "3. 講義の方針", "occurrence": 0, "text": "【最重要フレーム】", "color": "red"}
+{"page": 17, "type": "highlight", "search": "対策可能な記述問題は次の５パターン", "occurrence": 0, "color": "yellow"}
+{"page": 17, "type": "margin", "search": "会計処理の理論的背景を説明する問題", "occurrence": 0, "text": "対策しない。過去の自分を信じる", "color": "gray"}
+{"page": 17, "type": "margin", "search": "② 計算の知識で記述可能な問題", "occurrence": 0, "text": "計算対策で自然と身に付く", "color": "gray"}
+{"page": 17, "type": "highlight", "search": "日本基準とＩＦＲＳとの差異が顕著な部分", "occurrence": 0, "color": "green"}
+{"page": 17, "type": "highlight", "search": "税効果会計や固定資産の減損などの頻出論点", "occurrence": 0, "color": "green"}
+{"page": 17, "type": "highlight", "search": "論文式試験では触れなかった実務的な部分", "occurrence": 0, "color": "green"}
+{"page": 17, "type": "highlight", "search": "新しく公表されたり改正されたりした会計基準等", "occurrence": 0, "color": "green"}
+{"page": 17, "type": "margin", "search": "③ 日本基準とＩＦＲＳ", "occurrence": 0, "text": "パターン3から5を講義で対策", "color": "red"}
+{"page": 17, "type": "note", "search": "① 論文式試験対策で学習した", "occurrence": 0, "text": "講師メモ(0:22:52): ①は対策可能といえば可能だが、出題の主流ではないから講義の中で説明することはない。論文式の時に使った教材を引っ張り出して思い出す必要もない。過去の自分を信じるしかない。", "color": "orange"}
+{"page": 18, "type": "underline", "search": "③～⑤に絞って行うのが現実的", "occurrence": 0, "color": "red"}
+{"page": 18, "type": "highlight", "search": "ＩＦＲＳと日本基準との差異は出題の標的", "occurrence": 0, "color": "green"}
+{"page": 18, "type": "highlight", "search": "「網羅性より効率性」「理想より現実」", "occurrence": 0, "color": "yellow"}
+{"page": 18, "type": "note", "search": "短い時間に収まるよう心掛けて収録", "occurrence": 0, "text": "講師メモ(0:25:12): 土台無茶な試験だから網羅性は一切追求しない。講義は短く絞って収録するが、テキストには結構細かなところまで載せている——「見たい人は全部見てください」という位置づけ。講義で触れない記載があっても慌てない。", "color": "orange"}
+{"page": 18, "type": "note", "search": "トピックその他", "occurrence": 0, "text": "講師メモ(0:23:52): トピックは多くないが、今年については新リースは少し時間をかける必要がある。(昨年R7は旧リースが出たので「今年は新リースが出てもらわないと困る」・0:12:30)", "color": "orange"}
+{"page": 18, "type": "highlight", "search": "答練問題の本試験的中率はさほど高いものではない", "occurrence": 0, "color": "yellow"}
+{"page": 18, "type": "highlight", "search": "他の人ができる問題を落とさないようにす", "occurrence": 0, "color": "yellow"}
+{"page": 18, "type": "underline", "search": "「答練を回す」のは守りの勉強", "occurrence": 0, "color": "red"}
+{"page": 18, "type": "note", "search": "答練を回す", "occurrence": 0, "text": "講師メモ(0:26:02/0:27:29): 4回は短いようだが「いざやってみると分かるが4回でも皆いっぱいいっぱい」。優先順位を考えて大事なところから出題している。「答練だけ回して受かった」人は毎年いるが、それはこれまでの積み上げがあっただけ——答練を回すだけの受験勉強は明らかに不十分。", "color": "orange"}
+{"page": 19, "type": "highlight", "search": "重要度Ａ・Ｂを２回以上確認する", "occurrence": 0, "color": "yellow"}
+{"page": 19, "type": "highlight", "search": "重要度Ａ・Ｂを２回以上確認する", "occurrence": 1, "color": "yellow"}
+{"page": 19, "type": "highlight", "search": "重要度Ａを１回だけ解く", "occurrence": 0, "color": "yellow"}
+{"page": 19, "type": "highlight", "search": "重要な箇所（上記3.③～⑤参照）に絞り", "occurrence": 0, "color": "green"}
+{"page": 19, "type": "note", "search": "ほぼ50：50", "occurrence": 0, "text": "講師メモ(0:16:57): 半分の人が7月までに始めていない試験で7割が受かる——「それでも早そうな感じがする」開始時期が「普通」ということ。ただし早期開始→夏以降→試験休暇の順に合格の確率はどんどん下がる。この表はその中でも可能性を上げるための処方箋。", "color": "orange"}
+{"page": 20, "type": "badge", "search": "(1) 出題委員", "occurrence": 0, "text": "【参考程度・深追い不要】", "color": "gray"}
+{"page": 20, "type": "note", "search": "答練の出題に反映", "occurrence": 0, "text": "講師メモ(0:28:38): 出題委員の得意分野は「あんまり当てにならない。本当に参考程度で、出題委員対策というのは真剣に考える必要はない」→委員名・執筆歴の暗記は不要。", "color": "orange"}
+{"page": 20, "type": "highlight", "search": "令和７年４月１日現在施行", "occurrence": 0, "color": "yellow"}
+{"page": 20, "type": "note", "search": "令和８年の日程は公", "occurrence": 0, "text": "講師メモ(0:28:52): 令和8年の試験日は未公表だが「12月12日・13日が土日だからそこになりそう」。合格発表は4月——「待たせますね」。", "color": "orange"}
+{"page": 21, "type": "highlight", "search": "「やってやるぞ」ではなく「やらなきゃなぁ」", "occurrence": 0, "color": "yellow"}
+{"page": 21, "type": "underline", "search": "早く始めるだけで合格率が限り", "occurrence": 0, "color": "red"}
+{"page": 21, "type": "underline", "search": "なく100％に近づく試験です", "occurrence": 0, "color": "red"}
+{"page": 21, "type": "highlight", "search": "すぐにでも計算テキストやコントレに手を伸ばしてください", "occurrence": 0, "color": "green"}
+{"page": 21, "type": "note", "search": "応援しています", "occurrence": 0, "text": "講師メモ(0:29:43): 公認されて初めて本当の自由が手に入る。これまでの経験とともに資格が武器になって人生の選択肢がドーンと増える。12月までのあと数か月、それが終わったら好きなことができる。", "color": "orange"}

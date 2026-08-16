@@ -1,0 +1,124 @@
+{"page": 71, "type": "badge", "search": "1. 純資産の部の表示", "text": "【A・最優先で暗記】", "color": "red", "occurrence": 0}
+{"page": 71, "type": "highlight", "search": "純資産のうち，報告主体の所有者である株主", "color": "yellow", "occurrence": 0}
+{"page": 71, "type": "highlight", "search": "(連結財務諸表においては親会社株主)に帰属", "color": "yellow", "occurrence": 0}
+{"page": 71, "type": "highlight", "search": "する部分であり，報告主体の所有者である株", "color": "yellow", "occurrence": 0}
+{"page": 71, "type": "highlight", "search": "主から拠出された部分(払込資本)と，これを", "color": "yellow", "occurrence": 0}
+{"page": 71, "type": "highlight", "search": "元本として獲得した利益を企業内に留保した", "color": "yellow", "occurrence": 0}
+{"page": 71, "type": "highlight", "search": "部分(留保利益)からなる。", "color": "yellow", "occurrence": 0}
+{"page": 71, "type": "note", "search": "株主資本以外の各項目", "text": "講師メモ(2_1 0:03:46): 日本基準は損益計算書の当期純利益を大事にするから、純資産の中に株主資本を別に定義し、株主資本と当期純利益が連携する形(日本版クリーン・サープラス)を作った。だから株主資本とそれ以外が分けられている。IFRSは純利益とB/Sの連携を重視しないので株主資本のような区分はなく、資産と負債の差額が全て資本", "color": "orange", "occurrence": 0}
+{"page": 72, "type": "badge", "search": "2. 株主資本の計数の変動", "text": "【スキップOK(講師)】", "color": "gray", "occurrence": 0}
+{"page": 74, "type": "badge", "search": "ＩＦＲＳと日本基準との対比", "text": "【A・最優先で暗記】", "color": "red", "occurrence": 0}
+{"page": 74, "type": "highlight", "search": "資本取引の取引コストは，当該取引がなければ", "color": "yellow", "occurrence": 0}
+{"page": 74, "type": "highlight", "search": "する増分コストである範囲で，資本からの控除", "color": "yellow", "occurrence": 0}
+{"page": 74, "type": "highlight", "search": "に係る費用）は，原則として，支出時に営業外", "color": "yellow", "occurrence": 0}
+{"page": 74, "type": "highlight", "search": "費用として処理する。", "color": "yellow", "occurrence": 0}
+{"page": 74, "type": "note", "search": "資本取引の取引コストは，当該取引がなければ", "text": "覚え方: 「日本=取引の相手で判断、IFRS=取引の性質(全体)で判断」の一言から両方の結論が導ける。株主との直接のやり取りだけが資本取引(日本→第三者への費用は営業外費用)。費用も含めて丸ごと資本取引(IFRS→資本から控除、自己株式は取得原価に含める)", "color": "blue", "occurrence": 0}
+{"page": 74, "type": "note", "search": "ＩＦＲＳと日本基準との対比", "text": "講師メモ(2_1 0:10:01): 修了考査では背景の考え方を説明させる問い方は稀。IFRSとの差異は結論を第一に。一歩進んで押さえるなら『資本取引の範囲についての考え方が違う』くらいまでで十分", "color": "orange", "occurrence": 0}
+{"page": 78, "type": "badge", "search": "2. 資金の範囲", "text": "【B・説明できるレベル】", "color": "orange", "occurrence": 0}
+{"page": 78, "type": "highlight", "search": "① 容易に換金可能であり", "color": "green", "occurrence": 0}
+{"page": 78, "type": "highlight", "search": "② 価値の変動について僅少なリスクしか負わない", "color": "green", "occurrence": 0}
+{"page": 78, "type": "highlight", "search": "③ 短期投資", "color": "green", "occurrence": 0}
+{"page": 78, "type": "underline", "search": "会計方針の変更として取扱う", "color": "red", "occurrence": 0}
+{"page": 78, "type": "note", "search": "３か月以内の短期投資", "text": "講師メモ(2_1 0:25:24): 3か月以内はあくまで例示。支払資金の運用期間は企業によって異なり、支払サイトが長い企業なら3か月超もあり得る。だから資金の範囲は会計方針としての注記事項になっていて、その変更は会計方針の変更になる(第5節とリンク)", "color": "orange", "occurrence": 0}
+{"page": 79, "type": "badge", "search": "3. キャッシュ・フロー計算書の表示区分", "text": "【B・説明できるレベル】", "color": "orange", "occurrence": 0}
+{"page": 79, "type": "underline", "search": "どの活動とより強く関連している", "color": "red", "occurrence": 0}
+{"page": 79, "type": "note", "search": "機械の購入代金を検収から６か月後", "text": "講師メモ(2_1 0:27:34): この事例は聞かれてもおかしくない。なぜ6か月後に払ったのかの理由によって区分が異なる(通常の決済条件・売手側の取引慣行なら投資CF、返済猶予とみるなら財務CF)。一回さらっと聞いておけば出た時に思い出せる — 何か書けばなんとかなるのが修了考査の記述", "color": "orange", "occurrence": 0}
+{"page": 80, "type": "underline", "search": "「投資活動によるキャッシュ・フロー」に含める", "color": "red", "occurrence": 0}
+{"page": 80, "type": "margin", "search": "資産除去債務の履行に係るキャッシュ・フロー", "text": "出題: 平成30年度", "color": "red", "occurrence": 0}
+{"page": 80, "type": "note", "search": "連結範囲の変動を伴わない", "text": "講師メモ(2_1 0:29:27): 連結範囲の変動を伴わない追加取得・一部売却が財務CFなのは、現行の連結ルールが非支配株主との取引を資本取引(親会社の株主との取引と同じ)とみて処理しているから", "color": "orange", "occurrence": 0}
+{"page": 82, "type": "badge", "search": "5. 在外子会社のキャッシュ･フロー", "text": "【B・説明できるレベル】", "color": "orange", "occurrence": 0}
+{"page": 82, "type": "underline", "search": "為替相場の変動による影響額", "color": "red", "occurrence": 0}
+{"page": 82, "type": "underline", "search": "キャッシュ・フローを伴うものではないため", "color": "red", "occurrence": 0}
+{"page": 82, "type": "margin", "search": "5. 在外子会社のキャッシュ･フロー", "text": "出題: 平成28年度", "color": "red", "occurrence": 0}
+{"page": 83, "type": "badge", "search": "6. キャッシュ･フロー計算書の表示方法", "text": "【B・説明できるレベル】", "color": "orange", "occurrence": 0}
+{"page": 83, "type": "highlight", "search": "小計欄は本来の意味での", "color": "green", "occurrence": 0}
+{"page": 83, "type": "underline", "search": "表示方法（直接法または間接法）を変更した場合", "color": "red", "occurrence": 0}
+{"page": 83, "type": "margin", "search": "短期借入金の借換えによるキャッシュ・フロー", "text": "具体例はこれ1個を確実に", "color": "blue", "occurrence": 0}
+{"page": 84, "type": "note", "search": "重要な非資金取引", "text": "講師メモ(2_1 0:37:04): 非資金取引はキャッシュ・フローを伴わない取引だが、将来のキャッシュ・フローには影響がある。だから注記対象になっている", "color": "orange", "occurrence": 0}
+{"page": 85, "type": "badge", "search": "ＩＦＲＳと日本基準との対比", "text": "【A・最優先で暗記】", "color": "red", "occurrence": 0}
+{"page": 85, "type": "underline", "search": "支払配当金が営業活動", "color": "red", "occurrence": 0}
+{"page": 85, "type": "underline", "search": "ＣＦに表示されうる点", "color": "red", "occurrence": 0}
+{"page": 85, "type": "underline", "search": "が日本基準と異なる。", "color": "red", "occurrence": 0}
+{"page": 85, "type": "highlight", "search": "直接法を用いて営業活動によるキャッ", "color": "yellow", "occurrence": 0}
+{"page": 85, "type": "highlight", "search": "資・財務に分解すること", "color": "yellow", "occurrence": 0}
+{"page": 85, "type": "note", "search": "ＩＦＲＳと日本基準との対比", "text": "覚え方: 差異は「配・小・直・税・非」— ①支払配当金が営業CFに入り得る(最重要・唯一結論が変わる実質差異) ②小計欄なし ③直接法推奨 ④法人税等は投資・財務に分解可 ⑤非継続事業の区分表示。講師メモ(2_1 0:37:23)「実際違うところといえば支払配当金。ここは注意」", "color": "blue", "occurrence": 0}
+{"page": 86, "type": "note", "search": "開示例：トヨタ自動車株式会社", "text": "講師メモ(2_1 0:39:37): トヨタの営業CFに小計欄はないが一つの区切りは置いている。配当金の支払も営業に含めていない。小計が入れば日本基準と言われてもほぼ違いはない。スタートが当期利益な点は違うが、税引前利益からスタートしても構わない — 実務上は見た目の差は小さい", "color": "orange", "occurrence": 0}
+{"page": 87, "type": "margin", "search": "平成30年度修了考査", "text": "答: 投資CFを採用", "color": "red", "occurrence": 0}
+{"page": 88, "type": "badge", "search": "2. 包括利益の意義と計算の表示", "text": "【知識整理・読むだけ】", "color": "blue", "occurrence": 0}
+{"page": 88, "type": "highlight", "search": "包括利益のうち当期純利益に含まれない部分", "color": "green", "occurrence": 0}
+{"page": 88, "type": "note", "search": "その他の包括利益の意義", "text": "講師メモ(2_1 0:45:16〜0:47:45): 包括利益は本質的にB/Sベースの利益(期首期末の純資産の差額)。当期純利益は株主資本と連携する(日本版クリーン・サープラス)。ゆえに『その他の包括利益=期首期末の評価・換算差額等(連結はその他の包括利益累計額)の増減額』— この関係が成立するのは全項目リサイクリングする日本基準だけ", "color": "orange", "occurrence": 0}
+{"page": 89, "type": "badge", "search": "ＩＦＲＳと日本基準との対比", "text": "【A・最優先で暗記】", "color": "red", "occurrence": 0}
+{"page": 89, "type": "highlight", "search": "その他の包括利益の項目は，その後に純損益に", "color": "yellow", "occurrence": 0}
+{"page": 89, "type": "highlight", "search": "のにグループ分けして表示する", "color": "yellow", "occurrence": 0}
+{"page": 89, "type": "highlight", "search": "その他の包括利益の各項目は必ずその後に純損", "color": "yellow", "occurrence": 0}
+{"page": 89, "type": "highlight", "search": "ングされる）ため，グループ分けの定めは存在", "color": "yellow", "occurrence": 0}
+{"page": 89, "type": "underline", "search": "リサイクリングしない", "color": "red", "occurrence": 0}
+{"page": 89, "type": "highlight", "search": "その他の包括利益の内訳項目ごとに注記する", "color": "green", "occurrence": 0}
+{"page": 89, "type": "note", "search": "② 組替調整額", "text": "講師メモ(2_1 1:03:28): 組替調整額まわりは計算で頻出。テキストの例題とコントレで確認しておくこと", "color": "orange", "occurrence": 0}
+{"page": 90, "type": "badge", "search": "その他の包括利益のリサイクリング", "text": "【A・最優先で暗記】", "color": "red", "occurrence": 0}
+{"page": 90, "type": "highlight", "search": "純利益を構成する項目として認識しない方法", "color": "yellow", "occurrence": 0}
+{"page": 90, "type": "highlight", "search": "実現した際に利益剰余金に直接加減する", "color": "yellow", "occurrence": 0}
+{"page": 90, "type": "highlight", "search": "純利益を構成する項目として再度認識する方法", "color": "yellow", "occurrence": 0}
+{"page": 90, "type": "highlight", "search": "実現した際に純利益を通じて利益剰余金が増減する", "color": "yellow", "occurrence": 0}
+{"page": 90, "type": "highlight", "search": "資本と包括利益の間のクリーン・サープラス関係のみ", "color": "yellow", "occurrence": 0}
+{"page": 90, "type": "highlight", "search": "純資産と包括利益の間のクリーン・サープラス関係", "color": "yellow", "occurrence": 0}
+{"page": 90, "type": "highlight", "search": "株主資本と純利益の間のクリーン・サープラス関係", "color": "yellow", "occurrence": 0}
+{"page": 90, "type": "highlight", "search": "純利益について一致の原則が成立しない", "color": "yellow", "occurrence": 0}
+{"page": 90, "type": "highlight", "search": "純利益について一致の原則が成立する", "color": "yellow", "occurrence": 0}
+{"page": 90, "type": "highlight", "search": "（自動的に）包括利益の二重計上が回避される", "color": "yellow", "occurrence": 0}
+{"page": 90, "type": "highlight", "search": "その他の包括利益から控除する処理を行うことで", "color": "yellow", "occurrence": 0}
+{"page": 90, "type": "note", "search": "その他の包括利益のリサイクリング", "text": "覚え方: 対比表は3行で覚える — ①クリーン・サープラス2本(日本)vs1本のみ(IFRS) ②一致の原則は成立○(日本)×(IFRS) ③二重計上の回避は組替調整で(日本)vs自動で(IFRS)。数値例『1,000で取得→1,500に値上がり(第1期OCI+500)→翌期首売却(第2期純利益500・OCI△500=組替調整)』を自分で再現できるようにする", "color": "blue", "occurrence": 0}
+{"page": 90, "type": "note", "search": "リサイクリングしない方法", "text": "講師メモ(2_1 1:07:09): 最近のIFRSは『純利益は大事、リサイクリングも基本する』と口では言うが、全てリサイクリングするわけではない。IFRSの純利益の性格は宙ぶらりんで、日本基準ほど徹底していない — そういう形で対比する", "color": "orange", "occurrence": 0}
+{"page": 91, "type": "badge", "search": "1. 会計方針の開示", "text": "【B・説明できるレベル】", "color": "orange", "occurrence": 0}
+{"page": 91, "type": "margin", "search": "有価証券の評価基準及び評価方法", "text": "出題: 平成29年度(文案)", "color": "red", "occurrence": 0}
+{"page": 92, "type": "badge", "search": "2. 会計方針の変更", "text": "【B・説明できるレベル】", "color": "orange", "occurrence": 0}
+{"page": 92, "type": "underline", "search": "会計方針の変更に該当しない", "color": "red", "occurrence": 0}
+{"page": 92, "type": "underline", "search": "会計方針の変更に該当する", "color": "red", "occurrence": 0}
+{"page": 92, "type": "highlight", "search": "会計事象等の重要性が増した", "color": "green", "occurrence": 0}
+{"page": 92, "type": "highlight", "search": "新たな事実の発生に伴う", "color": "green", "occurrence": 0}
+{"page": 92, "type": "highlight", "search": "連結または持分法の適用の範囲に関する変動", "color": "green", "occurrence": 0}
+{"page": 92, "type": "highlight", "search": "キャッシュ・フロー計算書における資金の範囲の変更", "color": "green", "occurrence": 0}
+{"page": 92, "type": "note", "search": "会計方針の変更の具体的な範囲", "text": "覚え方: 該当しないもの3つ(①重要性が増した ②新たな事実の発生 ③連結・持分法の適用範囲の変動)→遡及適用しない。該当するもの2つ(④処理の変更に伴う表示方法の変更 ⑤CF計算書の資金の範囲の変更)→原則遡及適用。該当性の判定は頻出の引っかけ", "color": "blue", "occurrence": 0}
+{"page": 93, "type": "underline", "search": "その後に判明した情報を見積りに用いることはできない", "color": "red", "occurrence": 0}
+{"page": 93, "type": "highlight", "search": "金融商品取引法の開示では前期と当期の２期", "color": "green", "occurrence": 0}
+{"page": 93, "type": "highlight", "search": "会社法の開示では当期のみ１期", "color": "green", "occurrence": 0}
+{"page": 94, "type": "margin", "search": "遡及適用が実務上不可能な場合とは", "text": "覚え方:データなし・見積れない", "color": "blue", "occurrence": 0}
+{"page": 95, "type": "highlight", "search": "表示期間のうち過去の期間について", "color": "green", "occurrence": 1}
+{"page": 95, "type": "margin", "search": "表示期間のうち過去の期間について", "text": "当期分は注記不要・IFRSと逆", "color": "blue", "occurrence": 1}
+{"page": 97, "type": "badge", "search": "3. 表示方法の変更", "text": "【C・後回しOK】", "color": "gray", "occurrence": 0}
+{"page": 98, "type": "badge", "search": "会計方針の変更と表示方法の変更の区別", "text": "【B・説明できるレベル】", "color": "orange", "occurrence": 0}
+{"page": 98, "type": "underline", "search": "資産及び負債ならびに損益の認識または測定", "color": "red", "occurrence": 0}
+{"page": 98, "type": "margin", "search": "前事業年度まで営業外収益に計上していた賃貸収入", "text": "認識・測定不変なら表示方法の変更", "color": "blue", "occurrence": 0}
+{"page": 99, "type": "badge", "search": "4. 会計上の見積りの変更", "text": "【B・説明できるレベル】", "color": "orange", "occurrence": 0}
+{"page": 99, "type": "underline", "search": "過去に遡って処理せず", "color": "red", "occurrence": 0}
+{"page": 99, "type": "margin", "search": "過去に遡って処理せず", "text": "プロスペクティブな取扱い", "color": "blue", "occurrence": 0}
+{"page": 100, "type": "badge", "search": "区別することが困難な場合の取扱い", "text": "【B・説明できるレベル】", "color": "orange", "occurrence": 0}
+{"page": 100, "type": "underline", "search": "会計上の見積りの変更と同様", "color": "red", "occurrence": 0}
+{"page": 100, "type": "underline", "search": "遡及適用は行わない", "color": "red", "occurrence": 0}
+{"page": 100, "type": "highlight", "search": "減価償却方法及び無形固定資産の償却方法", "color": "yellow", "occurrence": 0}
+{"page": 100, "type": "note", "search": "区別することが困難な場合の取扱い", "text": "講師メモ(2_1 1:20:17): IFRSでは減価償却方法の変更は見積りの変更(遡及しない)。日本基準は減価償却方法を会計方針としつつ、処理の不整合を避けるためこのグレーゾーンを設けた。『区分は会計方針の変更・処理と注記の影響額は見積りの変更と同じ』。注記の表題は「会計方針の変更」(令和6年度に表題まで問われた)", "color": "orange", "occurrence": 0}
+{"page": 100, "type": "margin", "search": "（会計方針の変更）", "text": "出題: 令和6年度(表題まで)", "color": "red", "occurrence": 0}
+{"page": 101, "type": "badge", "search": "5. 過去の誤謬", "text": "【B・説明できるレベル】", "color": "orange", "occurrence": 0}
+{"page": 101, "type": "highlight", "search": "その見積りの時点で合理的なものであり", "color": "green", "occurrence": 0}
+{"page": 101, "type": "highlight", "search": "過去の誤謬の訂正には該当しない", "color": "green", "occurrence": 0}
+{"page": 101, "type": "underline", "search": "修正再表示が実務上不可能という理由", "color": "red", "occurrence": 0}
+{"page": 101, "type": "note", "search": "修正再表示に先立ち訂正報告書が提出される", "text": "講師メモ(2_1 1:21:07): 重要な誤謬への制度間の3段対応 — 会計基準上=修正再表示(原則)/金商法上=修正再表示に先立ち訂正報告書が提出されるのが通常で、修正再表示の規定は通常適用されない/会社法上=累積的影響額を当期首のものとして反映した当期の計算書類を作成し、株主総会の承認(令和元年度出題)", "color": "orange", "occurrence": 0}
+{"page": 101, "type": "margin", "search": "会計上の見積りの変更と過去の誤謬の訂正の区別", "text": "出題: 平成26・29年度", "color": "red", "occurrence": 0}
+{"page": 102, "type": "badge", "search": "未適用の会計基準等に関する注記", "text": "【C・後回しOK】", "color": "gray", "occurrence": 0}
+{"page": 103, "type": "badge", "search": "7. 会計上の見積りの開示", "text": "【B・説明できるレベル】", "color": "orange", "occurrence": 0}
+{"page": 103, "type": "note", "search": "減損損失の認識は行わないとした場合", "text": "講師メモ(2_1 1:24:13): 狙いのイメージは減損。減損損失を計上しなかった年度は減損の注記がないが、見積り自体は必ずしているし、なぜ減損しなかったのかも利用者は知りたい。そこを書かせるためにこの開示が必要だった。趣旨(開示目的)だけ説明できれば足りる", "color": "orange", "occurrence": 0}
+{"page": 104, "type": "badge", "search": "ＩＦＲＳと日本基準との対比", "text": "【A・最優先で暗記】", "color": "red", "occurrence": 0}
+{"page": 104, "type": "highlight", "search": "用に関する規定は存在しない", "color": "yellow", "occurrence": 0}
+{"page": 104, "type": "highlight", "search": "当期及び表示する過去の各期間について", "color": "yellow", "occurrence": 0}
+{"page": 104, "type": "underline", "search": "当期に与える影響も注記す", "color": "red", "occurrence": 0}
+{"page": 104, "type": "underline", "search": "る点で日本基準と異なる。", "color": "red", "occurrence": 0}
+{"page": 104, "type": "highlight", "search": "会計上の見積りの変更として処理する", "color": "yellow", "occurrence": 0}
+{"page": 104, "type": "highlight", "search": "することが困難な場合として取扱う", "color": "yellow", "occurrence": 0}
+{"page": 104, "type": "highlight", "search": "場合の例外規定を設けている", "color": "yellow", "occurrence": 0}
+{"page": 104, "type": "note", "search": "ＩＦＲＳと日本基準との対比", "text": "覚え方: 4差異を「決め方・書き方・償却・誤謬」で1セット暗記 — ①方針の決め方(IFRSは参照の階層あり/日本は規定なし) ②影響額の書き方(日本=前期のみ/IFRS=当期も注記) ③減価償却方法(IFRS=見積りの変更/日本=区別困難な場合) ④誤謬の例外(IFRSあり/日本なし←GAAP準拠性に問題が生じるため)。②③④は第5節本文の裏返しなので本文を押さえれば自動的に書ける", "color": "blue", "occurrence": 0}
+{"page": 105, "type": "highlight", "search": "｢会計上の変更｣とは", "color": "yellow", "occurrence": 0}
+{"page": 105, "type": "highlight", "search": "｢遡及適用｣とは", "color": "yellow", "occurrence": 0}
+{"page": 105, "type": "highlight", "search": "｢財務諸表の組替え｣とは", "color": "yellow", "occurrence": 0}
+{"page": 105, "type": "highlight", "search": "過去の財務諸表における誤謬の訂正", "color": "yellow", "occurrence": 0}
+{"page": 105, "type": "margin", "search": "平成26年度修了考査", "text": "難易度A・確実に取る", "color": "red", "occurrence": 0}
+{"page": 105, "type": "note", "search": "過去問check", "text": "講師メモ(2_1 1:29:39): 論文式試験のように高い精度で論証を覚える必要は全くない。白紙だけはダメですよ、という世界。その戦い方の中で必要な知識を頭に入れる", "color": "orange", "occurrence": 0}

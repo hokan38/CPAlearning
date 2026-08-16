@@ -1,0 +1,70 @@
+{"page": 22, "type": "note", "search": "第１節 開示制度と制度会計", "occurrence": 0, "text": "講師メモ(0:04:23/0:06:10): 第2章・第3章はほぼ総論。がっつり覚える内容はなく、直接問われない。前提知識としてサラッと読んで思い出せればOK。ただし第3節の講師説明部分だけは、第3章でIFRSと対比する際の「日本基準側の土台」なので説明できる状態に。", "color": "orange"}
+{"page": 23, "type": "badge", "search": "２つの開示制度", "occurrence": 0, "text": "【知識整理・読むだけ】", "color": "blue"}
+{"page": 23, "type": "highlight", "search": "会社法に基づく開示制度と金融商品取引法", "occurrence": 0, "color": "green"}
+{"page": 23, "type": "note", "search": "２つの開示制度", "occurrence": 0, "text": "講師メモ(0:06:28): 「何を今更という内容」。会計実務では会社法の問題はほとんど出ない。基本的には金商法を前提に見ていく。会社法がらみの近年の出題は2回だけ——H28後発事象、R1過去の誤謬の訂正(詳細は第4章)。", "color": "orange"}
+{"page": 24, "type": "badge", "search": "２つの制度会計", "occurrence": 0, "text": "【知識整理・読むだけ】", "color": "blue"}
+{"page": 24, "type": "highlight", "search": "株式会社の会計は，一般に公正妥当と認めら", "occurrence": 0, "color": "yellow"}
+{"page": 24, "type": "highlight", "search": "れる企業会計の慣行に従うものとする", "occurrence": 0, "color": "yellow"}
+{"page": 24, "type": "highlight", "search": "この規則において定めのない事項については", "occurrence": 0, "color": "yellow"}
+{"page": 24, "type": "highlight", "search": "般に公正妥当と認められる企業会計の基準に従う", "occurrence": 0, "color": "yellow"}
+{"page": 24, "type": "highlight", "search": "比較情報", "occurrence": 0, "color": "green"}
+{"page": 24, "type": "highlight", "search": "示されない", "occurrence": 0, "color": "green"}
+{"page": 24, "type": "margin", "search": "示されない", "occurrence": 0, "text": "会社法は比較情報なし(R1誤謬の伏線)", "color": "blue"}
+{"page": 24, "type": "note", "search": "２つの制度会計", "occurrence": 0, "text": "講師メモ(0:08:39): このページは「特に説明するような内容はない」。押さえるのは処理基準の構造だけ——個別は財規・連結は連結財規、それぞれ第1条で「規則に定めのない事項はGAAPに従う」→会計基準が会計処理のよりどころになる建付け。", "color": "orange"}
+{"page": 25, "type": "badge", "search": "企業会計の基準（ＧＡＡＰ）", "occurrence": 0, "text": "【知識整理・読むだけ】", "color": "blue"}
+{"page": 25, "type": "highlight", "search": "『～に係る会計基準』", "occurrence": 0, "color": "green"}
+{"page": 25, "type": "highlight", "search": "『～に関する会計基準』", "occurrence": 0, "color": "green"}
+{"page": 25, "type": "note", "search": "『～に関する会計基準』", "occurrence": 0, "text": "講師メモ(0:09:49): 審議会の基準もまだ生きているので体系は「かなりぐちゃぐちゃ」。見分け方: 審議会のまま=『〜に係る』、ASBJが改廃・開発=『〜に関する』。(0:10:36) 移管指針も名称は『〜に関する実務指針』のままなので、講義では従来通り「実務指針」「適用指針」と呼ぶ。", "color": "orange"}
+{"page": 26, "type": "badge", "search": "指定国際会計基準と修正国際基準の取扱い", "occurrence": 0, "text": "【知識整理・読むだけ】", "color": "blue"}
+{"page": 26, "type": "highlight", "search": "実態的にはピュアなＩＦＲＳのアドプシ", "occurrence": 0, "color": "green"}
+{"page": 26, "type": "highlight", "search": "①のれんの非償却，②その他の包括利益に計上した後に", "occurrence": 0, "color": "yellow"}
+{"page": 26, "type": "highlight", "search": "（いわゆるノンリサイクリング処理）", "occurrence": 0, "color": "yellow"}
+{"page": 26, "type": "note", "search": "①のれんの非償却", "occurrence": 0, "text": "💡「削除または修正」の2項目(のれん非償却/ノンリサイクリング)=日本がIFRSに「基本的な考え方に重要な差異がある」と意見発信したポイントそのもの。第3章のIFRS対比(のれん償却の有無/リサイクリングの有無)で主役になる。ここだけ拾っておく。", "color": "blue"}
+{"page": 26, "type": "note", "search": "修正国際基準（ＪＭＩＳ）", "occurrence": 0, "text": "講師メモ(0:13:38/0:15:25): 指定国際会計基準は事実上すべて指定済み→実態はピュアIFRSで、これが修了考査の出題範囲。一方JMISは「適用企業がないし開発も事実上終わっている。もう考える必要はない」→上の2項目だけ拾えば十分。", "color": "orange"}
+{"page": 27, "type": "badge", "search": "会計基準等の整理表", "occurrence": 0, "text": "【スキップOK(講師)】", "color": "gray"}
+{"page": 27, "type": "note", "search": "会計基準等の整理表", "occurrence": 0, "text": "講師メモ(0:11:34): 「これを全部見てくださいという趣旨ではありませんよ」。辞書・索引として参考に使う位置づけ。(0:12:12) ただし原典(基準・適用指針・実務指針)に自分で当たる勉強はかなり力がつくので、できる限り自分の目で規定を確認するように。", "color": "orange"}
+{"page": 32, "type": "badge", "search": "会計基準の国際的コンバージェンス", "occurrence": 0, "text": "【スキップOK(講師)】", "color": "gray"}
+{"page": 32, "type": "note", "search": "会計基準の国際的コンバージェンス", "occurrence": 0, "text": "講師メモ(0:15:48): 「ここは読み物。知らなかったら知らなかったで何の問題もありません」。IFRSの性格がなんとなく読み取れる程度の効用。", "color": "orange"}
+{"page": 33, "type": "note", "search": "中期運営方針", "occurrence": 0, "text": "講師メモ(0:18:08): 『中期運営方針』だけは現在につながる話。日本基準とIFRSは骨格が違いすぎるため、IFRSの基準書をそのまま取り入れる形の基準開発が目立つ(IFRS15→収益認識、IFRS13→時価算定)。概念フレームワーク(討議資料)に準拠した基準作りは行われておらず「ほぼ機能していない」のが我が国の特徴。", "color": "orange"}
+{"page": 34, "type": "badge", "search": "我が国の概念フレームワーク", "occurrence": 0, "text": "【知識整理・読むだけ】", "color": "blue"}
+{"page": 34, "type": "highlight", "search": "正式な概念フレームワークが存在しない", "occurrence": 0, "color": "green"}
+{"page": 34, "type": "highlight", "search": "投資家による企業成果の予測と企業価値の評価", "occurrence": 0, "color": "yellow"}
+{"page": 34, "type": "highlight", "search": "投資のポジション（ストック）とその成果", "occurrence": 0, "color": "yellow"}
+{"page": 34, "type": "note", "search": "正式な概念フレームワークが存在しない", "occurrence": 0, "text": "💡第3章対比の第1点: IASBの概念フレームワークは正式なプロセスを踏んで公表され、改定を重ね、実際に基準開発を支えている。「討議資料 vs 正式」「機能していない vs 機能している」という対比軸をここで作る。", "color": "blue"}
+{"page": 34, "type": "note", "search": "財務報告の目的", "occurrence": 0, "text": "講師メモ(0:21:15): 概念フレームワークを通じて浮かび上がる我が国の一番大きな特色=「純利益の重視」。ここからの内容は次章でIFRS総論を見る際の比較対象になる。(0:21:50) 企業価値評価には将来フローの予測が必ず必要→その予測に必要な情報の筆頭が利益情報→だから日本基準は純利益を一番重要な数字と考える。", "color": "orange"}
+{"page": 35, "type": "badge", "search": "会計情報の質的特性", "occurrence": 0, "text": "【知識整理・読むだけ】", "color": "blue"}
+{"page": 35, "type": "highlight", "search": "意思決定有用性", "occurrence": 0, "color": "green"}
+{"page": 35, "type": "highlight", "search": "意思決定目的に関連する情報であること", "occurrence": 0, "color": "green"}
+{"page": 35, "type": "highlight", "search": "内的整合性と比較可能性が，それら", "occurrence": 0, "color": "green"}
+{"page": 35, "type": "margin", "search": "内的整合性と比較可能性が，それら", "occurrence": 0, "text": "内的整合性は討議資料特有の概念", "color": "blue"}
+{"page": 36, "type": "margin", "search": "一般的制約となる特性", "occurrence": 0, "text": "有用性→関連性・信頼性→制約の3層", "color": "blue"}
+{"page": 37, "type": "badge", "search": "財務諸表の構成要素", "occurrence": 0, "text": "【知識整理・読むだけ】", "color": "blue"}
+{"page": 37, "type": "highlight", "search": "純資産，株主資本，包括利益，純利益，収益，費用", "occurrence": 0, "color": "green"}
+{"page": 37, "type": "underline", "search": "純利益にも独立定義を与えている", "occurrence": 0, "color": "red"}
+{"page": 37, "type": "underline", "search": "資産負債アプローチに立っているわけではない", "occurrence": 0, "color": "red"}
+{"page": 37, "type": "highlight", "search": "報告主体が支配している経済的資源", "occurrence": 0, "color": "yellow"}
+{"page": 37, "type": "highlight", "search": "その期間中にリスクから解放された投資の成果であって", "occurrence": 0, "color": "yellow"}
+{"page": 37, "type": "highlight", "search": "所有者に帰属する部分", "occurrence": 0, "color": "yellow"}
+{"page": 37, "type": "margin", "search": "純資産，株主資本，包括利益，純利益，収益，費用", "occurrence": 0, "text": "独立定義は資産・負債・純利益", "color": "blue"}
+{"page": 37, "type": "note", "search": "財務諸表の構成要素", "occurrence": 0, "text": "講師メモ(0:30:38): 「なんと言っても見ておかなければいけないのは、この8つの構成要素」。独立定義は資産・負債だけでなく純利益にも→純粋な資産負債アプローチではなく収益費用アプローチの考え方も加味されている、という構造を押さえる。", "color": "orange"}
+{"page": 37, "type": "note", "search": "純利益にも独立定義を与えている", "occurrence": 0, "text": "講師メモ(0:23:11): 純利益(収益費用の差額)は単なる資産負債の増減ではなく「投資のリスクからの解放」要件を満たしたものに限る。純利益を独立定義したままではB/SとP/Lが連携しない(クリーン・サープラス不成立)→純資産の中に「株主資本」を作り、純利益と株主資本を連携させた(0:24:43)。", "color": "orange"}
+{"page": 38, "type": "highlight", "search": "リサイクリングが必ず行われる", "occurrence": 0, "color": "green"}
+{"page": 38, "type": "highlight", "search": "クリーン・サープラス関係が成立", "occurrence": 0, "color": "green"}
+{"page": 38, "type": "highlight", "search": "ネット・キャッシュ・フロー(＝全体利益)", "occurrence": 0, "color": "yellow"}
+{"page": 38, "type": "underline", "search": "各期の利益(期間利益)の合計", "occurrence": 0, "color": "red"}
+{"page": 38, "type": "underline", "search": "利益の測定にとって基本的な制約になる", "occurrence": 0, "color": "red"}
+{"page": 38, "type": "highlight", "search": "期間帰属が異なるだけ", "occurrence": 0, "color": "green"}
+{"page": 38, "type": "highlight", "search": "包括利益と純資産のクリーン・サープラス関係", "occurrence": 0, "color": "green"}
+{"page": 38, "type": "highlight", "search": "純利益と株主資本のクリーン・サープラス関係", "occurrence": 0, "color": "green"}
+{"page": 38, "type": "note", "search": "投下した資金と回収した資金の差額", "occurrence": 0, "text": "講師メモ(0:27:10): 設立から解散までの収入・支出の差額=ネット・キャッシュ・フロー=全体利益。期間利益の合計は包括利益であれ純利益であれこれに一致(一致の原則)。「包括利益と純利益は単なる期ズレ」→単なる期ズレだからこそ、その他の包括利益は必ずリサイクリングしなければならない(0:29:24)。", "color": "orange"}
+{"page": 38, "type": "note", "search": "純利益を重視", "occurrence": 0, "text": "講師メモ(0:28:42): 本章の結論=純利益の重視から導かれる日本基準の3特徴。①計算構造は資産負債アプローチではなくハイブリッド構造(純利益が独立定義) ②クリーン・サープラス関係が2種類(包括利益⇔純資産/純利益⇔株主資本。むしろ後者を重視) ③包括利益も純利益も期ズレにすぎない→その他の包括利益は必ずリサイクリング。", "color": "orange"}
+{"page": 38, "type": "note", "search": "クリーン・サープラス関係が成立", "occurrence": 0, "text": "💡第3章対比の核心(0:29:37): IFRSは資産負債アプローチ。株主資本が定義されず、純利益と連携する財政状態計算書の項目がない。その他の包括利益にリサイクリングしない部分がある→IFRSの純利益は一致の原則を満たさない=「純利益にキャッシュの裏付けがない」。この3特徴と対比しながらIFRSを押さえる。", "color": "blue"}
+{"page": 39, "type": "badge", "search": "財務諸表における認識と測定", "occurrence": 0, "text": "【知識整理・読むだけ】", "color": "blue"}
+{"page": 39, "type": "highlight", "search": "認識に求められる蓋然性", "occurrence": 0, "color": "green"}
+{"page": 39, "type": "badge", "search": "構成要素の測定", "occurrence": 0, "text": "【スキップOK(講師)】", "color": "gray"}
+{"page": 39, "type": "note", "search": "構成要素の測定", "occurrence": 0, "text": "講師メモ(0:31:58): 測定値の一覧(p2-18〜2-24)は「アカデミックな内容で、修了考査で問われることはない。載せているだけだと思ってください。太字にもなっていますけれども」→表の暗記は不要。", "color": "orange"}
+{"page": 43, "type": "highlight", "search": "期待された成果が事実として確定する", "occurrence": 0, "color": "green"}
+{"page": 43, "type": "highlight", "search": "キャッシュ・フローに転換された時点", "occurrence": 0, "color": "green"}
+{"page": 43, "type": "highlight", "search": "価値が変動した時点", "occurrence": 0, "color": "green"}
+{"page": 43, "type": "margin", "search": "＜事業投資と金融投資＞", "occurrence": 0, "text": "事業投資=原価、金融投資=時価", "color": "blue"}
+{"page": 43, "type": "note", "search": "期待された成果が事実として確定する", "occurrence": 0, "text": "💡測定の節はスキップOKだが、ここ(p2-22)だけは読む: 「リスクからの解放」は純利益の定義を支える概念。事業投資=CFに転換された時点で解放→原価評価/金融投資=価値が変動した時点でそのまま解放→時価評価。「投資の性格に応じた資産・負債の評価」(実務対応報告18号の考え方③)の中身がこれ。", "color": "blue"}
