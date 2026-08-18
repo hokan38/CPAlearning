@@ -135,21 +135,126 @@ def make_supplement_pages(doc, ch, items, w, h):
     return made
 
 
+def load_qa(ch):
+    path = f"{SC}/extra_qa_ch{ch:02d}.json"
+    if not os.path.exists(path):
+        return []
+    raw = open(path, encoding="utf-8").read().strip()
+    try:
+        data = json.loads(raw)
+        if isinstance(data, dict):
+            data = [data]
+    except json.JSONDecodeError:
+        data = []
+        for line in raw.splitlines():
+            s = line.strip().rstrip(",")
+            if s.startswith("{"):
+                try:
+                    data.append(json.loads(s))
+                except json.JSONDecodeError:
+                    pass
+    out = []
+    for d in data:
+        a = (d.get("a") or "").strip()
+        if a:
+            out.append((str(d.get("ref") or "").strip(),
+                        (d.get("q") or "").strip(), a))
+    return out
+
+
+def make_qa_pages(doc, ch, items, w, h):
+    """過去問の解答例ページを doc の末尾に作る。"""
+    ml, mr, mt, mb = 42, 40, 52, 44
+    fs = 9.2
+    lh = fs * 1.42
+    gap = 10
+    scratch = pymupdf.open()
+
+    page = None
+    y = 0
+
+    def new_page(cont=False):
+        nonlocal page, y
+        page = doc.new_page(width=w, height=h)
+        title = f"第{ch}章 {CH_TITLE.get(ch, '')} ／ 過去問check 解答例"
+        if cont:
+            title += "（続き）"
+        page.insert_text((ml, mt - 22), title, fontname=F, fontsize=10.5, color=RED)
+        page.draw_line((ml, mt - 14), (w - mr, mt - 14), color=RED, width=0.8)
+        page.insert_text((ml, h - 24),
+                         "※ 教科書掲載の過去問に対する解答例（本試験の公式解答ではない）",
+                         fontname=F, fontsize=7.5, color=GRAY)
+        y = mt
+
+    def block(ref, q, a, y_top, dry):
+        """設問+解答を描く。dry=Trueなら測るだけ。使用高さ or None"""
+        tgt = scratch.new_page(width=w, height=h) if dry else page
+        yy = y_top
+        head_txt = f"［{ref}］{q}" if ref else q
+        r1 = pymupdf.Rect(ml, yy, w - mr, h - mb)
+        if r1.height < lh:
+            if dry:
+                scratch.delete_page(tgt.number)
+            return None
+        rc = tgt.insert_textbox(r1, head_txt, fontname=F, fontsize=fs - 0.4,
+                                color=RED, lineheight=1.38, align=0)
+        if rc < 0:
+            if dry:
+                scratch.delete_page(tgt.number)
+            return None
+        yy += r1.height - rc + 2
+        r2 = pymupdf.Rect(ml + 12, yy, w - mr, h - mb)
+        if r2.height < lh:
+            if dry:
+                scratch.delete_page(tgt.number)
+            return None
+        rc2 = tgt.insert_textbox(r2, a, fontname=F, fontsize=fs,
+                                 color=INK, lineheight=1.42, align=0)
+        if rc2 < 0:
+            if dry:
+                scratch.delete_page(tgt.number)
+            return None
+        yy += r2.height - rc2
+        if dry:
+            scratch.delete_page(tgt.number)
+        return yy - y_top
+
+    new_page()
+    for ref, q, a in items:
+        used = block(ref, q, a, y, dry=True)
+        if used is None:
+            new_page(cont=True)
+            used = block(ref, q, a, y, dry=True)
+            if used is None:  # 1ページに収まらない長文は分割せず縮小
+                r = pymupdf.Rect(ml, y, w - mr, h - mb)
+                page.insert_textbox(r, f"［{ref}］{q}\n{a}", fontname=F,
+                                    fontsize=fs - 1.4, color=INK, lineheight=1.34)
+                y = h - mb
+                continue
+        block(ref, q, a, y, dry=False)
+        y += used + gap
+
+
 def main():
     for src, out, chmap in BOOKS:
         base = pymupdf.open(src)
         w, h = base[0].rect.width, base[0].rect.height
 
-        # 各章の補足ページを一時ドキュメントに作る
+        # 各章の補足ページ・解答例ページを一時ドキュメントに作る
         supp = pymupdf.open()
         supp_range = {}
+        qa_range = {}
         for ch in sorted(chmap):
             items = load_extra(ch)
-            if not items:
-                continue
-            start = supp.page_count
-            make_supplement_pages(supp, ch, items, w, h)
-            supp_range[ch] = (start, supp.page_count - 1)
+            if items:
+                start = supp.page_count
+                make_supplement_pages(supp, ch, items, w, h)
+                supp_range[ch] = (start, supp.page_count - 1)
+            qa_items = load_qa(ch)
+            if qa_items:
+                start = supp.page_count
+                make_qa_pages(supp, ch, qa_items, w, h)
+                qa_range[ch] = (start, supp.page_count - 1)
 
         ndoc = pymupdf.open()
         cursor = 0  # base の 0-based 位置
@@ -172,9 +277,12 @@ def main():
                 sl.close()
             # 章本文
             ndoc.insert_pdf(base, from_page=cs - 1, to_page=ce - 1)
-            # 章末に補足ページ
+            # 章末に補足ページ → 過去問解答例
             if ch in supp_range:
                 s0, s1 = supp_range[ch]
+                ndoc.insert_pdf(supp, from_page=s0, to_page=s1)
+            if ch in qa_range:
+                s0, s1 = qa_range[ch]
                 ndoc.insert_pdf(supp, from_page=s0, to_page=s1)
             cursor = ce
         if cursor < base.page_count:
