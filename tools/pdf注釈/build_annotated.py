@@ -76,9 +76,19 @@ def main():
     resolved = []
     for a in annots:
         page = ndoc[a["page"] - 1]
+        if not a.get("search"):
+            # ページ/節全体に関わるコメント: ページ上部を仮アンカー(接続線なし)
+            a["_noanchor"] = True
+            resolved.append((a, [pymupdf.Rect(40, 42, 60, 52)]))
+            continue
         hits = page.search_for(a["search"], clip=pymupdf.Rect(0, 0, ow, page.rect.height))
         if not hits:
-            stats["miss"].append((a["page"], a["search"][:30], a["type"]))
+            # アンカーが見つからないコメントも捨てずにページ上部へ
+            if a["type"] in ("comment", "note"):
+                a["_noanchor"] = True
+                resolved.append((a, [pymupdf.Rect(40, 42, 60, 52)]))
+            else:
+                stats["miss"].append((a["page"], a["search"][:30], a["type"]))
             continue
         occ = a.get("occurrence", 0)
         rects = hits if occ == -1 else [hits[min(occ, len(hits) - 1)]]
@@ -139,20 +149,28 @@ def main():
             elif t in ("comment", "note"):
                 r = rects[0]
                 txt = clean_comment(a["text"])
-                lines = wrap_jp(txt, WIDE - 14, FS_COMMENT)
+                fs_use = FS_COMMENT
+                lines = wrap_jp(txt, WIDE - 14, fs_use)
                 y = max(cursors.get(a["page"], 14), r.y0 + 4)
-                block_h = len(lines) * (FS_COMMENT + 1.8) + 6
+                block_h = len(lines) * (fs_use + 1.8) + 6
+                if y + block_h > page.rect.height - 10:
+                    # まず縮小して再計算
+                    fs_use = 6.0
+                    lines = wrap_jp(txt, WIDE - 14, fs_use)
+                    block_h = len(lines) * (fs_use + 1.5) + 5
                 if y + block_h > page.rect.height - 10:
                     y = max(10, page.rect.height - 10 - block_h)
                 x = ow + 8
-                # アンカーへの赤い接続マーク(既存文字と交差しない起点を選ぶ)
-                gap = pymupdf.Rect(r.x1 + 1, r.y0, ow, r.y1)
-                sx = r.x1 + 1 if not page.get_text(clip=gap).strip() else ow - 4
-                page.draw_line((sx, (r.y0 + r.y1) / 2), (ow + 5, y + 3),
-                               color=RED_INK, width=0.6)
+                if not a.get("_noanchor"):
+                    # アンカーへの赤い接続マーク(既存文字と交差しない起点を選ぶ)
+                    gap = pymupdf.Rect(r.x1 + 1, r.y0, ow, r.y1)
+                    sx = r.x1 + 1 if not page.get_text(clip=gap).strip() else ow - 4
+                    page.draw_line((sx, (r.y0 + r.y1) / 2), (ow + 5, y + 3),
+                                   color=RED_INK, width=0.6)
+                lh_use = fs_use + (1.8 if fs_use > 6.5 else 1.5)
                 for i, l in enumerate(lines):
-                    page.insert_text((x, y + 4 + i * (FS_COMMENT + 1.8)), l,
-                                     fontname="japan", fontsize=FS_COMMENT, color=RED_INK)
+                    page.insert_text((x, y + 4 + i * lh_use), l,
+                                     fontname="japan", fontsize=fs_use, color=RED_INK)
                 cursors[a["page"]] = y + block_h + 4
             stats["ok"] += 1
         except Exception as e:
