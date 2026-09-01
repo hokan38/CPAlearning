@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="ja"><head><meta charset="utf-8">
+<style>
+@page { size: 7.1667in 10.125in; margin: 0; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: "Noto Sans CJK JP", "IPAGothic", sans-serif;
+  color: #1a1a1a; width: 7.1667in; height: 10.125in;
+  padding: 13pt 15pt 10pt; font-size: 8.1pt; line-height: 1.42;
+  -webkit-print-color-adjust: exact; print-color-adjust: exact;
+}
+:root { --red: #c1121f; --ink: #1a1a1a; --line: #c9c9c9; --tint: #fdf0ef; --gray: #6b6b6b; }
+.head { border-bottom: 2.2pt solid var(--red); padding-bottom: 4pt; margin-bottom: 7pt;
+  display: flex; align-items: baseline; justify-content: space-between; }
+h1 { font-size: 14pt; letter-spacing: .01em; }
+h1 .sub { font-size: 9pt; color: var(--red); margin-left: 7pt; font-weight: 600; }
+.src { font-size: 7pt; color: var(--gray); text-align: right; line-height: 1.35; }
+.lead { background: var(--tint); border-left: 3pt solid var(--red); padding: 5.5pt 8pt; margin-bottom: 8pt; font-size: 8.4pt; }
+.lead b { color: var(--red); }
+h2 { font-size: 8.8pt; margin: 0 0 3.5pt; padding-left: 6pt; border-left: 3pt solid var(--ink); line-height: 1.15; }
+h2 span { font-weight: 400; font-size: 7.4pt; color: var(--gray); margin-left: 5pt; }
+section { margin-bottom: 8pt; }
+table { width: 100%; border-collapse: collapse; font-size: 7.5pt; }
+th, td { border: .6pt solid var(--line); padding: 3.2pt 4pt; vertical-align: top; }
+thead th { background: #f2f2f2; font-size: 7.3pt; text-align: center; line-height: 1.25; }
+thead th.big { background: #eae7e7; }
+td.k { background: #fafafa; }
+td.k b { color: var(--red); font-size: 7.8pt; }
+td.k i { display: block; font-style: normal; color: var(--gray); font-size: 6.9pt; margin-top: .5pt; }
+td.q { font-size: 7.3pt; }
+.same { color: var(--gray); }
+.notes { display: grid; grid-template-columns: 1fr 1fr; gap: 7pt; }
+.note { border: .7pt solid var(--line); border-top: 2pt solid var(--red); padding: 5pt 7pt; font-size: 7.6pt; }
+.note b { display: block; font-size: 8.1pt; margin-bottom: 2pt; }
+.cards { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 6pt; }
+.card { border: .7pt solid var(--line); padding: 5pt 6.5pt; font-size: 7.4pt; }
+.card b { display: block; color: var(--red); font-size: 8.1pt; margin-bottom: 2pt;
+  border-bottom: .6pt dotted var(--line); padding-bottom: 1.5pt; }
+table.kw td { font-size: 7.4pt; }
+table.kw td.lab { width: 13%; text-align: center; font-weight: 700; background: #fafafa; }
+ol { margin-left: 15pt; font-size: 7.9pt; }
+ol li { margin-bottom: 1.6pt; padding-left: 2pt; }
+.arrow { color: var(--red); font-weight: 700; }
+.pattern { border: .7pt dashed var(--red); background: var(--tint); padding: 5pt 8pt; margin-top: 5pt; font-size: 7.9pt; }
+.pattern b { color: var(--red); }
+.foot { border-top: .6pt solid var(--line); margin-top: 4pt; padding-top: 3.5pt;
+  font-size: 6.6pt; color: var(--gray); display: flex; justify-content: space-between; }
+</style></head><body>
+
+<div class="head">
+  <h1>ＩＴ環境の複雑性・三区分<span class="sub">表の読み方</span></h1>
+  <div class="src">経営実務（ＩＴ）第５章 ⑤-7「一般的な特性の例」<br>監基報315 付録５第４項</div>
+</div>
+
+<div class="lead">
+  この表は<b>「その会社はＩＴにどれだけ仕事をさせているか」</b>を５つの角度から聞いているだけ。
+  左→右は依存度が<b>小さい→大きいの一本道</b>で、どの行も同じ向きに動く。
+  15マスを覚えるのではなく、<b>５つの質問</b>を覚える。
+</div>
+
+<section>
+  <h2>並べ替えると「データの一生」<span>教科書は順番がバラバラ。入力→連携→処理→出力→保管の順に読む</span></h2>
+  <table>
+    <thead><tr>
+      <th style="width:21%">観　点</th><th style="width:17%">何を聞いているか</th>
+      <th style="width:19.5%">小：複雑でない<br>市販のソフトウェア</th>
+      <th style="width:20.5%">中：中規模・中程度に<br>複雑な市販ソフト／アプリ</th>
+      <th class="big">大：大規模または複雑な<br>ＩＴアプリ（ERP等）</th>
+    </tr></thead>
+    <tbody>
+      <tr><td class="k"><b>①入力</b><i>データの入力方法</i></td><td class="q">どうやってデータが入るか</td>
+        <td>手作業でのデータ入力</td><td>少数のデータ入力または単純なインターフェース</td><td>大量のデータ入力または複雑なインターフェース</td></tr>
+      <tr><td class="k"><b>②連携</b><i>システム・インターフェース</i></td><td class="q">システム同士がつながっているか</td>
+        <td>自動化されていない<br>（手作業の入力のみ）</td><td class="same">←①と同じ文言</td><td class="same">←①と同じ文言</td></tr>
+      <tr><td class="k"><b>③処理</b><i>自動化の範囲・複雑性</i></td><td class="q">処理を自動でやっているか</td>
+        <td>該当無</td><td>該当無</td><td>広範囲、かつ自動化された処理手続も複雑</td></tr>
+      <tr><td class="k"><b>④出力</b><i>システム生成レポートへの依拠</i></td><td class="q">システムが出す帳票に頼っているか</td>
+        <td>単純な自動化されたレポートのロジック</td><td>単純だが<b>重要</b>なレポートのロジック</td><td>複雑なロジック（例：レポート作成ソフトウェア）</td></tr>
+      <tr><td class="k"><b>⑤保管</b><i>デジタルデータの量と保存場所</i></td><td class="q">データがどこにどれだけあるか</td>
+        <td>少量・単純／ローカルで使用可能</td><td>少量または単純なデータ</td><td>大量・複雑／データウェアハウス、内外のＩＴサービスプロバイダ（第三者保管・ホスティング）</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section class="notes">
+  <div class="note"><b>「該当無」でつまずかない</b>
+    自動化された処理手続が<b style="display:inline">そもそも無い</b>（人がやっている）という意味。
+    重要でないから省略、ではない。</div>
+  <div class="note"><b>覚えるのは実質４つ</b>
+    ①入力と②連携は中・大列の文言が完全に同じ。
+    「入力と連携」で１セットにしてよい。</div>
+</section>
+
+<section>
+  <h2>会社のイメージで持つ</h2>
+  <div class="cards">
+    <div class="card"><b>小</b>町の中小企業。市販の会計ソフト１本で、伝票を見ながら手入力。データはそのＰＣの中。</div>
+    <div class="card"><b>中</b>中堅企業。販売管理システムから会計ソフトへＣＳＶ取込。カスタマイズの少ない簡易ＥＲＰや古いレガシー。</div>
+    <div class="card"><b>大</b>上場企業のＥＲＰ（SAP等）。受注→出荷→請求→仕訳まで自動生成。多数のシステムと連携、ＤＷＨ・クラウド。</div>
+  </div>
+</section>
+
+<section>
+  <h2>事例問題の判定キーワード<span>会社の記述のどこを見て区分を決めるか</span></h2>
+  <table class="kw"><tbody>
+    <tr><td class="lab">小</td><td>「手入力」「Ｅｘｃｅｌで集計」「市販ソフトを購入して使用」「担当者が伝票から入力」</td></tr>
+    <tr><td class="lab">中</td><td>「ＣＳＶで連携」「基幹システムから会計システムへ取込」「カスタマイズは限定的」「一部の業務のみシステム化」</td></tr>
+    <tr><td class="lab">大</td><td>「ＥＲＰ」「自動で仕訳が生成」「多数のシステム間連携」「アドオン開発」「クラウド／データセンターに保管」</td></tr>
+  </tbody></table>
+</section>
+
+<section>
+  <h2>区分判定はゴールではなく入口<span>右にいくほど、次のことが言える</span></h2>
+  <ol>
+    <li>ＩＴへの依存度が上がる <span class="arrow">→</span> ＩＴから生じるリスクが増える</li>
+    <li>自動化された統制・システム生成情報（ＩＰＥ）に依拠する場面が増える <span class="arrow">→</span> その前提として<b>ＩＴ全般統制の有効性</b>が必要になる</li>
+    <li>理解・評価の範囲が広がり、<b>ＩＴ専門家の関与</b>が不可欠になる</li>
+    <li>「第三者によるホスティング」が出てきたら<b>委託業務（第８章）</b>へ接続 <span class="arrow">→</span> ＳＯＣ報告書（タイプ１／タイプ２）の論点</li>
+  </ol>
+  <div class="pattern"><b>答案の型 ▶</b>　当社は〜との記述から【大規模または複雑なＩＴアプリケーション】に該当する。
+    したがって〜のリスクがあり、〜の手続が必要となる。</div>
+</section>
+
+<div class="foot"><span>※ 特性は傾向を示すものであり、企業が利用するＩＴアプリケーションの性質によって異なることがある点に留意（監基報315 付録５）</span><span>⑤-7 補助メモ</span></div>
+</body></html>
