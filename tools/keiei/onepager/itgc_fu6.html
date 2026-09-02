@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="ja"><head><meta charset="utf-8">
+<style>
+@page { size: 7.1667in 10.125in; margin: 0; }
+* { box-sizing:border-box; margin:0; padding:0; }
+body { font-family:"Noto Sans CJK JP","IPAGothic",sans-serif; color:#1a1a1a;
+  width:7.1667in; height:10.125in; padding:10pt 13pt 7pt; font-size:7.6pt; line-height:1.32;
+  -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+:root { --red:#c1121f; --ink:#1a1a1a; --line:#c9c9c9; --tint:#fdf0ef; --gray:#6b6b6b; --blue:#1d4e77; }
+.head { border-bottom:2.2pt solid var(--red); padding-bottom:4pt; margin-bottom:6pt;
+  display:flex; align-items:baseline; justify-content:space-between; }
+h1 { font-size:12.4pt; } h1 .sub { font-size:9pt; color:var(--red); margin-left:7pt; font-weight:600; }
+.src { font-size:7pt; color:var(--gray); text-align:right; line-height:1.35; }
+.lead { background:var(--tint); border-left:3pt solid var(--red); padding:3.8pt 6pt; margin-bottom:5pt; font-size:7.6pt; }
+.lead b { color:var(--red); }
+.sum { display:grid; grid-template-columns:1fr 1fr 1fr; gap:5pt; margin-bottom:5pt; }
+.s { border:.7pt solid var(--line); border-top:2pt solid var(--red); padding:3.2pt 5pt; font-size:6.9pt; }
+.s b { display:block; color:var(--red); font-size:7.5pt; margin-bottom:.8pt; }
+h2 { font-size:8.2pt; margin:0 0 2.5pt; padding-left:6pt; border-left:3pt solid var(--ink); line-height:1.15; }
+h2 span { font-weight:400; font-size:7.3pt; color:var(--gray); margin-left:5pt; }
+table { width:100%; border-collapse:collapse; font-size:5.95pt; }
+th,td { border:.55pt solid var(--line); padding:1.0pt 2.2pt; vertical-align:top; line-height:1.22; }
+thead th { background:#f2f2f2; font-size:6.3pt; text-align:center; }
+thead th.big { background:#eae7e7; }
+td.p { background:#f2ecec; text-align:center; font-weight:700; font-size:6.5pt; vertical-align:middle; line-height:1.2; }
+td.r { background:#fafafa; }
+td.r b { color:var(--red); font-size:6.5pt; }
+td.r i { display:block; font-style:normal; color:var(--gray); font-size:5.95pt; margin-top:.2pt; line-height:1.18; }
+td.y { text-align:center; font-weight:700; color:var(--blue); }
+td.n { text-align:center; font-weight:700; color:var(--red); }
+td.y span, td.n span { display:block; font-weight:400; color:var(--gray); font-size:5.9pt; line-height:1.16; margin-top:.2pt; }
+.notes { display:grid; grid-template-columns:1fr 1fr 1fr; gap:5pt; margin-top:5pt; }
+.note { border:.7pt solid var(--line); border-top:2pt solid var(--ink); padding:3pt 5pt; font-size:6.6pt; }
+.note b { display:block; font-size:7.4pt; margin-bottom:1pt; color:var(--red); }
+.pattern { border:.7pt dashed var(--red); background:var(--tint); padding:3.8pt 6pt; font-size:7.2pt; margin-top:5pt; }
+.pattern b { color:var(--red); }
+.foot { border-top:.6pt solid var(--line); margin-top:4pt; padding-top:3pt; font-size:6.6pt; color:var(--gray);
+  display:flex; justify-content:space-between; }
+</style></head><body>
+
+<div class="head">
+  <h1>ＩＴ全般統制の識別例<span class="sub">区分ごとに何を識別するか</span></h1>
+  <div class="src">経営実務（ＩＴ）第６章 ⑥-7〜⑥-9<br>監基報315 付録６（ＩＴ全般統制を理解するための考慮事項）</div>
+</div>
+
+<div class="lead">
+  ⑤-7の三区分の<b>答え合わせ</b>にあたる表。横軸は⑤-7と同じ小・中・大で、
+  <b>区分が上がるほど識別すべきＩＴ全般統制が増える</b>ことを具体的に示している。
+  ＩＴプロセスは<b>アクセス管理／変更管理／ＩＴの運用</b>の３つ（開発・導入は変更管理に含まれる）。</div>
+
+<div class="sum">
+  <div class="s"><b>小＝アクセス管理だけ</b>変更管理とＩＴの運用は<b style="display:inline">全て「無」</b>。残るのは付与・削除・レビュー・認証・特権の５つのみ。</div>
+  <div class="s"><b>中＝限定付きで全領域</b>「特定のアプリについて」「市販されていないソフトについて」「状況による」が口癖。<b style="display:inline">一部だけ</b>やる。</div>
+  <div class="s"><b>大＝全部・全階層</b>ほぼ全て「有」。特権アクセスも<b style="display:inline">プラットフォームの全ての階層で</b>見る。</div>
+</div>
+
+<section>
+  <h2>ＩＴ全般統制の識別例<span>「無」の欄はその理由まで覚える。そこが答案の材料になる</span></h2>
+  <table>
+    <thead><tr>
+      <th style="width:7%">ＩＴ<br>プロセス</th><th style="width:15%">ＩＴの利用から生じるリスク</th>
+      <th style="width:31%">ＩＴ全般統制の例</th>
+      <th style="width:16%">小</th><th style="width:15%">中</th><th class="big" style="width:8%">大</th>
+    </tr></thead>
+    <tbody>
+      <tr><td class="p" rowspan="8">アクセス<br>管理</td>
+        <td class="r" rowspan="5"><b>利用者のアクセス権</b><i>必要以上の権限を持つと不適切な職務分離を引き起こす</i></td>
+        <td>新規付与・修正を管理者が承認（<b>プロビジョニング</b>）</td>
+        <td class="y">有<span>下の定期レビューと代替可</span></td><td class="y">有</td><td class="y">有</td></tr>
+      <tr><td>退職・異動時に適時に削除・修正（<b>デプロビジョニング</b>）</td>
+        <td class="y">有<span>下の定期レビューと代替可</span></td><td class="y">有</td><td class="y">有</td></tr>
+      <tr><td>アクセス権の付与状況を<b>定期的にレビュー</b></td>
+        <td class="y">有<span>上の付与・削除と代替可</span></td><td class="y">有</td><td class="y">有</td></tr>
+      <tr><td><b>職務分離</b>を監視し、コンフリクトする権限を削除／軽減統制に紐づける</td>
+        <td class="n">無<span>どのシステムも職務分離の機能を有しない</span></td><td class="y">有<span>特定のアプリについて</span></td><td class="y">有</td></tr>
+      <tr><td><b>特権アクセス</b>（環境設定・データ・セキュリティの管理者）を承認し制限</td>
+        <td class="y">有<span>ＩＴアプリの階層のみ</span></td><td class="y">有<span>アプリと特定の階層で</span></td><td class="y">有<span>全ての階層で</span></td></tr>
+      <tr><td class="r"><b>データへの直接的なアクセス</b><i>アプリを通さず財務データを直接変更される</i></td>
+        <td>データファイル・ＤＢのオブジェクト／テーブルへのアクセスを職務上許可された者に制限し、承認</td>
+        <td class="n">無</td><td class="y">有<span>特定のアプリ・ＤＢについて</span></td><td class="y">有</td></tr>
+      <tr><td class="r" rowspan="2"><b>システム設定</b><i>アクセスを制限する環境設定が適切でない／更新されていない</i></td>
+        <td>固有のＩＤ・パスワード等による<b>認証</b>。パスワードの長さ・複雑性・有効期限・ロックが基準を満たす</td>
+        <td class="y">有<span>パスワード認証のみ</span></td><td class="y">有<span>パスワード＋多要素認証</span></td><td class="y">有</td></tr>
+      <tr><td>セキュリティの<b>環境設定</b>の主要な属性が適切に実施されている</td>
+        <td class="n">無<span>技術的なセキュリティの環境設定が存在しない</span></td><td class="y">有<span>特定のアプリ・ＤＢについて</span></td><td class="y">有</td></tr>
+
+      <tr><td class="p" rowspan="5">変更<br>管理</td>
+        <td class="r" rowspan="2"><b>アプリケーションの変更</b><i>自動化された統制やレポートロジックに不適切な変更</i></td>
+        <td>本番環境に移行する前に適切に<b>テストされ承認</b>されている</td>
+        <td class="n">無<span>ソースコードがインストールされていないことを確認</span></td><td class="y">有<span>市販されていないソフトについて</span></td><td class="y">有</td></tr>
+      <tr><td>本番環境の<b>変更権限</b>が管理され、<b>開発環境から分離</b>されている</td>
+        <td class="n">無</td><td class="y">有<span>市販されていないソフトについて</span></td><td class="y">有</td></tr>
+      <tr><td class="r"><b>データベースの変更</b><i>構造やデータ間の関連付けに不適切な変更</i></td>
+        <td>本番環境に移行する前にテストされ承認されている</td>
+        <td class="n">無<span>企業側でのＤＢの変更はない</span></td><td class="y">有<span>市販されていないソフトについて</span></td><td class="y">有</td></tr>
+      <tr><td class="r"><b>システムソフトウェアの変更</b><i>ＯＳ・ネットワーク・アクセス制限ソフト等</i></td>
+        <td>テスト・承認されている（<b>セキュリティパッチ</b>の適用を含む）</td>
+        <td class="n">無<span>企業側での変更はない</span></td><td class="y">有</td><td class="y">有</td></tr>
+      <tr><td class="r"><b>データの変換（移行）</b><i>不完全・余分・古い・不正確なデータが移行されエラーを招く</i></td>
+        <td>管理者が<b>コンバージョンの結果を承認</b>し、方針と手続への準拠を監視</td>
+        <td class="n">無<span>手作業の内部統制により対応する</span></td><td class="y">有</td><td class="y">有</td></tr>
+
+      <tr><td class="p" rowspan="8">ＩＴの<br>運用</td>
+        <td class="r" rowspan="5"><b>ネットワーク</b><i>権限のない利用者の不適切なアクセスを防止できていない</i></td>
+        <td>固有のＩＤ・パスワード等による認証とパスワードのパラメータ</td>
+        <td class="n">無<span>独立したネットワークの認証方法が存在しない</span></td><td class="y">有</td><td class="y">有</td></tr>
+      <tr><td>ウェブにつながるアプリが<b>社内ネットワークから分離</b>されている</td>
+        <td class="n">無<span>ネットワークは分離されていない</span></td><td class="y">有<span>状況による</span></td><td class="y">有<span>状況による</span></td></tr>
+      <tr><td>ネットワークの境界に関する<b>脆弱性スキャン</b>を定期的に実行</td>
+        <td class="n">無</td><td class="y">有<span>状況による</span></td><td class="y">有<span>状況による</span></td></tr>
+      <tr><td><b>侵入検出システム</b>のアラートを作成し、脅威を調査</td>
+        <td class="n">無</td><td class="y">有<span>状況による</span></td><td class="y">有<span>状況による</span></td></tr>
+      <tr><td><b>ＶＰＮ</b>へのアクセスを承認された利用者に限定（暗号化・多要素認証）</td>
+        <td class="n">無<span>ＶＰＮなし</span></td><td class="y">有<span>状況による</span></td><td class="y">有<span>状況による</span></td></tr>
+      <tr><td class="r"><b>データのバックアップと復元</b><i>財務データを喪失した場合に適時に復元できない</i></td>
+        <td>設定されたスケジュールと頻度に従って<b>定期的にバックアップ</b></td>
+        <td class="n">無<span>財務チームの手作業のバックアップに依拠</span></td><td class="y">有</td><td class="y">有</td></tr>
+      <tr><td class="r" rowspan="2"><b>ジョブ・スケジューリング</b><i>不正確・不完全・未承認のデータ処理につながる</i></td>
+        <td>権限のある者だけがバッチ処理を更新できる（インターフェース・ジョブを含む）</td>
+        <td class="n">無<span>バッチ処理は発生しない</span></td><td class="y">有<span>特定のアプリにおいて</span></td><td class="y">有</td></tr>
+      <tr><td>重要なジョブが<b>監視</b>され、正常終了できるようエラーが修正される</td>
+        <td class="n">無<span>ジョブの監視なし</span></td><td class="y">有<span>特定のアプリにおいて</span></td><td class="y">有</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<div class="notes">
+  <div class="note"><b>①「無」＝対象が存在しない</b>重要でないからではなく、職務分離の機能がない・企業側で変更しない・バッチがない、と<b style="display:inline">対象そのものが無い</b>から。</div>
+  <div class="note"><b>②小は相互に代替できる</b>付与・削除の承認と定期レビューは、どちらかがあれば足りる。人手が足りない前提の割り切り。</div>
+  <div class="note"><b>③「無」の裏に手作業統制</b>データ移行は「手作業の内部統制により対応」、バックアップは「財務チームの手作業に依拠」。<b style="display:inline">ＩＴＧＣが無い＝統制が無い、ではない。</b></div>
+</div>
+
+<div class="pattern"><b>答案での使い方 ▶</b>　区分を判定 → <b>その区分で「有」とされるＩＴ全般統制を挙げる</b> → 不備があれば情報処理統制への影響と実証手続の拡大へ。あくまで<b>例示</b>で、その全てが評価対象となる訳ではない。適用には企業のＩＴ環境に応じた判断が必要（⑥-7本文）。<span style="float:right;color:#6b6b6b;font-size:6.6pt">⑥-7〜⑥-9 補助メモ</span></div>
+
+</body></html>
