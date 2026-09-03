@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="ja"><head><meta charset="utf-8">
+<style>
+@page { size: 7.1667in 10.125in; margin: 0; }
+* { box-sizing:border-box; margin:0; padding:0; }
+body { font-family:"Noto Sans CJK JP","IPAGothic",sans-serif; color:#1a1a1a;
+  width:7.1667in; height:10.125in; padding:11pt 13pt 8pt; font-size:7.8pt; line-height:1.35;
+  -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+:root { --red:#c1121f; --ink:#1a1a1a; --line:#c9c9c9; --tint:#fdf0ef; --gray:#6b6b6b; --blue:#1d4e77; }
+.head { border-bottom:2.2pt solid var(--red); padding-bottom:4pt; margin-bottom:6pt;
+  display:flex; align-items:baseline; justify-content:space-between; }
+h1 { font-size:12.6pt; } h1 .sub { font-size:8.8pt; color:var(--red); margin-left:7pt; font-weight:600; }
+.src { font-size:6.9pt; color:var(--gray); text-align:right; line-height:1.35; }
+.grow { display:grid; grid-template-columns:52pt 1fr 1fr 1fr; gap:4pt; margin-bottom:6pt; align-items:stretch; }
+.glab { background:var(--red); color:#fff; border-radius:2pt; display:flex; align-items:center;
+  justify-content:center; text-align:center; font-size:7.2pt; font-weight:700; line-height:1.2; padding:3pt; }
+.g { border:.7pt solid var(--line); padding:4pt 6pt; font-size:7.2pt; }
+.g b { display:block; font-size:8pt; color:var(--red); margin-bottom:1pt; }
+.g1 { background:#fefafa; } .g2 { background:#fdf3f2; } .g3 { background:#f9e5e3; }
+h2 { font-size:8.4pt; margin:0 0 3pt; padding-left:6pt; border-left:3pt solid var(--ink); line-height:1.15; }
+h2 span { font-weight:400; font-size:7.2pt; color:var(--gray); margin-left:5pt; }
+table { width:100%; border-collapse:collapse; font-size:6.9pt; }
+th,td { border:.55pt solid var(--line); padding:2.2pt 3.2pt; vertical-align:top; line-height:1.27; }
+thead th { background:#f2f2f2; font-size:6.8pt; text-align:center; }
+thead th.big { background:#eae7e7; }
+td.p { background:#f2ecec; text-align:center; font-weight:700; font-size:7pt; vertical-align:middle; line-height:1.2; }
+td.c { background:#fafafa; }
+td.c b { color:var(--red); font-size:7.1pt; }
+td.ex { font-size:6.85pt; }
+td.ex em { font-style:normal; background:#fff6cc; padding:0 1pt; }
+td.y { text-align:center; font-weight:700; color:var(--blue); font-size:7.3pt; }
+td.n { text-align:center; font-weight:700; color:var(--red); font-size:7.3pt; }
+td.y span, td.n span { display:block; font-weight:400; color:var(--gray); font-size:6.1pt; line-height:1.18; margin-top:.3pt; }
+.notes { display:grid; grid-template-columns:1fr 1fr 1fr; gap:5pt; margin-top:6pt; }
+.note { border:.7pt solid var(--line); border-top:2pt solid var(--ink); padding:3.5pt 5.5pt; font-size:6.9pt; }
+.note b { display:block; font-size:7.5pt; margin-bottom:1pt; color:var(--red); }
+.pattern { border:.7pt dashed var(--red); background:var(--tint); padding:4.5pt 7pt; font-size:7.5pt; margin-top:6pt; }
+.pattern b { color:var(--red); }
+</style></head><body>
+
+<div class="head">
+  <h1>ＩＴ全般統制 具体例つき早見<span class="sub">区分が上がると何が増えるか</span></h1>
+  <div class="src">経営実務（ＩＴ）第６章 ⑥-7〜⑥-9<br>監基報315 付録６「ＩＴ全般統制の識別例」</div>
+</div>
+
+<div class="grow">
+  <div class="glab">増え方は<br>この順</div>
+  <div class="g g1"><b>小　アクセス管理だけ</b>権限の付与・削除・レビューと、ＩＤ／パスワード認証、アプリ階層の特権のみ。<b style="display:inline;font-size:7.2pt">変更管理とＩＴの運用は全て「無」。</b></div>
+  <div class="g g2"><b>中　限定付きで全領域</b>変更管理・ＩＴの運用も入るが、「特定のアプリについて」「市販でないソフトについて」「状況による」と<b style="display:inline;font-size:7.2pt">一部だけ</b>。</div>
+  <div class="g g3"><b>大　全部・全階層</b>ほぼ全て無条件で「有」。特権アクセスも<b style="display:inline;font-size:7.2pt">プラットフォームの全階層</b>まで見る。</div>
+</div>
+
+<section>
+  <h2>１２のかたまりで押さえる<span>黄色部分＝実務でこう見える。ここを思い出せれば統制名も出てくる</span></h2>
+  <table>
+    <thead><tr>
+      <th style="width:6%">領域</th><th style="width:18%">ＩＴ全般統制</th><th style="width:37%">具体例（実務での姿）</th>
+      <th style="width:14%">小</th><th style="width:14%">中</th><th class="big" style="width:11%">大</th>
+    </tr></thead>
+    <tbody>
+      <tr><td class="p" rowspan="5">アクセス<br>管理</td>
+        <td class="c"><b>権限の付与・削除・<br>定期レビュー</b></td>
+        <td class="ex">新入社員が経理配属→<em>会計システムの「仕訳入力」ロールを課長が承認して付与</em>。<em>退職日にＩＤを削除</em>。半年に１度、<em>権限一覧を部門長が棚卸</em>。</td>
+        <td class="y">有<span>３つのうちどれかで足りる</span></td><td class="y">有</td><td class="y">有</td></tr>
+      <tr><td class="c"><b>職務分離の監視</b></td>
+        <td class="ex"><em>「仕訳入力」と「仕訳承認」を同じ人が持っていないか</em>をシステムで検出。ＥＲＰなら相反権限のルールを設定して自動チェック。</td>
+        <td class="n">無<span>職務分離の機能がそもそもない</span></td><td class="y">有<span>特定のアプリについて</span></td><td class="y">有</td></tr>
+      <tr><td class="c"><b>特権アクセス</b></td>
+        <td class="ex"><em>システム管理者ＩＤは普段使わず、使用時は申請し事後にログを確認</em>。ＥＲＰの全権限ロール、Windowsの管理者、ＤＢの最上位権限。</td>
+        <td class="y">有<span>ＩＴアプリの階層のみ</span></td><td class="y">有<span>アプリ＋特定の階層</span></td><td class="y">有<span>全ての階層</span></td></tr>
+      <tr><td class="c"><b>データへの直接<br>アクセスの制限</b></td>
+        <td class="ex"><em>経理担当がＳＱＬで売掛金テーブルを直接書き換えられないようにする</em>。ＤＢ操作ツールを使える人を限定し、使用は承認制。</td>
+        <td class="n">無</td><td class="y">有<span>特定のアプリ・ＤＢについて</span></td><td class="y">有</td></tr>
+      <tr><td class="c"><b>認証／<br>セキュリティ環境設定</b></td>
+        <td class="ex"><em>ＩＤ＋パスワード、８文字以上・定期変更・５回失敗でロック</em>。大企業は<em>スマホアプリでの多要素認証</em>。設定値そのものの妥当性も見る。</td>
+        <td class="y">有<span>パスワード認証のみ／環境設定は無</span></td><td class="y">有<span>パスワード＋多要素</span></td><td class="y">有</td></tr>
+
+      <tr><td class="p" rowspan="4">変更<br>管理</td>
+        <td class="c"><b>アプリの変更<br>（テスト・承認）</b></td>
+        <td class="ex"><em>消費税率改正の改修を開発環境でテスト→ユーザー部門が受入テスト→承認後に本番リリース</em>。開発者は本番環境を直接触れない。</td>
+        <td class="n">無<span>ソースコードが入っていない＝変更できない</span></td><td class="y">有<span>市販でないソフトについて</span></td><td class="y">有</td></tr>
+      <tr><td class="c"><b>データベースの変更</b></td>
+        <td class="ex"><em>得意先マスタに「インボイス登録番号」の項目を追加する</em>といったテーブル定義の変更を、テストし承認してから本番へ。</td>
+        <td class="n">無<span>企業側でＤＢを変更しない</span></td><td class="y">有<span>市販でないソフトについて</span></td><td class="y">有</td></tr>
+      <tr><td class="c"><b>システムソフトウェア<br>の変更</b></td>
+        <td class="ex"><em>サーバーＯＳのセキュリティパッチを検証してから適用</em>。ネットワーク機器やアクセス制限ソフトの設定変更も同じ扱い。</td>
+        <td class="n">無<span>企業側で変更しない</span></td><td class="y">有</td><td class="y">有</td></tr>
+      <tr><td class="c"><b>データの変換（移行）</b></td>
+        <td class="ex"><em>販売管理システムを刷新し、旧システムの売掛金残高を新システムへ移行→移行前後の残高一致を確認して管理者が承認</em>。</td>
+        <td class="n">無<span>手作業の内部統制で対応する</span></td><td class="y">有</td><td class="y">有</td></tr>
+
+      <tr><td class="p" rowspan="3">ＩＴの<br>運用</td>
+        <td class="c"><b>ネットワーク</b><br>（認証・分離・脆弱性<br>スキャン・侵入検出・ＶＰＮ）</td>
+        <td class="ex"><em>社内ＬＡＮとインターネット公開のＷｅｂサーバーを分離</em>。<em>在宅勤務のＶＰＮは多要素認証</em>。<em>侵入検出のアラートを情シスが調査</em>。</td>
+        <td class="n">無<span>ＮＷ認証なし・分離なし・ＶＰＮなし</span></td><td class="y">有<span>認証以外は「状況による」</span></td><td class="y">有<span>同左</span></td></tr>
+      <tr><td class="c"><b>バックアップと復元</b></td>
+        <td class="ex"><em>毎晩、会計ＤＢを自動バックアップし、復元できるか定期的に試す</em>。ランサムウェア対策として世代管理・隔離保管も。</td>
+        <td class="n">無<span>財務チームの手作業バックアップに依拠</span></td><td class="y">有</td><td class="y">有</td></tr>
+      <tr><td class="c"><b>ジョブ・スケジューリング<br>（更新権限・監視）</b></td>
+        <td class="ex"><em>夜間バッチで出荷データを売上に自動計上</em>。<em>バッチ設定を変えられるのは情シスだけ</em>。<em>異常終了はアラートで検知し修正</em>。</td>
+        <td class="n">無<span>バッチ処理が発生しない</span></td><td class="y">有<span>特定のアプリにおいて</span></td><td class="y">有</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<div class="notes">
+  <div class="note"><b>①「無」＝対象が存在しない</b>重要でないからではない。市販ソフトは<b style="display:inline">ソースコードが無いから変更管理が要らない</b>、という筋。</div>
+  <div class="note"><b>②小は３つが相互に代替</b>付与・削除の承認と定期レビューは、<b style="display:inline">どれか１つあれば足りる</b>。人手が足りない前提の割り切り。</div>
+  <div class="note"><b>③「無」の裏に手作業統制</b>データ移行は手作業の内部統制、バックアップは財務チームの手作業。<b style="display:inline">ＩＴＧＣが無い＝統制が無い、ではない。</b></div>
+</div>
+
+<div class="pattern"><b>答案の型 ▶</b>　①区分を判定（アドオン・自動連携・情シスの有無から） → ②<b>その区分で「有」の統制</b>を挙げる →
+  ③不備があれば<b>情報処理統制に依拠できない</b>旨と実証手続の拡大へ。表はあくまで例示で、最後は企業のＩＴ環境に応じた判断（⑥-7本文）。</div>
+
+</body></html>
