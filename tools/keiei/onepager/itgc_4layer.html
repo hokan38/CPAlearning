@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="ja"><head><meta charset="utf-8">
+<style>
+@page { size: 7.1667in 10.125in; margin: 0; }
+* { box-sizing:border-box; margin:0; padding:0; }
+body { font-family:"Noto Sans CJK JP","IPAGothic",sans-serif; color:#1a1a1a;
+  width:7.1667in; height:10.125in; padding:12pt 14pt 9pt; font-size:7.9pt; line-height:1.38;
+  -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+:root { --red:#c1121f; --ink:#1a1a1a; --line:#c9c9c9; --tint:#fdf0ef; --gray:#6b6b6b; }
+.head { border-bottom:2.2pt solid var(--red); padding-bottom:4pt; margin-bottom:7pt;
+  display:flex; align-items:baseline; justify-content:space-between; }
+h1 { font-size:13pt; } h1 .sub { font-size:9pt; color:var(--red); margin-left:7pt; font-weight:600; }
+.src { font-size:7pt; color:var(--gray); text-align:right; line-height:1.35; }
+.lead { background:var(--tint); border-left:3pt solid var(--red); padding:5pt 7pt; margin-bottom:8pt; font-size:8.2pt; }
+.lead b { color:var(--red); }
+h2 { font-size:8.6pt; margin:0 0 4pt; padding-left:6pt; border-left:3pt solid var(--ink); line-height:1.15; }
+h2 span { font-weight:400; font-size:7.3pt; color:var(--gray); margin-left:5pt; }
+section { margin-bottom:8pt; }
+
+/* 積み上げ図 */
+.stack { display:grid; grid-template-columns:26pt 1fr; gap:5pt; }
+.rail { border:.7pt solid var(--red); background:var(--tint); border-radius:2pt;
+  display:flex; align-items:center; justify-content:center; text-align:center; padding:3pt 1pt; }
+.rail span { writing-mode:vertical-rl; font-size:7.4pt; font-weight:700; color:var(--red); letter-spacing:.06em; line-height:1.15; }
+.layers { display:flex; flex-direction:column; gap:3.5pt; }
+.layer { display:grid; grid-template-columns:23% 42% 35%; border:.7pt solid var(--line); }
+.layer > div { padding:4pt 6pt; }
+.ly-name { border-right:.7pt solid var(--line); }
+.ly-name b { display:block; font-size:8.3pt; color:var(--red); line-height:1.2; }
+.ly-name i { display:block; font-style:normal; font-size:7pt; color:var(--gray); margin-top:1.5pt; line-height:1.25; }
+.ly-mid { border-right:.7pt solid var(--line); font-size:7.4pt; }
+.ly-risk { font-size:7.4pt; }
+.ly-risk b { color:var(--red); }
+.L1 { background:#fefafa; } .L2 { background:#fdf4f3; } .L3 { background:#fbeceb; } .L4 { background:#f8e2e0; }
+.tag { display:inline-block; background:#fff; border:.6pt solid var(--red); color:var(--red);
+  font-size:6.4pt; font-weight:700; padding:.3pt 2.5pt; border-radius:2pt; margin-right:3pt; vertical-align:.5pt; }
+
+.cards { display:grid; grid-template-columns:1fr 1fr 1fr; gap:6pt; }
+.card { border:.7pt solid var(--line); border-top:2pt solid var(--red); padding:5pt 6.5pt; font-size:7.3pt; }
+.card b.t { display:block; font-size:8pt; color:var(--red); margin-bottom:2.5pt; }
+.card ol { margin-left:13pt; } .card ol li { margin-bottom:.8pt; }
+.card table { width:100%; border-collapse:collapse; font-size:6.9pt; margin-top:2pt; }
+.card td { border:.55pt solid var(--line); padding:1.8pt 3pt; vertical-align:top; }
+.card td.h { background:#fafafa; width:44%; }
+table.ex { width:100%; border-collapse:collapse; font-size:7.4pt; }
+table.ex th, table.ex td { border:.6pt solid var(--line); padding:3pt 5pt; vertical-align:top; }
+table.ex thead th { background:#f2f2f2; font-size:7.2pt; text-align:center; }
+table.ex td.l { text-align:center; font-weight:700; color:var(--red); width:8%; }
+.pattern { border:.7pt dashed var(--red); background:var(--tint); padding:5pt 7pt; font-size:7.7pt; }
+.pattern b { color:var(--red); }
+.foot { border-top:.6pt solid var(--line); margin-top:5pt; padding-top:3.5pt; font-size:6.6pt; color:var(--gray);
+  display:flex; justify-content:space-between; }
+</style></head><body>
+
+<div class="head">
+  <h1>ＩＴ全般統制の４層<span class="sub">どこに何を置くか</span></h1>
+  <div class="src">経営実務（ＩＴ）第６章 ⑥-2「ＩＴ環境から整理したＩＴ全般統制」<br>監基報315 付録６</div>
+</div>
+
+<div class="lead">
+  ＩＴ全般統制は１種類ではなく、<b>４つの層それぞれに置く</b>。層が違えば守る対象も破られ方も違う。
+  そして<b>下の層ほど強い</b>——下の層を握られると、上の層の統制は無効化される。だから４層すべてを見る。
+</div>
+
+<section>
+  <h2>４層の積み上げ<span>上＝利用者に近い／下＝土台。矢印の向きに支配力が強くなる</span></h2>
+  <div class="stack">
+    <div class="rail"><span>下の層ほど強い　▼　上の層の統制を無効化できる</span></div>
+    <div class="layers">
+      <div class="layer L1">
+        <div class="ly-name"><b>(1) アプリケーション</b><i>データの入力・処理・出力</i></div>
+        <div class="ly-mid"><span class="tag">教科書</span>アプリケーション<b>機能の性質と程度</b>及び技術上許容された<b>アクセス経路</b>と相互関係にある</div>
+        <div class="ly-risk">権限のない者が<b>入力・承認</b>できる</div>
+      </div>
+      <div class="layer L2">
+        <div class="ly-name"><b>(2) データベース</b><i>データの保存先</i></div>
+        <div class="ly-mid"><span class="tag">教科書</span>ＤＢへの<b>直接アクセス</b>、または<b>スクリプトやプログラムの実行</b>による、財務報告情報の<b>未承認の更新</b>のリスクに対応</div>
+        <div class="ly-risk">アプリ画面を通さず<b>残高を直接書き換え</b>られる</div>
+      </div>
+      <div class="layer L3">
+        <div class="ly-name"><b>(3) オペレーティング・システム</b><i>アプリの土台</i></div>
+        <div class="ly-mid"><span class="tag">教科書</span><b>他の内部統制を無効化</b>するような、<b>管理者権限</b>でのアクセスのリスクに対応</div>
+        <div class="ly-risk">上の層の統制を<b>まとめて無効化</b>できる</div>
+      </div>
+      <div class="layer L4">
+        <div class="ly-name"><b>(4) ネットワーク</b><i>各アプリを繋ぐ／外と繋ぐ</i></div>
+        <div class="ly-mid"><span class="tag">教科書</span><b>セグメント化（分割）・リモートアクセス・認証</b>に関連するリスクに対応</div>
+        <div class="ly-risk">そもそも<b>外部から侵入</b>され、以降の前提が崩れる</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>各層の急所</h2>
+  <div class="cards">
+    <div class="card"><b class="t">(1) 入口の数 ∝ 統制の数</b>
+      「機能の性質と程度及びアクセス経路と相互関係」とは、<b>入口が多いアプリほど必要な統制も多い</b>という比例関係のこと。
+      <table><tbody>
+        <tr><td class="h">高度に統合されたＩＴアプリ（複雑なセキュリティオプション）</td><td>入口が多い<br><b>統制も多い</b></td></tr>
+        <tr><td class="h">レガシー（アクセス方法は取引処理のみ、少数の勘定残高）</td><td>入口は１つ<br>統制は少ない</td></tr>
+      </tbody></table>
+      これが⑤-7の三区分・付録６の「有／無」の根拠になっている。</div>
+
+    <div class="card"><b class="t">(3) 管理者権限でできる４行為</b>
+      教科書に列挙されているので、そのまま覚える。
+      <ol>
+        <li>他の利用者の<b>資格情報の侵害</b></li>
+        <li>新しい<b>未承認の利用者の追加</b></li>
+        <li><b>マルウェアの埋め込み</b></li>
+        <li>スクリプト若しくは他の<b>未承認プログラムの実行</b></li>
+      </ol>
+      いずれも「他の内部統制を無効化する」という一点に集約される。</div>
+
+    <div class="card"><b class="t">(4) 関連するのはこの２場面</b>
+      ネットワーク統制は常に重要なのではなく、教科書は関連する場面を限定している。
+      <ol>
+        <li>財務報告で<b>ウェブとつながるアプリ</b>を利用する場合</li>
+        <li>データ転送やリモートアクセスの必要性を増大させる<b>重要な事業上のパートナーとの関係、または第三者へのアウトソーシング</b>がある場合</li>
+      </ol>
+      ②は第８章（委託業務）への伏線。</div>
+  </div>
+</section>
+
+<section>
+  <h2>事例問題での使い方<span>不備の記述を見たら、まず「何層の話か」を言い当てる</span></h2>
+  <table class="ex">
+    <thead><tr><th style="width:8%">層</th><th style="width:40%">問題文の記述の例</th><th>答案に書くこと</th></tr></thead>
+    <tbody>
+      <tr><td class="l">(1)</td><td>入力担当者が自分で承認できる設定になっていた</td><td>職務分離が機能せず、アプリ層の承認統制に依拠できない</td></tr>
+      <tr><td class="l">(2)</td><td>システム部門の担当者がデータベースを直接修正した</td><td>アプリ層の承認統制が回避される。直接更新の記録・承認の有無を確かめる</td></tr>
+      <tr><td class="l">(3)</td><td>管理者ＩＤを複数人で共有していた／退職者のＩＤが残っていた</td><td>下位のすべての統制を無効化でき、ログの改ざんも可能。特権アクセスの承認・制限を確かめる</td></tr>
+      <tr><td class="l">(4)</td><td>ＶＰＮに多要素認証がない／ウェブアプリが社内ＮＷと分離されていない</td><td>外部から侵入され、以降の層の統制の前提が崩れる</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<div class="pattern"><b>他ページとのつながり ▶</b>　
+  ⑤-9の「ＩＴアプリケーション、データベース<b>及びその他のＩＴ環境</b>」の“その他”＝この図の<b>(2)(3)(4)</b>。
+  付録６の識別例で<b>特権アクセス</b>だけが「小＝ＩＴアプリの階層のみ／中＝アプリと特定の階層／大＝<b>全ての階層で</b>」と３段階に分かれるのも、この４層があるから。</div>
+
+<div class="foot"><span>※ ＩＴ全般統制＝ＩＴ環境の継続的かつ適切な運用を支援するＩＴプロセスに係る内部統制（監基報315 付録６）</span><span>⑥-2 補助メモ</span></div>
+</body></html>
