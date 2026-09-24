@@ -91,7 +91,16 @@ def main():
                 stats["miss"].append((a["page"], a["search"][:30], a["type"]))
             continue
         occ = a.get("occurrence", 0)
-        rects = hits if occ == -1 else [hits[min(occ, len(hits) - 1)]]
+        if occ == -1:
+            rects = hits
+        else:
+            i = min(occ, len(hits) - 1)
+            rects = [hits[i]]
+            # 同一行で隣接する断片(全角スペース等で分割されたヒット)は同じ1ヒットとして連結
+            while i + 1 < len(hits) and abs(hits[i + 1].y0 - rects[-1].y0) < 2 \
+                    and 0 <= hits[i + 1].x0 - rects[-1].x1 < 14:
+                i += 1
+                rects.append(hits[i])
         resolved.append((a, rects))
     order = {"highlight": 0, "underline": 0, "badge": 1, "margin": 2, "note": 3, "comment": 3, "qa": 5}
     resolved.sort(key=lambda x: (x[0]["page"], order.get(x[0]["type"], 9), x[1][0].y0))
