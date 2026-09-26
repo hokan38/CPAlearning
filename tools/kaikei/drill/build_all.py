@@ -19,6 +19,7 @@ h1.cover { font-size:22pt; color:#c1121f; margin:120pt 0 8pt; }
 .cover-sub { font-size:11pt; color:#444; margin-bottom:30pt; }
 h1.chap { font-size:15pt; margin:0 0 10pt; color:#c1121f; break-before:page; }
 h1.chap small { display:block; font-size:8.5pt; color:#444; font-weight:normal; margin-top:2pt; }
+.pb { height:14pt; }
 h2 { font-size:12pt; margin:0 0 10pt; color:#fff; background:#c1121f; padding:4pt 8pt; border-radius:3pt; }
 h2 span { font-weight:normal; font-size:8.5pt; margin-left:8pt; }
 h2.b { background:#8a1c26; } h2.c { background:#666; }
