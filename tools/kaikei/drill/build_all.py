@@ -11,11 +11,12 @@ OUT_HTML = os.path.join(HERE, "all_drill.html")
 OUT_PDF = os.path.join(HERE, "会計実務_論述ドリル_全章.pdf")
 
 CSS = """
-@page { size: 7.1667in 10.125in; margin: 0.5in 0.5in 0.55in; }
+@page { size: 14.333in 10.125in; margin: 0.45in 0.5in 0.55in; }
 * { box-sizing: border-box; }
 html, body { margin:0; padding:0; }
 body { font-family:"Noto Sans CJK JP","Noto Sans JP",sans-serif; font-size:9.3pt; line-height:1.65; color:#222; background:#fff; }
 h1.cover { font-size:22pt; color:#c1121f; margin:120pt 0 8pt; }
+.cover-wrap { max-width:6.2in; }
 .cover-sub { font-size:11pt; color:#444; margin-bottom:30pt; }
 h1.chap { font-size:15pt; margin:0 0 10pt; color:#c1121f; break-before:page; }
 h1.chap small { display:block; font-size:8.5pt; color:#444; font-weight:normal; margin-top:2pt; }
@@ -26,6 +27,12 @@ h2.b { background:#8a1c26; } h2.c { background:#666; }
 h2.toc { break-before:page; }
 .lead { font-size:8.8pt; padding:6pt 9pt; border-left:3px solid #c1121f; background:#fdf1f2; margin:0 0 12pt; line-height:1.6; }
 .item { margin:0 0 16pt; break-inside:avoid; }
+.row { display:grid; grid-template-columns: 1fr 1fr; column-gap:0; margin:0 0 14pt; break-inside:avoid; }
+.row .left { padding-right:22pt; border-right:0.8pt dashed #c1121f; }
+.row .right { padding-left:22pt; }
+.spreadhead { display:grid; grid-template-columns:1fr 1fr; font-size:8pt; color:#999; margin:0 0 6pt; }
+.spreadhead div:last-child { text-align:right; }
+h2 { break-after:avoid; }
 .item .th { font-weight:bold; color:#c1121f; font-size:11pt; border-bottom:1.2pt solid #c1121f; padding-bottom:2pt; margin-bottom:6pt; }
 .item .th span { font-weight:normal; color:#666; font-size:8.5pt; margin-left:8pt; }
 .q { background:#f4f4f4; border-radius:3pt; padding:6pt 9pt; margin:0 0 6pt; }
@@ -60,6 +67,21 @@ def counts(sub):
     m = re.search(r'A\s*(\d+)問／B\s*(\d+)問／C\s*(\d+)問', sub)
     return m.groups() if m else ("-", "-", "-")
 
+ITEM_RE = re.compile(r'<div class="item">\s*(<div class="th">.*?</div>)\s*(<div class="q">.*?</div>)\s*(<div class="a">.*?)(<div class="pt">.*?</div>)?\s*</div>(?=\s*(?:<div class="item">|<div class="pb">|<h2|</section>))', re.S)
+
+def to_spread(html):
+    """各.itemを「左＝問題／右＝解答例」の1行(.row)に変換する。"""
+    def rep(m):
+        th, q, a, pt = m.group(1), m.group(2), m.group(3), m.group(4) or ""
+        # a は '<div class="a">...' で、閉じdivは後続に含まれないので補う
+        if not a.rstrip().endswith("</div>"):
+            a = a + "</div>"
+        return (f'<div class="row"><div class="left">{th}{q}</div>'
+                f'<div class="right">{a}{pt}</div></div>')
+    out = ITEM_RE.sub(rep, html)
+    out = out.replace('<section class="chap"', '<section class="chap"', 1)
+    return out
+
 def build_html(frags, pages=None):
     toc_rows = []
     for fr in frags:
@@ -70,7 +92,8 @@ def build_html(frags, pages=None):
     html = f"""<!DOCTYPE html><html lang="ja"><head><meta charset="utf-8"><title>会計実務 論述ドリル 全章</title><style>{CSS}</style></head><body>
 <h1 class="cover">会計実務 論述ドリル</h1>
 <div class="cover-sub">修了考査対策編 全章｜重要度A・B・C別｜問題文＋解答例文｜全{total}問</div>
-<div class="lead"><b>使い方</b><br>
+<div class="cover-wrap"><div class="lead"><b>使い方</b><br>
+⓪見開き構成。左ページが問題、右ページが解答例。右を隠して左だけ読み、書いてから右を開く。<br>
 ①問題文を読み、解答例を隠して6分で答案を書く。Aは全文、Bは骨子、Cは結論と理由1行。<br>
 ②解答例と照合し、末尾の「入れる語」が答案に入っていれば合格。<br>
 ③章内はA→B→Cの順に周回。2周目からはAだけ書き、B・Cは読んで再現できるかを確認する。<br>
@@ -78,10 +101,10 @@ def build_html(frags, pages=None):
 <div class="lead" style="background:#f4f4f4;border-color:#888"><b>重要度の意味</b><br>
 A＝過去に記述で問われた、または講師が「復元できるように」と指示した論点。白紙に書けるまで。<br>
 B＝合格のために説明できる必要がある論点。骨子が書ければよい。<br>
-C＝費用対効果が低い論点。結論と理由が1行で言えれば十分、直前期に一読。</div>
+C＝費用対効果が低い論点。結論と理由が1行で言えれば十分、直前期に一読。</div></div>
 <h2 class="toc">目次</h2>
 <table class="toc">{''.join(toc_rows)}</table>
-{''.join(fr["html"] for fr in frags)}
+{''.join(to_spread(fr["html"]) for fr in frags)}
 <p class="foot">出典：CPA会計学院 修了考査対策講座2026 会計実務テキスト（講義反映版）、講義音声、修了考査過去問解答例。</p>
 </body></html>"""
     return html
