@@ -78,6 +78,9 @@ def to_spread(html):
             a = a + "</div>"
         return (f'<div class="row"><div class="left">{th}{q}</div>'
                 f'<div class="right">{a}{pt}</div></div>')
+    # 重要度Cは収録しない: <h2 class="c"> から </section> 直前までを除去
+    html = re.sub(r'(?:<div class="pb"></div>\s*)?<h2 class="c">.*?(?=</section>)', '', html, flags=re.S)
+    html = re.sub(r'C\s*\d+問', 'C 収録なし', html)
     out = ITEM_RE.sub(rep, html)
     out = out.replace('<section class="chap"', '<section class="chap"', 1)
     return out
@@ -87,21 +90,21 @@ def build_html(frags, pages=None):
     for fr in frags:
         a, b, c = counts(fr["sub"])
         pg = pages.get(fr["num"], "") if pages else ""
-        toc_rows.append(f'<tr><td>{fr["title"]}</td><td class="c">A{a}・B{b}・C{c}</td><td class="n">{pg}</td></tr>')
-    total = sum(len(re.findall(r'<div class="item">', fr["html"])) for fr in frags)
+        toc_rows.append(f'<tr><td>{fr["title"]}</td><td class="c">A{a}・B{b}</td><td class="n">{pg}</td></tr>')
+    total = sum(len(re.findall(r'<div class="th">[AB]-', fr["html"])) for fr in frags)
     html = f"""<!DOCTYPE html><html lang="ja"><head><meta charset="utf-8"><title>会計実務 論述ドリル 全章</title><style>{CSS}</style></head><body>
 <h1 class="cover">会計実務 論述ドリル</h1>
-<div class="cover-sub">修了考査対策編 全章｜重要度A・B・C別｜問題文＋解答例文｜全{total}問</div>
+<div class="cover-sub">修了考査対策編 全章｜重要度A・B｜問題文＋解答例文｜全{total}問</div>
 <div class="cover-wrap"><div class="lead"><b>使い方</b><br>
 ⓪見開き構成。左ページが問題、右ページが解答例。右を隠して左だけ読み、書いてから右を開く。<br>
-①問題文を読み、解答例を隠して6分で答案を書く。Aは全文、Bは骨子、Cは結論と理由1行。<br>
+①問題文を読み、解答例を隠して6分で答案を書く。Aは全文、Bは骨子。<br>
 ②解答例と照合し、末尾の「入れる語」が答案に入っていれば合格。<br>
-③章内はA→B→Cの順に周回。2周目からはAだけ書き、B・Cは読んで再現できるかを確認する。<br>
+③章内はA→Bの順に周回。2周目からはAだけ書き、Bは読んで再現できるかを確認する。<br>
 ④章の順番は教科書どおり。先にやるなら出題頻度の高い章（企業結合・金融商品・収益認識・連結・税効果・退職給付）から。</div>
 <div class="lead" style="background:#f4f4f4;border-color:#888"><b>重要度の意味</b><br>
 A＝過去に記述で問われた、または講師が「復元できるように」と指示した論点。白紙に書けるまで。<br>
 B＝合格のために説明できる必要がある論点。骨子が書ければよい。<br>
-C＝費用対効果が低い論点。結論と理由が1行で言えれば十分、直前期に一読。</div></div>
+重要度C（費用対効果の低い論点）は本書には収録していない。</div></div>
 <h2 class="toc">目次</h2>
 <table class="toc">{''.join(toc_rows)}</table>
 {''.join(to_spread(fr["html"]) for fr in frags)}
