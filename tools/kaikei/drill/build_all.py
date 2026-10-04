@@ -130,7 +130,7 @@ def chapter_pages(doc, frags):
                 pages[fr["num"]] = i + 1; break
     return pages
 
-def build_outline(doc, frags, pages, ranks=("A", "B"), rank_label="重要度{r}", include_toc=True):
+def build_outline(doc, frags, pages, ranks=("A", "B"), rank_label="重要度{r}", include_toc=True, depth=1):
     """GoodNotes等で見えるPDFアウトライン: 章 > 重要度 > 各問。"""
     toc = []
     page_texts = [re.sub(r"\s+", "", doc[i].get_text()) for i in range(doc.page_count)]
@@ -141,6 +141,8 @@ def build_outline(doc, frags, pages, ranks=("A", "B"), rank_label="重要度{r}"
         if not start:
             continue
         toc.append([1, fr["title"].replace("\u3000", " "), start])
+        if depth < 2:
+            continue
         cur = start - 1
         for rank in ranks:
             items = re.findall(rf'<div class="th">({rank}-\d+)\u3000([^<]*)', fr["html"])
