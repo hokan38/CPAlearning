@@ -41,7 +41,7 @@ def main():
             big = "".join(sp["text"] for b in d[i].get_text("dict")["blocks"] for l in b.get("lines", []) for sp in l["spans"] if 14 < sp["size"] < 16)
             if big.startswith(key):
                 pages[fr["num"]] = i + 1; break
-    B.build_outline(d, frags, pages, ranks=("S", "A", "B", "C"))
+    B.build_outline(d, frags, pages, ranks=("S", "A", "B", "C"), rank_label="Tier {r}", include_toc=False)
     B.stamp_page_numbers(d)
     d.save(OUT_PDF + ".tmp", garbage=3, deflate=True); d.close(); os.replace(OUT_PDF + ".tmp", OUT_PDF)
     d = pymupdf.open(OUT_PDF)
