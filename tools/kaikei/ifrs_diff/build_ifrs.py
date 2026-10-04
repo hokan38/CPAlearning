@@ -11,15 +11,16 @@ OUT_PDF = os.path.join(HERE, "会計基準差異対照表_論述ドリル.pdf")
 def main():
     frag = open(os.path.join(HERE, "frag_ifrs.html")).read()
     n = len(re.findall(r'<div class="item">', frag))
-    body = B.to_spread(frag)
+    # Tier C も収録する（build_all の C 除去を迂回）
+    body = B.ITEM_RE.sub(lambda m: f'<div class="row"><div class="left">{m.group(1)}{m.group(2)}</div><div class="right">{m.group(3) if m.group(3).rstrip().endswith("</div>") else m.group(3)+"</div>"}{m.group(4) or ""}</div></div>', frag)
     html = f"""<!DOCTYPE html><html lang="ja"><head><meta charset="utf-8"><title>会計基準差異対照表 論述ドリル</title><style>{B.CSS}</style></head><body>
 <h1 class="cover">会計基準差異対照表 論述ドリル</h1>
-<div class="cover-sub">IFRSと日本基準との主要な差異｜CPA会計学院 補助教材（令和7年12月）準拠｜Tier S・A・B 全{n}問</div>
+<div class="cover-sub">IFRSと日本基準との主要な差異｜CPA会計学院 補助教材（令和7年12月）準拠｜Tier S・A・B・C 全{n}問</div>
 <div class="cover-wrap"><div class="lead"><b>使い方</b><br>
 ⓪見開き構成。左ページが問題、右ページが解答例。右を隠して左だけ読み、書いてから右を開く。<br>
 ①答案は必ず「IFRS＝○○／日本基準＝○○／理由（考え方の違い）」の3点で書く。基準番号は書けなくてよい。<br>
 ②Tier Sの5つは実務対応報告18号の修正5項目そのもの。連結の問題で「修正の要否」を問われたときはB-10で確認する。<br>
-③Tier Cの7項目（仕入割引、補助金、有給休暇引当金、金融資産の3分類、市場価格のない株式、ヘッジの分類、振当処理・特例処理）は原本では「眺める程度」とされているため収録していない。</div></div>
+③Tier Cは原本で「眺める程度」とされる7項目。結論（IFRS／日本基準）だけ言えればよい。</div></div>
 {body}
 <p class="foot">出典：CPA会計学院「財務会計論 補助教材 会計基準差異対照表」（令和7年12月27日）。解答例の基準番号は同資料の記載による。</p>
 </body></html>"""
