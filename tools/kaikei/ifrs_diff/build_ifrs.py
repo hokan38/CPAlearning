@@ -28,10 +28,24 @@ def main():
     subprocess.run([B.CHROME, "--headless", "--disable-gpu", "--no-sandbox",
                     f"--print-to-pdf={OUT_PDF}", "--no-pdf-header-footer", OUT_HTML], check=True, capture_output=True)
     d = pymupdf.open(OUT_PDF)
+    # アウトライン（Tier > 各問）
+    secs = re.findall(r'<section class="chap" id="(\w+)">(.*?)</section>', frag, re.S)
+    frags = []
+    for k, (sid, body) in enumerate(secs, start=1):
+        m = re.search(r'<h1 class="chap">([^<]*)<small>', body)
+        frags.append({"num": k, "title": m.group(1).strip(), "html": body})
+    pages = {}
+    for fr in frags:
+        key = fr["title"].split("\u3000")[0]
+        for i in range(d.page_count):
+            big = "".join(sp["text"] for b in d[i].get_text("dict")["blocks"] for l in b.get("lines", []) for sp in l["spans"] if 14 < sp["size"] < 16)
+            if big.startswith(key):
+                pages[fr["num"]] = i + 1; break
+    B.build_outline(d, frags, pages, ranks=("S", "A", "B", "C"))
     B.stamp_page_numbers(d)
     d.save(OUT_PDF + ".tmp", garbage=3, deflate=True); d.close(); os.replace(OUT_PDF + ".tmp", OUT_PDF)
     d = pymupdf.open(OUT_PDF)
-    print("items", n, "pages", d.page_count, "MB", round(os.path.getsize(OUT_PDF)/1e6, 2))
+    print("items", n, "pages", d.page_count, "MB", round(os.path.getsize(OUT_PDF)/1e6, 2), "outline", len(d.get_toc()))
 
 if __name__ == "__main__":
     main()

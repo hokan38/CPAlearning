@@ -130,6 +130,40 @@ def chapter_pages(doc, frags):
                 pages[fr["num"]] = i + 1; break
     return pages
 
+def build_outline(doc, frags, pages, ranks=("A", "B")):
+    """GoodNotes等で見えるPDFアウトライン: 章 > 重要度 > 各問。"""
+    toc = []
+    page_texts = [re.sub(r"\s+", "", doc[i].get_text()) for i in range(doc.page_count)]
+    toc.append([1, "目次", 2])
+    for fr in frags:
+        start = pages.get(fr["num"])
+        if not start:
+            continue
+        toc.append([1, fr["title"].replace("\u3000", " "), start])
+        cur = start - 1
+        for rank in ranks:
+            items = re.findall(rf'<div class="th">({rank}-\d+)\u3000([^<]*)', fr["html"])
+            if not items:
+                continue
+            rank_entry_idx = len(toc)
+            toc.append([2, f"重要度{rank}", start])
+            first = None
+            for label, title in items:
+                key = re.sub(r"\s+", "", label + title)[:12]
+                pg = None
+                for i in range(cur, doc.page_count):
+                    if key in page_texts[i]:
+                        pg = i; break
+                if pg is None:
+                    continue
+                cur = pg
+                if first is None:
+                    first = pg + 1
+                    toc[rank_entry_idx][2] = first
+                toc.append([3, f"{label} {title.strip()}", pg + 1])
+    doc.set_toc(toc)
+    return toc
+
 def stamp_page_numbers(doc):
     for i in range(1, doc.page_count):
         p = doc[i]
@@ -146,11 +180,12 @@ def main():
     pages2 = chapter_pages(doc, frags)
     if pages2 != pages:  # 目次のページ数が変わってずれた場合はもう一度
         doc.close(); doc = render(build_html(frags, pages2)); pages = pages2
+    outline = build_outline(doc, frags, pages)
     stamp_page_numbers(doc)
     doc.save(OUT_PDF + ".tmp", garbage=3, deflate=True)
     doc.close(); os.replace(OUT_PDF + ".tmp", OUT_PDF)
     d = pymupdf.open(OUT_PDF)
-    print("pages:", d.page_count, "size MB:", round(os.path.getsize(OUT_PDF) / 1e6, 2))
+    print("pages:", d.page_count, "size MB:", round(os.path.getsize(OUT_PDF) / 1e6, 2), "outline entries:", len(d.get_toc()))
     for fr in frags: print(f'  {fr["title"]}: p.{pages.get(fr["num"])}')
 
 if __name__ == "__main__":
