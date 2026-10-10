@@ -8,17 +8,35 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 OUT_HTML = os.path.join(HERE, "ifrs_drill.html")
 OUT_PDF = os.path.join(HERE, "会計基準差異対照表_論述ドリル.pdf")
 
+EXTRA = """
+.std { border-left:3pt solid #999; border-radius:2pt; padding:3pt 7pt 3pt 8pt; margin:3pt 0 6pt; }
+.std.ifrs { border-color:#1d4e89; background:#f1f5fa; }
+.std.jp { border-color:#c1121f; background:#fdf3f4; }
+.std .tag { display:inline-block; font-size:7.6pt; font-weight:bold; color:#fff; padding:0 6pt; border-radius:2pt; margin-right:6pt; }
+.std.ifrs .tag { background:#1d4e89; }
+.std.jp .tag { background:#c1121f; }
+.std > b { font-size:9.2pt; }
+.std ul { margin:3pt 0 0; padding-left:15pt; }
+.std li { margin:0 0 2pt; }
+.common, .why { margin:2pt 0 5pt; font-size:8.9pt; }
+.common b, .why b { color:#555; margin-right:4pt; }
+table.cmp { border-collapse:collapse; width:100%; font-size:8.6pt; margin:2pt 0 6pt; }
+table.cmp th { background:#f1f1f1; text-align:left; }
+table.cmp th, table.cmp td { border:0.5pt solid #aaa; padding:2pt 4pt; vertical-align:top; }
+table.cmp th:nth-child(2), table.cmp td:nth-child(2) { color:#1d4e89; }
+"""
+
 def main():
     frag = open(os.path.join(HERE, "frag_ifrs.html")).read()
     n = len(re.findall(r'<div class="item">', frag))
     # Tier C も収録する（build_all の C 除去を迂回）
     body = B.ITEM_RE.sub(lambda m: f'<div class="row"><div class="left">{m.group(1)}{m.group(2)}</div><div class="right">{m.group(3) if m.group(3).rstrip().endswith("</div>") else m.group(3)+"</div>"}{m.group(4) or ""}</div></div>', frag)
-    html = f"""<!DOCTYPE html><html lang="ja"><head><meta charset="utf-8"><title>会計基準差異対照表 論述ドリル</title><style>{B.CSS}</style></head><body>
+    html = f"""<!DOCTYPE html><html lang="ja"><head><meta charset="utf-8"><title>会計基準差異対照表 論述ドリル</title><style>{B.CSS}{EXTRA}</style></head><body>
 <h1 class="cover">会計基準差異対照表 論述ドリル</h1>
 <div class="cover-sub">IFRSと日本基準との主要な差異｜CPA会計学院 補助教材（令和7年12月）準拠｜Tier S・A・B・C 全{n}問</div>
 <div class="cover-wrap"><div class="lead"><b>使い方</b><br>
 ⓪見開き構成。左ページが問題、右ページが解答例。右を隠して左だけ読み、書いてから右を開く。<br>
-①答案は必ず「IFRS＝○○／日本基準＝○○／理由（考え方の違い）」の3点で書く。基準番号は書けなくてよい。<br>
+①解答例は青枠＝IFRS、赤枠＝日本基準に分けている。各枠の太字1行が結論、その下が根拠。答案も「IFRS＝○○／日本基準＝○○／理由」の順で書く。基準番号は書けなくてよい。<br>
 ②Tier Sの5つは実務対応報告18号の修正5項目そのもの。連結の問題で「修正の要否」を問われたときはB-10で確認する。<br>
 ③Tier Cは原本で「眺める程度」とされる7項目。結論（IFRS／日本基準）だけ言えればよい。</div></div>
 {body}
