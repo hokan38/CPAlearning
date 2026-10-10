@@ -20,6 +20,8 @@ EXTRA = """
 .std li { margin:0 0 2pt; }
 .common, .why { margin:2pt 0 5pt; font-size:8.9pt; }
 .common b, .why b { color:#555; margin-right:4pt; }
+.tiernote { font-size:8.6pt; color:#444; background:#f6f6f6; border-radius:3pt; padding:5pt 8pt; margin:0 0 10pt; }
+.why b { display:block; }
 table.cmp { border-collapse:collapse; width:100%; font-size:8.6pt; margin:2pt 0 6pt; }
 table.cmp th { background:#f1f1f1; text-align:left; }
 table.cmp th, table.cmp td { border:0.5pt solid #aaa; padding:2pt 4pt; vertical-align:top; }
@@ -36,11 +38,11 @@ def main():
 <div class="cover-sub">IFRSと日本基準との主要な差異｜CPA会計学院 補助教材（令和7年12月）準拠｜Tier S・A・B・C 全{n}問</div>
 <div class="cover-wrap"><div class="lead"><b>使い方</b><br>
 ⓪見開き構成。左ページが問題、右ページが解答例。右を隠して左だけ読み、書いてから右を開く。<br>
-①解答例は青枠＝IFRS、赤枠＝日本基準に分けている。各枠の太字1行が結論、その下が根拠。答案も「IFRS＝○○／日本基準＝○○／理由」の順で書く。基準番号は書けなくてよい。<br>
-②Tier Sの5つは実務対応報告18号の修正5項目そのもの。連結の問題で「修正の要否」を問われたときはB-10で確認する。<br>
-③Tier Cは原本で「眺める程度」とされる7項目。結論（IFRS／日本基準）だけ言えればよい。</div></div>
+①解答例は元資料の文章をそのまま収録している。青枠＝ＩＦＲＳ欄、赤枠＝日本基準欄（太字が要旨、その下が基準の規定）、最後が元資料の解説。<br>答案は「ＩＦＲＳ＝要旨／日本基準＝要旨／解説の理由」の順で書く。基準番号は書けなくてよい。<br>
+②Tier Sの5つは実務対応報告第18号の5項目。B-10はその総合問題（本ドリル独自）。<br>
+③問題文は本ドリルで作成。元資料は29項目（Tier S 5・A 8・B 9・C 7）。</div></div>
 {body}
-<p class="foot">出典：CPA会計学院「財務会計論 補助教材 会計基準差異対照表」（令和7年12月27日）。解答例の基準番号は同資料の記載による。</p>
+<p class="foot">出典：CPA会計学院「財務会計論 補助教材 会計基準差異対照表」（令和7年12月27日）。解答例の本文（要旨・規定・解説）は同資料の記載をそのまま転記。</p>
 </body></html>"""
     open(OUT_HTML, "w").write(html)
     subprocess.run([B.CHROME, "--headless", "--disable-gpu", "--no-sandbox",
