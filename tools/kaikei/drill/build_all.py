@@ -29,6 +29,8 @@ h2.toc { break-before:page; }
 .item { margin:0 0 16pt; break-inside:avoid; }
 .rk { display:inline-block; font-size:7.5pt; font-weight:bold; color:#fff; padding:0 5pt; border-radius:2pt; margin-right:6pt; vertical-align:1pt; }
 .rkA { background:#c1121f; } .rkB { background:#8a1c26; }
+.ron { font-size:7.8pt; color:#8a1c26; margin:0 0 3pt; line-height:1.4; }
+.ron b { font-weight:bold; margin-right:4pt; } .ron span { color:#999; margin-left:6pt; }
 .row { display:grid; grid-template-columns: 1fr 1fr; column-gap:0; margin:0 0 14pt; break-inside:avoid; }
 .row .left { padding-right:22pt; border-right:0.8pt dashed #c1121f; }
 .row .right { padding-left:22pt; }
@@ -74,7 +76,7 @@ ITEM_RE = re.compile(r'<div class="item">\s*(<div class="th">.*?</div>)\s*(<div 
 ORDER = json.load(open(os.path.join(FRAG, "order.json"))) if os.path.exists(os.path.join(FRAG, "order.json")) else {}
 
 def to_spread(html):
-    """章内の問を教科書の記載順に並べ替え、各問を「左＝問題／右＝解答例」の1行(.row)に変換する。
+    """章内の問を教科書の論点順（order.json）に並べ替え、各問を「左＝問題／右＝解答例」の1行(.row)に変換する。
     重要度Cは収録しない。各問の見出しに重要度バッジ(A/B)を付ける。"""
     m = re.search(r'<section class="chap" id="(ch\d+)">', html)
     key = m.group(1) if m else None
@@ -90,7 +92,10 @@ def to_spread(html):
             a = a + "</div>"
         rk = lab[0]
         th = th.replace(f'<div class="th">{lab}', f'<div class="th"><span class="rk rk{rk}">重要度{rk}</span>{lab}', 1)
-        blocks[lab] = (f'<div class="row"><div class="left">{th}{q}</div>'
+        info = next((r for r in ORDER.get(key, []) if r["label"] == lab), None)
+        ron = (f'<div class="ron"><b>論点</b>{info["ronten"]}<span>教科書 {info["tbpage"]}</span></div>'
+               if info and info.get("ronten") else "")
+        blocks[lab] = (f'<div class="row"><div class="left">{ron}{th}{q}</div>'
                        f'<div class="right">{a}{pt}</div></div>')
     order = [r["label"] for r in ORDER.get(key, []) if r["label"] in blocks]
     order += [l for l in blocks if l not in order]
@@ -110,7 +115,7 @@ def build_html(frags, pages=None):
 ⓪見開き構成。左ページが問題、右ページが解答例。右を隠して左だけ読み、書いてから右を開く。<br>
 ①問題文を読み、解答例を隠して6分で答案を書く。Aは全文、Bは骨子。<br>
 ②解答例と照合し、末尾の「入れる語」が答案に入っていれば合格。<br>
-③章内の問は教科書の記載順に並べている。各問の左上のバッジが重要度（A＝白紙に書けるまで、B＝骨子が書ければよい）。2周目からはAだけ書き、Bは読んで再現できるかを確認する。<br>
+③章内の問は教科書の論点順（記載順）に並べ、各問の上に該当する教科書の見出しとページを付けている。各問の左上のバッジが重要度（A＝白紙に書けるまで、B＝骨子が書ければよい）。2周目からはAだけ書き、Bは読んで再現できるかを確認する。<br>
 ④章の順番は教科書どおり。先にやるなら出題頻度の高い章（企業結合・金融商品・収益認識・連結・税効果・退職給付）から。</div>
 <div class="lead" style="background:#f4f4f4;border-color:#888"><b>重要度の意味</b><br>
 A＝過去に記述で問われた、または講師が「復元できるように」と指示した論点。白紙に書けるまで。<br>
