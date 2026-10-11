@@ -1,7 +1,7 @@
 """章別フラグメント(frag/chNN.html)を1冊のPDFに綴じる。
 使い方: python3 build_all.py  → 会計実務_論述ドリル_全章.pdf
 """
-import glob, os, re, subprocess, sys
+import glob, json, os, re, subprocess, sys
 import pymupdf
 
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -27,6 +27,8 @@ h2.b { background:#8a1c26; } h2.c { background:#666; }
 h2.toc { break-before:page; }
 .lead { font-size:8.8pt; padding:6pt 9pt; border-left:3px solid #c1121f; background:#fdf1f2; margin:0 0 12pt; line-height:1.6; }
 .item { margin:0 0 16pt; break-inside:avoid; }
+.rk { display:inline-block; font-size:7.5pt; font-weight:bold; color:#fff; padding:0 5pt; border-radius:2pt; margin-right:6pt; vertical-align:1pt; }
+.rkA { background:#c1121f; } .rkB { background:#8a1c26; }
 .row { display:grid; grid-template-columns: 1fr 1fr; column-gap:0; margin:0 0 14pt; break-inside:avoid; }
 .row .left { padding-right:22pt; border-right:0.8pt dashed #c1121f; }
 .row .right { padding-left:22pt; }
@@ -69,21 +71,30 @@ def counts(sub):
 
 ITEM_RE = re.compile(r'<div class="item">\s*(<div class="th">.*?</div>)\s*(<div class="q">.*?</div>)\s*(<div class="a">.*?)(<div class="pt">.*?</div>)?\s*</div>(?=\s*(?:<div class="item">|<div class="pb">|<h2|</section>))', re.S)
 
+ORDER = json.load(open(os.path.join(FRAG, "order.json"))) if os.path.exists(os.path.join(FRAG, "order.json")) else {}
+
 def to_spread(html):
-    """各.itemを「左＝問題／右＝解答例」の1行(.row)に変換する。"""
-    def rep(m):
-        th, q, a, pt = m.group(1), m.group(2), m.group(3), m.group(4) or ""
-        # a は '<div class="a">...' で、閉じdivは後続に含まれないので補う
+    """章内の問を教科書の記載順に並べ替え、各問を「左＝問題／右＝解答例」の1行(.row)に変換する。
+    重要度Cは収録しない。各問の見出しに重要度バッジ(A/B)を付ける。"""
+    m = re.search(r'<section class="chap" id="(ch\d+)">', html)
+    key = m.group(1) if m else None
+    head = html[:html.index("<h2")] if "<h2" in html else html
+    head = re.sub(r'C\s*\d+問', 'C 収録なし', head)
+    blocks = {}
+    for mm in ITEM_RE.finditer(html):
+        lab = re.match(r'<div class="th">([ABC]-\d+)', mm.group(1)).group(1)
+        if lab.startswith("C"):
+            continue
+        th, q, a, pt = mm.group(1), mm.group(2), mm.group(3), mm.group(4) or ""
         if not a.rstrip().endswith("</div>"):
             a = a + "</div>"
-        return (f'<div class="row"><div class="left">{th}{q}</div>'
-                f'<div class="right">{a}{pt}</div></div>')
-    # 重要度Cは収録しない: <h2 class="c"> から </section> 直前までを除去
-    html = re.sub(r'(?:<div class="pb"></div>\s*)?<h2 class="c">.*?(?=</section>)', '', html, flags=re.S)
-    html = re.sub(r'C\s*\d+問', 'C 収録なし', html)
-    out = ITEM_RE.sub(rep, html)
-    out = out.replace('<section class="chap"', '<section class="chap"', 1)
-    return out
+        rk = lab[0]
+        th = th.replace(f'<div class="th">{lab}', f'<div class="th"><span class="rk rk{rk}">重要度{rk}</span>{lab}', 1)
+        blocks[lab] = (f'<div class="row"><div class="left">{th}{q}</div>'
+                       f'<div class="right">{a}{pt}</div></div>')
+    order = [r["label"] for r in ORDER.get(key, []) if r["label"] in blocks]
+    order += [l for l in blocks if l not in order]
+    return head + "".join(blocks[l] for l in order) + "</section>\n"
 
 def build_html(frags, pages=None):
     toc_rows = []
@@ -99,7 +110,7 @@ def build_html(frags, pages=None):
 ⓪見開き構成。左ページが問題、右ページが解答例。右を隠して左だけ読み、書いてから右を開く。<br>
 ①問題文を読み、解答例を隠して6分で答案を書く。Aは全文、Bは骨子。<br>
 ②解答例と照合し、末尾の「入れる語」が答案に入っていれば合格。<br>
-③章内はA→Bの順に周回。2周目からはAだけ書き、Bは読んで再現できるかを確認する。<br>
+③章内の問は教科書の記載順に並べている。各問の左上のバッジが重要度（A＝白紙に書けるまで、B＝骨子が書ければよい）。2周目からはAだけ書き、Bは読んで再現できるかを確認する。<br>
 ④章の順番は教科書どおり。先にやるなら出題頻度の高い章（企業結合・金融商品・収益認識・連結・税効果・退職給付）から。</div>
 <div class="lead" style="background:#f4f4f4;border-color:#888"><b>重要度の意味</b><br>
 A＝過去に記述で問われた、または講師が「復元できるように」と指示した論点。白紙に書けるまで。<br>
