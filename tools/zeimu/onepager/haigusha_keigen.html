@@ -1,0 +1,102 @@
+<!doctype html><html lang="ja"><head><meta charset="utf-8">
+<style>
+@page { size: A4; margin: 10mm 12mm; }
+* { box-sizing: border-box; }
+body { font-family: "Noto Sans CJK JP","Noto Sans JP",sans-serif; font-size: 9pt; line-height: 1.45; color: #222; margin: 0; }
+h1 { font-size: 15pt; margin: 0 0 2pt; border-bottom: 2.5pt solid #c1121f; padding-bottom: 3pt; }
+h1 small { font-size: 8.5pt; color: #777; font-weight: normal; margin-left: 8pt; }
+.core { background: #c1121f; color: #fff; font-weight: bold; font-size: 10.5pt; padding: 5pt 9pt; margin: 6pt 0 8pt; border-radius: 3pt; }
+h2 { font-size: 10.3pt; margin: 7pt 0 3pt; color: #8a1c26; border-left: 4pt solid #c1121f; padding-left: 6pt; }
+.box { border: 1pt solid #c1121f; border-radius: 3pt; padding: 6pt 9pt; }
+.formula { font-size: 9.6pt; line-height: 1.75; }
+.formula .lab { display: inline-block; width: 16pt; font-weight: bold; color: #c1121f; }
+.frac { display: inline-flex; flex-direction: column; vertical-align: middle; text-align: center; margin: 0 3pt; }
+.frac span:first-child { border-bottom: 0.8pt solid #222; padding: 0 3pt; }
+.frac span { font-size: 8.8pt; line-height: 1.3; }
+.steps { display: grid; grid-template-columns: 1fr; gap: 4pt; }
+.step { display: grid; grid-template-columns: 62pt 170pt 1fr; gap: 0 8pt; align-items: start; border: 0.8pt solid #ddd; border-radius: 3pt; padding: 4pt 7pt; }
+.step .no { font-weight: bold; color: #fff; background: #8a1c26; border-radius: 2pt; padding: 1pt 5pt; text-align: center; font-size: 8.5pt; }
+.step .what { font-weight: bold; }
+.step .why { color: #333; }
+.step .kw { color: #c1121f; font-weight: bold; }
+.mn { display: flex; gap: 6pt; align-items: center; justify-content: center; margin: 6pt 0 2pt; flex-wrap: wrap; }
+.mn div { border: 1.2pt solid #c1121f; border-radius: 12pt; padding: 3pt 10pt; font-weight: bold; color: #c1121f; background: #fdf1f2; }
+.mn i { font-style: normal; color: #999; }
+table { border-collapse: collapse; width: 100%; font-size: 8.8pt; }
+th, td { border: 0.8pt solid #bbb; padding: 3pt 6pt; text-align: left; vertical-align: top; }
+th { background: #f6e3e5; }
+td.num { text-align: right; white-space: nowrap; }
+.two { display: grid; grid-template-columns: 1.15fr 1fr; gap: 10pt; }
+ul { margin: 0; padding-left: 13pt; } li { margin: 1pt 0; }
+.note { font-size: 8.2pt; color: #666; margin-top: 3pt; }
+.red { color: #c1121f; font-weight: bold; }
+</style></head><body>
+
+<h1>配偶者の税額軽減（相法19の2）<small>計算の意味がわかる1枚｜重要度B</small></h1>
+<div class="core">「ここまでなら配偶者は相続税ゼロ」というラインを決めて、そのラインまでの財産に対応する税額を消す</div>
+
+<div>
+<div>
+<h2>算式（教科書どおり）</h2>
+<div class="box formula">
+<span class="lab">①</span>贈与税額（暦年課税）控除後の配偶者の算出税額<br>
+<span class="lab">②</span>相続税の総額 ×
+<span class="frac"><span>i と ii のいずれか少ない金額</span><span>課税価格の合計額</span></span><br>
+<span style="margin-left:16pt">i ＝ 課税価格の合計額×配偶者の法定相続分 と 1億6,000万円 の<span class="red">多い方</span></span><br>
+<span style="margin-left:16pt">ii ＝ 配偶者の課税価格（千円未満切捨）</span><br>
+<b>→ ①と②の<span class="red">少ない方</span>が配偶者の税額軽減額</b>
+</div>
+</div>
+<div>
+<h2>前提：配偶者の税額は「按分」で決まる</h2>
+<div class="box">
+配偶者の算出税額 ＝ 相続税の総額 ×
+<span class="frac"><span>配偶者の課税価格</span><span>課税価格の合計額</span></span>
+　→ だから「<b>ある金額に対応する税額</b>」は <b>相続税の総額 × その金額 ／ 課税価格の合計額</b> で出せる。<br>
+<span class="red">②はまさにこの形</span>（非課税にする金額に対応する税額を出している）。
+</div>
+</div>
+</div>
+
+<h2>STEPごとの「なぜ」</h2>
+<div class="steps">
+<div class="step"><div class="no">STEP 1・2</div><div class="what">i：法定相続分 と 1.6億円 の<span class="kw">多い方</span></div>
+<div class="why">＝<b>税金ゼロで取れる上限</b>。法定相続分は法律が想定する配偶者の取り分、1.6億円は遺産が少なめでも最低これだけは非課税にする保障。配偶者に<b>有利な方</b>を採る。</div></div>
+<div class="step"><div class="no">STEP 3</div><div class="what">ii（実際に取った額）と比べて<span class="kw">少ない方</span></div>
+<div class="why">上限が1.6億円でも、実際に1.2億円しか取っていなければ非課税にできるのは1.2億円。<b>取っていない財産の分まで非課税にはできない</b>。</div></div>
+<div class="step"><div class="no">STEP 4</div><div class="what">相続税の総額 × 少ない方 ／ 課税価格の合計額</div>
+<div class="why">「非課税で取った額」に対応する税額を、<b>按分</b>の形で計算する。</div></div>
+<div class="step"><div class="no">STEP 5</div><div class="what">①（実際の税額）と比べて<span class="kw">少ない方</span></div>
+<div class="why">配偶者が実際に払う税額（算出税額−贈与税額控除）を<b>超えて減らすことはできない</b>（マイナスにしない）。</div></div>
+</div>
+
+<div class="mn"><div>上限＝多い方</div><i>→</i><div>実際と比べて少ない方</div><i>→</i><div>総額×割合で按分</div><i>→</i><div>実際の税額と比べて少ない方</div></div>
+
+<h2>数字で確認<span style="font-weight:normal;color:#666;font-size:8.5pt">（仮に：課税価格の合計3億円・相続税の総額6,000万円・配偶者の法定相続分1/2 → i ＝ 1.5億と1.6億の多い方 ＝ <b>1.6億円</b>）</span></h2>
+<table>
+<tr><th></th><th>配偶者の取得（ii）</th><th>少ない方</th><th>②軽減額</th><th>配偶者の算出税額（①）</th><th>納付税額</th></tr>
+<tr><td>A</td><td class="num">1.2億円</td><td class="num">1.2億円</td><td class="num">6,000万×1.2/3＝2,400万円</td><td class="num">6,000万×1.2/3＝2,400万円</td><td class="num"><b>0円</b>（上限の内側なら全額消える）</td></tr>
+<tr><td>B</td><td class="num">2億円</td><td class="num">1.6億円</td><td class="num">6,000万×1.6/3＝3,200万円</td><td class="num">6,000万×2/3＝4,000万円</td><td class="num"><b>800万円</b>（上限超の0.4億円分だけ課税）</td></tr>
+</table>
+
+<div class="two" style="margin-top:2pt">
+<div>
+<h2>制度趣旨（教科書）</h2>
+<ul>
+<li>配偶者による財産の取得は<b>同一世代間の財産移転</b>であり、遠からず次の相続が生じて相続税が課税されるのが通常</li>
+<li><b>長年共同生活</b>を営んできた配偶者に対する配慮</li>
+<li>遺産の維持形成に対する配偶者の<b>貢献</b>等を考慮</li>
+</ul>
+</div>
+<div>
+<h2>適用のポイント（教科書）</h2>
+<ul>
+<li>対象は被相続人の配偶者。<b>相続を放棄しても適用あり</b>。<b>内縁の配偶者は適用なし</b>（法律上の婚姻の届出が必要）</li>
+<li>納付税額の有無に関係なく、<b>申告書（期限後・修正申告書を含む）又は更正の請求書の提出</b>が必要</li>
+<li>原則、申告期限までに分割等で<b>実際に取得した財産に限る</b>（未分割は不可。申告期限後3年以内に分割した場合等は適用可）</li>
+<li>隠蔽仮装行為に基づく部分には適用されない</li>
+</ul>
+</div>
+</div>
+<div class="note">※ 数値例の「相続税の総額6,000万円」は説明用の仮の数字。出典：税務実務テキスト「4. 配偶者の税額軽減」。</div>
+</body></html>
