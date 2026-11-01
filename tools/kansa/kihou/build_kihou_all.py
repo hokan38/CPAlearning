@@ -49,6 +49,14 @@ def headings(src):
                 if m: out.append([2, f"{m.group(1)}. {m.group(2).strip()}", pi + 1])
     return out
 
+def short(title):
+    """しおり用の短い名前（「監査基準報告書」などの頭書きを外す）。"""
+    t = re.sub(r"\s+", " ", title)
+    for a, b in [("財務報告内部統制監査基準報告書第１号", "内基報1"), ("品質管理基準報告書第１号", "品基報1"), ("品質管理基準報告書第２号", "品基報2"),
+                 ("期中レビュー基準報告書第１号", "レ基報1"), ("期中レビュー基準報告書第２号", "レ基報2"), ("監査基準報告書（序）", "序"), ("監査基準報告書", "")]:
+        if t.startswith(a): return b + t[len(a):]
+    return t
+
 def cover(pages):
     body = "".join(rows)
     for i, p in pages.items(): body = body.replace(f'<td class="p" id="p{i}"></td>', f'<td class="p">{p}</td>')
@@ -76,9 +84,10 @@ for i in ORDER:
     src = pymupdf.open(os.path.join(HERE, "latest", f"{i}.pdf"))
     start = doc.page_count + 1
     doc.insert_pdf(src)
-    toc.append([1, re.sub(r"\s+", " ", byid[i]["title"]), start])
+    toc.append([1, short(byid[i]["title"]), start])
     for lv, t, p in headings(src):
         toc.append([lv, t[:60], start + p - 1])
+toc = [[lv, t.replace("監査基準報告書", "監基報"), pg] for lv, t, pg in toc]   # しおりには正式名称の頭書きを出さない
 doc.set_toc(toc)
 doc.save(OUT, garbage=3, deflate=True); os.remove(cp)
 print(OUT, pymupdf.open(OUT).page_count, "pages", f"{os.path.getsize(OUT)/1e6:.1f}MB", "toc", len(toc))
