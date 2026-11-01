@@ -158,7 +158,11 @@ def render(html):
     return pymupdf.open(OUT_PDF)
 
 def main():
+    global OUT_PDF, OUT_HTML
     secs = [s for s in load() if s["items"]]
+    if len(sys.argv) > 2:   # 部分版: build_kansa.py <出力名> <節の接頭辞>...
+        OUT_PDF = os.path.join(HERE, sys.argv[1]); OUT_HTML = OUT_PDF[:-4] + ".html"
+        secs = [s for s in secs if any(s["key"].startswith(p) for p in sys.argv[2:])]
     doc = render(build(secs)); pages = find_pages(doc, secs); doc.close()
     doc = render(build(secs, pages)); pages = find_pages(doc, secs)
     toc = [[1, "2週間プラン・目次", 2]]
