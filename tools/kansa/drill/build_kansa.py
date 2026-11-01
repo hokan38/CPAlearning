@@ -41,6 +41,7 @@ h1.part { font-size:20pt; color:#c1121f; break-before:page; margin:150pt 0 6pt; 
 .partsub { font-size:10pt; color:#555; }
 table.plan { border-collapse:collapse; width:100%; font-size:9pt; margin:4pt 0 10pt; }
 table.plan th, table.plan td { border:0.6pt solid #ccc; padding:3pt 6pt; text-align:left; vertical-align:top; }
+table.plan td.c { white-space:nowrap; }
 table.plan th { background:#fbeaec; }
 .freq { color:#c1121f; font-weight:bold; }
 """
@@ -132,14 +133,27 @@ PLAN = [("11/1", "品質管理・監査実施論総論・確認・分析的手�
         ("11/13", "<b>職業倫理 答練 第1回</b>（1時間）＋復習／対策編3 第7章 倫理規則", ["k5_7"]),
         ("11/14", "<b>監査 答練 第3回</b>（3時間）＋復習／付録 公認会計士法・倫理規則／2週間分の×の問", ["k5_A8"])]
 
-def build(secs, pages=None):
+def plan_pages(secs, prefs, pages, last):
+    """その日の節のページ範囲（ドリル上のページ）。連続する節はまとめる。"""
+    if not pages: return ""
+    order = [s["key"] for s in secs if s["key"] in pages]
+    starts = [pages[k] for k in order]
+    rngs = []
+    for i, k in enumerate(order):
+        if not any(k.startswith(p) for p in prefs): continue
+        a = pages[k]; b = (starts[i + 1] - 1) if i + 1 < len(starts) else last
+        if rngs and rngs[-1][1] + 1 >= a: rngs[-1][1] = b
+        else: rngs.append([a, b])
+    return "、".join(f"p.{a}〜{b}" for a, b in rngs)
+
+def build(secs, pages=None, last=0):
     total = sum(len(s["items"]) for s in secs)
     ta = sum(1 for s in secs for x in s["items"] if x[0] == "A")
     def cnt(prefs):
         its = [x for s in secs if any(s["key"].startswith(p) for p in prefs) for x in s["items"]]
         a = sum(1 for x in its if x[0] == "A")
         return f"A{a}・B{len(its)-a}" if its else "－"
-    plan = "".join(f"<tr><td>{d}</td><td>{t}</td><td class=\"c\">{cnt(p)}</td></tr>" for d, t, p in PLAN)
+    plan = "".join(f"<tr><td>{d}</td><td>{t}</td><td class=\"c\">{cnt(p)}</td><td class=\"c\">{plan_pages(secs, p, pages, last)}</td></tr>" for d, t, p in PLAN)
     toc = []
     for book, bname in BOOKS:
         ss = [s for s in secs if s["book"] == book]
@@ -168,7 +182,7 @@ def build(secs, pages=None):
 ・基本論点編1・2：テキストの〔Ａ〕〔Ｂ〕〔Ｃ〕は公認会計士試験（短答・論文）向けなので使わず、対策編1 序章①の修了考査の出題実績（平成28年〜令和7年の10回）で決めた。10回中4回以上出た節＝A（テキスト〔Ｃ〕の見出しはB）、1〜3回の節＝B、0回の節（監査総論・監査基準論・全体像・監査調書・報告書の基本形・除外事項・内部監査人・継続企業・法令の検討）は収録しない。各問の「見出し」行に元のテキスト表示を参考として付けた。<br>
 A＝白紙に書けるまで。B＝骨子が書ければよい。</div></div>
 <h2 class="toc">2週間プラン（11/1〜11/14）</h2>
-<table class="plan"><tr><th>日</th><th>範囲</th><th>問題数</th></tr>{plan}</table>
+<table class="plan"><tr><th>日</th><th>範囲</th><th>問題数</th><th>このドリルのページ</th></tr>{plan}</table>
 <div class="lead">毎日：その日の範囲の問題を解く → ×の問だけテキストに戻る → 寝る前に×の問をもう一度。<br>答練の日：時間を計って本番どおり解く → 解説で採点 → 書けなかった論点をこのドリルの目次から探して解き直す。答練の答案は採点に出せる（Web提出、期限11/22）。</div>
 <h2 class="toc">目次</h2>
 <table class="toc">{''.join(toc)}</table>
@@ -188,8 +202,11 @@ def main():
     if len(sys.argv) > 2:   # 部分版: build_kansa.py <出力名> <節の接頭辞>...
         OUT_PDF = os.path.join(HERE, sys.argv[1]); OUT_HTML = OUT_PDF[:-4] + ".html"
         secs = [s for s in secs if any(s["key"].startswith(p) for p in sys.argv[2:])]
-    doc = render(build(secs)); pages = find_pages(doc, secs); doc.close()
-    doc = render(build(secs, pages)); pages = find_pages(doc, secs)
+    doc = render(build(secs)); pages = find_pages(doc, secs); last = doc.page_count; doc.close()
+    for _ in range(3):   # 目次・プランにページを入れて組み直し、ページが動かなくなるまで繰り返す
+        doc = render(build(secs, pages, last)); new = find_pages(doc, secs)
+        if new == pages and doc.page_count == last: break
+        pages, last = new, doc.page_count; doc.close()
     toc = [[1, "2週間プラン・目次", 2]]
     for book, bname in BOOKS:
         ss = [s for s in secs if s["book"] == book and s["key"] in pages]
