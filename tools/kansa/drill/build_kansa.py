@@ -2,7 +2,7 @@
 使い方: python3 -I build_kansa.py
 frag/<book>_<章>-<節>.html を教科書順に並べ、見開き（左＝問題／右＝テキストの原文）で組む。
 """
-import os, re, sys, glob, subprocess, html as H
+import os, re, sys, glob, json, subprocess, html as H
 import pymupdf
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, os.path.join(HERE, "..", "..", "kaikei", "drill"))
@@ -33,6 +33,11 @@ CSS = B.CSS + """
 .row .th { font-weight:bold; color:#c1121f; font-size:10.5pt; border-bottom:1.2pt solid #c1121f; padding-bottom:2pt; margin-bottom:6pt; }
 .row .th span { font-weight:normal; color:#777; font-size:8.3pt; margin-left:8pt; }
 .row .th .rk { color:#fff; font-weight:bold; font-size:7.5pt; margin-left:0; }
+.row .th .tp { font-size:7.5pt; font-weight:bold; padding:0 5pt; border-radius:2pt; margin:0 6pt 0 0; vertical-align:1pt; }
+.row .th .tpw { color:#c1121f; border:0.8pt solid #c1121f; }
+.row .th .tpr { color:#777; border:0.8pt solid #aaa; }
+.row.rd .q { background:#fafafa; color:#555; }
+.row.rd .th { color:#777; border-bottom-color:#bbb; }
 .row .th .no { color:#c1121f; font-weight:bold; font-size:10.5pt; margin:0 6pt 0 0; }
 .a table { border-collapse:collapse; width:100%; margin:2pt 0 5pt; font-size:8.8pt; }
 .a th, .a td { border:0.6pt solid #bbb; padding:2pt 5pt; vertical-align:top; text-align:left; }
@@ -46,6 +51,10 @@ table.plan th { background:#fbeaec; }
 .freq { color:#c1121f; font-weight:bold; }
 """
 
+QT_PATH = os.path.join(FRAG, "qtype.json")
+QT = json.load(open(QT_PATH)) if os.path.exists(QT_PATH) else {}
+WTYPES = ["事例", "列挙", "手続", "理由", "判断", "対比"]
+
 def load():
     out = []
     for book, bname in BOOKS:
@@ -57,8 +66,9 @@ def load():
             m = re.search(r'<h1 class="chap">(.*?)(?:<small>.*?</small>)?</h1>', s, re.S)
             title = re.sub(r"<[^>]+>", "", m.group(1)).strip() if m else key
             items = re.findall(r'<div class="item" data-rank="([ABC])" data-pdf="([\d,]+)" data-head="([^"]*)">(.*?)</div>\s*(?=<div class="item"|</section>)', s, re.S)
-            items = [(final_rank(key, rk), pdf, dh, body, rk) for rk, pdf, dh, body in items]
-            items = [(r, pdf, dh, body, rk) for r, pdf, dh, body, rk in items if r]
+            items = [(final_rank(key, rk), pdf, dh, body, rk, QT.get(f"{key}#{i}", ["", "w"]))
+                     for i, (rk, pdf, dh, body) in enumerate(items)]
+            items = [x for x in items if x[0]]
             out.append(dict(book=book, bname=bname, key=key, title=title, items=items))
     return out
 
@@ -85,13 +95,18 @@ def freq_label(sec):
         if sec["key"].startswith(k): return v
     return "出題実績 0/10回"
 
+def wcount(its):
+    w = [x for x in its if x[5][1] == "w"]
+    a = sum(1 for x in w if x[0] == "A")
+    return a, len(w) - a, len(its) - len(w)
+
 def section_html(sec):
-    a = sum(1 for x in sec["items"] if x[0] == "A"); b = len(sec["items"]) - a
+    a, b, r = wcount(sec["items"])
     head = (f'<h1 class="chap">{sec["bname"]}｜{sec["title"]}'
-            f'<small>重要度A {a}問／B {b}問｜{freq_label(sec)}</small></h1>'
+            f'<small>書く問題 A {a}問／B {b}問・読むだけ {r}問｜{freq_label(sec)}</small></h1>'
             '<div class="spreadhead"><div>問題（解答を隠して書く）</div><div>解答（テキストの原文）</div></div>')
     rows = []
-    for n, (rk, pdf, dh, body, base) in enumerate(sec["items"], 1):
+    for n, (rk, pdf, dh, body, base, qt) in enumerate(sec["items"], 1):
         th = re.search(r'<div class="th">(.*?)</div>', body, re.S).group(1)
         q = re.search(r'(<div class="q">.*?</div>)', body, re.S).group(1)
         a_ = re.search(r'(<div class="a">.*?</div>)\s*<div class="pt">', body, re.S).group(1)
@@ -99,8 +114,11 @@ def section_html(sec):
         pt = pt.group(1) if pt else ""
         org = f'<span>テキスト表示〔{"ＡＢＣ"["ABC".index(base)]}〕（公認会計士試験向け）</span>' if sec["key"][:2] in ("k1", "k2") else ""
         ron = f'<div class="ron"><b>見出し</b>{H.escape(H.unescape(dh))}{org}</div>' if dh else ""
-        th = f'<div class="th"><span class="rk rk{rk}">重要度{rk}</span><span class="no">問{n}</span>{th}</div>'
-        rows.append(f'<div class="row"><div class="left">{ron}{th}{q}</div><div class="right">{a_}{pt}</div></div>')
+        typ, mode = qt
+        tb = (f'<span class="tp tpw">書く・{typ}</span>' if mode == "w" else f'<span class="tp tpr">読むだけ・{typ}</span>') if typ else ""
+        th = f'<div class="th"><span class="rk rk{rk}">重要度{rk}</span>{tb}<span class="no">問{n}</span>{th}</div>'
+        cls = "row" if mode == "w" else "row rd"
+        rows.append(f'<div class="{cls}"><div class="left">{ron}{th}{q}</div><div class="right">{a_}{pt}</div></div>')
     return head + "".join(rows)
 
 def find_pages(doc, secs):
@@ -148,11 +166,11 @@ def plan_pages(secs, prefs, pages, last):
 
 def build(secs, pages=None, last=0):
     total = sum(len(s["items"]) for s in secs)
-    ta = sum(1 for s in secs for x in s["items"] if x[0] == "A")
+    nw = sum(1 for s in secs for x in s["items"] if x[5][1] == "w")
     def cnt(prefs):
         its = [x for s in secs if any(s["key"].startswith(p) for p in prefs) for x in s["items"]]
-        a = sum(1 for x in its if x[0] == "A")
-        return f"A{a}・B{len(its)-a}" if its else "－"
+        a, b, r = wcount(its)
+        return f"A{a}・B{b}（読む{r}）" if its else "－"
     plan = "".join(f"<tr><td>{d}</td><td>{t}</td><td class=\"c\">{cnt(p)}</td><td class=\"c\">{plan_pages(secs, p, pages, last)}</td></tr>" for d, t, p in PLAN)
     toc = []
     for book, bname in BOOKS:
@@ -160,8 +178,8 @@ def build(secs, pages=None, last=0):
         if not ss: continue
         toc.append(f'<tr><td colspan="3"><b>{bname}</b></td></tr>')
         for s in ss:
-            a = sum(1 for x in s["items"] if x[0] == "A")
-            toc.append(f'<tr><td>　{s["title"]}</td><td class="c">A{a}・B{len(s["items"])-a}</td>'
+            a, b, r = wcount(s["items"])
+            toc.append(f'<tr><td>　{s["title"]}</td><td class="c">A{a}・B{b}（読{r}）</td>'
                        f'<td class="n">{(pages or {}).get(s["key"], "")}</td></tr>')
     body = []
     for book, bname in BOOKS:
@@ -171,9 +189,12 @@ def build(secs, pages=None, last=0):
         body += [section_html(s) for s in ss]
     return f"""<!DOCTYPE html><html lang="ja"><head><meta charset="utf-8"><title>監査論ドリル</title><style>{CSS}</style></head><body>
 <h1 class="cover">監査論ドリル（監査に関する理論及び実務）</h1>
-<div class="cover-sub">基本論点編1・2／修了考査対策編1〜3｜修了考査の重要度で選んだ見出しを全部問題化｜全{total}問（A{ta}・B{total-ta}）</div>
-<div class="cover-wrap"><div class="lead"><b>使い方</b><br>
-①見開き構成。左が問題、右が解答。右を隠して左だけ見て、答えを書く（Aは全文、Bは骨子）。<br>
+<div class="cover-sub">基本論点編1・2／修了考査対策編1〜3｜修了考査の重要度で選んだ見出しを全部問題化｜全{total}問（書く{nw}問・読むだけ{total-nw}問）</div>
+<div class="cover-wrap"><div class="lead"><b>本番の形と、このドリルの使い分け</b><br>
+本番は大問2問・小問24〜30問で、すべて事例（「あなたは主査として」＋会社の状況）の中で聞かれる。小問の聞き方は「〜を二つ答えなさい」「行わなければならない手続を三つ」「適切でない事項を理由とともに」「適否を理由とともに」「あなたの考えを」「相違点を説明しなさい」。<br>
+そこで各問に型を付けた。<b>書く</b>＝本番でこの形で聞かれる問（事例・列挙・手続・理由・判断・対比）。<b>読むだけ</b>＝定義・制度の概要など、単独では聞かれず事例を読むための前提知識（グレー表示）。</div>
+<div class="lead"><b>使い方</b><br>
+①見開き構成。左が問題、右が解答。「書く」の問は右を隠して答えを書く（Aは全文、Bは骨子）。「読むだけ」の問は右を読んで意味がわかればよい。<br>
 ②解答はテキストの文章そのまま。赤字の語句が書けていれば正解。書けなかった問に×を付ける。<br>
 ③×の問だけ、テキストの該当ページ（問の右上の印字ページ）に戻って前後の文脈を読む。<br>
 ④並びは教科書の記載順。各節の見出しに、修了考査での出題実績（平成28年〜令和7年の10回）を付けている。</div>
@@ -182,7 +203,7 @@ def build(secs, pages=None, last=0):
 ・基本論点編1・2：テキストの〔Ａ〕〔Ｂ〕〔Ｃ〕は公認会計士試験（短答・論文）向けなので使わず、対策編1 序章①の修了考査の出題実績（平成28年〜令和7年の10回）で決めた。10回中4回以上出た節＝A（テキスト〔Ｃ〕の見出しはB）、1〜3回の節＝B、0回の節（監査総論・監査基準論・全体像・監査調書・報告書の基本形・除外事項・内部監査人・継続企業・法令の検討）は収録しない。各問の「見出し」行に元のテキスト表示を参考として付けた。<br>
 A＝白紙に書けるまで。B＝骨子が書ければよい。</div></div>
 <h2 class="toc">2週間プラン（11/1〜11/14）</h2>
-<table class="plan"><tr><th>日</th><th>範囲</th><th>問題数</th><th>このドリルのページ</th></tr>{plan}</table>
+<table class="plan"><tr><th>日</th><th>範囲</th><th>書く問題（読むだけ）</th><th>このドリルのページ</th></tr>{plan}</table>
 <div class="lead">毎日：その日の範囲の問題を解く → ×の問だけテキストに戻る → 寝る前に×の問をもう一度。<br>答練の日：時間を計って本番どおり解く → 解説で採点 → 書けなかった論点をこのドリルの目次から探して解き直す。答練の答案は採点に出せる（Web提出、期限11/22）。</div>
 <h2 class="toc">目次</h2>
 <table class="toc">{''.join(toc)}</table>
