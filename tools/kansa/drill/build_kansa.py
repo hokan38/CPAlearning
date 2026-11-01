@@ -92,7 +92,7 @@ def find_pages(doc, secs):
         texts.append(re.sub(r"\s", "", big))
     cur = 0
     for s in secs:
-        key = re.sub(r"\s", "", f'{s["bname"]}｜{s["title"]}')[:18]
+        key = re.sub(r"\s", "", f'{s["bname"]}｜{s["title"]}')[:34]
         for i in range(cur, doc.page_count):
             if texts[i].startswith(key):
                 pages[s["key"]] = i + 1; cur = i; break
