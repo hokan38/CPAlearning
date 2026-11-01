@@ -6,7 +6,14 @@ import pymupdf
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 FRAG = os.path.join(HERE, "frag")
-CHROME = "/opt/pw-browsers/chromium_headless_shell-1194/chrome-linux/headless_shell"
+def _find_chrome():
+    import glob
+    for pat in ("/opt/pw-browsers/chromium_headless_shell-*/chrome-*/chrome-headless-shell",
+                "/opt/pw-browsers/chromium_headless_shell-*/chrome-linux/headless_shell"):
+        hits = sorted(glob.glob(pat))
+        if hits: return hits[-1]
+    return "/opt/pw-browsers/chromium/chrome"
+CHROME = _find_chrome()
 OUT_HTML = os.path.join(HERE, "all_drill.html")
 OUT_PDF = os.path.join(HERE, "会計実務_論述ドリル_全章.pdf")
 
