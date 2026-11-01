@@ -17,6 +17,38 @@ rows = []
 for i in ORDER:
     r = byid[i]
     rows.append(f'<tr><td>{H.escape(r["title"])}</td><td class="d">{r["date"]}</td><td class="n">{NOTE.get(i, "")}</td><td class="p" id="p{i}"></td></tr>')
+ROMAN = "ⅠⅡⅢⅣⅤⅥⅦⅧⅨⅩ"
+def headings(src):
+    """本文の見出しからしおりを作る：《Ⅰ 範囲及び目的》《Ⅱ 要求事項》《Ⅲ 適用指針》《付録…》＝第2階層、《１．…》＝第3階層。
+    見出しが2行に折り返されている場合（《Ⅲ／適用指針》）はつなげて読む。"""
+    out, body = [], False
+    for pi, page in enumerate(src):
+        ls = [l.strip() for l in page.get_text().split("\n")]
+        k = 0
+        while k < len(ls):
+            t = ls[k]; k += 1
+            if t.startswith("《") and "》" not in t:
+                for _ in range(2):
+                    if k < len(ls):
+                        t += ls[k]; k += 1
+                        if "》" in t: break
+            m = re.match(r"^《\s*([" + ROMAN + r"]+)[\s　．.]*(.+?)》", t)
+            if m:
+                body = True; out.append([2, f"{m.group(1)} {m.group(2).strip()}", pi + 1]); continue
+            if not body: continue
+            m = re.match(r"^《\s*(付録\s*[０-９0-9]*)[\s　]*(.+?)》", t)
+            if m:
+                out.append([2, f"{m.group(1)} {m.group(2).strip()}", pi + 1]); continue
+            m = re.match(r"^《\s*([０-９0-9]+)\s*[．.]\s*(.+?)》", t)
+            if m:
+                out.append([3, f"{m.group(1)}. {m.group(2).strip()}", pi + 1])
+    if not out:   # 《Ⅰ》がない報告書（監基報（序））は《１．…》を第2階層にする
+        for pi, page in enumerate(src):
+            for t in page.get_text().split("\n"):
+                m = re.match(r"^《\s*([０-９0-9]+)\s*[．.]\s*(.+?)》", t.strip())
+                if m: out.append([2, f"{m.group(1)}. {m.group(2).strip()}", pi + 1])
+    return out
+
 def cover(pages):
     body = "".join(rows)
     for i, p in pages.items(): body = body.replace(f'<td class="p" id="p{i}"></td>', f'<td class="p">{p}</td>')
@@ -45,8 +77,8 @@ for i in ORDER:
     start = doc.page_count + 1
     doc.insert_pdf(src)
     toc.append([1, re.sub(r"\s+", " ", byid[i]["title"]), start])
-    for lv, t, p in src.get_toc():
-        if lv <= 2 and p > 0: toc.append([lv + 1, t, start + p - 1])
+    for lv, t, p in headings(src):
+        toc.append([lv, t[:60], start + p - 1])
 doc.set_toc(toc)
 doc.save(OUT, garbage=3, deflate=True); os.remove(cp)
 print(OUT, pymupdf.open(OUT).page_count, "pages", f"{os.path.getsize(OUT)/1e6:.1f}MB", "toc", len(toc))
