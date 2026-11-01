@@ -14,7 +14,7 @@ norm = lambda t: re.sub(r"\s+", "", H.unescape(re.sub(r"<[^>]+>", "", t)))
 def page(p):
     f = os.path.join(tb, book, f"p{p:03d}.txt")
     return norm(open(f).read()) if os.path.exists(f) else ""
-items = re.findall(r'<div class="item" data-rank="([AB])" data-pdf="([\d,]+)" data-head="([^"]*)">(.*?)</div>\s*(?=<div class="item"|</section>)', s, re.S)
+items = re.findall(r'<div class="item" data-rank="([ABC])" data-pdf="([\d,]+)" data-head="([^"]*)">(.*?)</div>\s*(?=<div class="item"|</section>)', s, re.S)
 if not items: sys.exit("NG: 問が0件（.item の属性 data-rank / data-pdf / data-head を確認）")
 err = 0; heads = []
 for i, (rk, pdf, head, body) in enumerate(items, 1):

@@ -55,9 +55,26 @@ def load():
             key = os.path.basename(f)[:-5]
             m = re.search(r'<h1 class="chap">(.*?)(?:<small>.*?</small>)?</h1>', s, re.S)
             title = re.sub(r"<[^>]+>", "", m.group(1)).strip() if m else key
-            items = re.findall(r'<div class="item" data-rank="([AB])" data-pdf="([\d,]+)" data-head="([^"]*)">(.*?)</div>\s*(?=<div class="item"|</section>)', s, re.S)
+            items = re.findall(r'<div class="item" data-rank="([ABC])" data-pdf="([\d,]+)" data-head="([^"]*)">(.*?)</div>\s*(?=<div class="item"|</section>)', s, re.S)
+            items = [(final_rank(key, rk), pdf, dh, body, rk) for rk, pdf, dh, body in items]
+            items = [(r, pdf, dh, body, rk) for r, pdf, dh, body, rk in items if r]
             out.append(dict(book=book, bname=bname, key=key, title=title, items=items))
     return out
+
+def nfreq(key):
+    return len(FREQ.get(key, "").split())
+
+def final_rank(key, base):
+    """修了考査の重要度。対策編（k3〜k5）はテキストの〔Ａ〕〔Ｂ〕のまま。
+    基本論点編（k1・k2）の〔Ａ〕〔Ｂ〕〔Ｃ〕は公認会計士試験（短答・論文）向けの表示なので使わず、
+    対策編1 序章①の修了考査の出題実績（H28〜R7の10回）で決める：
+    4回以上の節＝A（テキスト〔Ｃ〕の見出しはB）／1〜3回の節＝B／0回の節＝収録しない。"""
+    if key[:2] not in ("k1", "k2"):
+        return base if base in "AB" else None
+    n = nfreq(key)
+    if n >= 4: return "A" if base in "AB" else "B"
+    if n >= 1: return "B" if base in "AB" else None
+    return None
 
 def freq_label(sec):
     if sec["key"] in FREQ:
@@ -73,13 +90,14 @@ def section_html(sec):
             f'<small>重要度A {a}問／B {b}問｜{freq_label(sec)}</small></h1>'
             '<div class="spreadhead"><div>問題（解答を隠して書く）</div><div>解答（テキストの原文）</div></div>')
     rows = []
-    for n, (rk, pdf, dh, body) in enumerate(sec["items"], 1):
+    for n, (rk, pdf, dh, body, base) in enumerate(sec["items"], 1):
         th = re.search(r'<div class="th">(.*?)</div>', body, re.S).group(1)
         q = re.search(r'(<div class="q">.*?</div>)', body, re.S).group(1)
         a_ = re.search(r'(<div class="a">.*?</div>)\s*<div class="pt">', body, re.S).group(1)
         pt = re.search(r'(<div class="pt">.*?</div>)\s*$', body, re.S)
         pt = pt.group(1) if pt else ""
-        ron = f'<div class="ron"><b>見出し</b>{H.escape(H.unescape(dh))}</div>' if dh else ""
+        org = f'<span>テキスト表示〔{"ＡＢＣ"["ABC".index(base)]}〕（公認会計士試験向け）</span>' if sec["key"][:2] in ("k1", "k2") else ""
+        ron = f'<div class="ron"><b>見出し</b>{H.escape(H.unescape(dh))}{org}</div>' if dh else ""
         th = f'<div class="th"><span class="rk rk{rk}">重要度{rk}</span><span class="no">問{n}</span>{th}</div>'
         rows.append(f'<div class="row"><div class="left">{ron}{th}{q}</div><div class="right">{a_}{pt}</div></div>')
     return head + "".join(rows)
@@ -98,25 +116,30 @@ def find_pages(doc, secs):
                 pages[s["key"]] = i + 1; cur = i; break
     return pages
 
-PLAN = [("11/1", "基本論点編1 第1〜2章", "監査総論・監査基準論・品質管理(3)"),
-        ("11/2", "基本論点編1 第3章 第1〜4節", "監査実施論総論(7)・確認(4)・分析的手続・内部統制(3)"),
-        ("11/3", "基本論点編1 第3章 第5〜9節", "リスクの識別と評価(7)・評価したリスクへの対応(5)・特別な検討を必要とするリスク・重要性"),
-        ("11/4", "基本論点編1 第3章 第10〜14節", "虚偽表示の評価(4)・監査計画・監査調書・サンプリング(3)・会計上の見積り(8)"),
-        ("11/5", "基本論点編1 第3章 第15〜17節＋対策編1 第1章 第1節", "経営者確認書(3)・特定項目(5)・項目別監査手続(10)"),
-        ("11/6", "対策編1 第1章 第2〜7節", "関連当事者Ⅱ・後発事象Ⅱ・実査Ⅱ・立会Ⅱ・確認Ⅱ・不備事例"),
-        ("11/7", "<b>監査 答練 第1回</b>（3時間・本番形式）＋復習", "答練の後、解説と照らして書けなかった論点の問をドリルで解き直す。残り時間で1週目の×の問"),
-        ("11/8", "基本論点編2 第4章 第1〜7節", "報告書の基本形・除外事項・KAM・その他の記載内容(4)・追記情報(4)"),
-        ("11/9", "基本論点編2 第4章 第8節・第5章・第6章 第1節", "グループ監査(5)・専門家(2)・内部監査人・継続企業"),
-        ("11/10", "基本論点編2 第6章 第2〜8節", "不正(4)・不正リスク対応基準(6)・法令・監査役等(4)・内部統制の不備・交代(3)・関連当事者(2)"),
-        ("11/11", "<b>監査 答練 第2回</b>（3時間）＋復習／対策編1 第2章", "第2章は〔Ｂ〕が多いので読んで思い出せるかの確認中心"),
-        ("11/12", "対策編2（改正論点）＋対策編3 第8章・付録", "令和4〜7年改正・インサイダー取引規制・公認会計士法"),
-        ("11/13", "<b>職業倫理 答練 第1回</b>（1時間）＋復習／対策編3 第7章", "倫理規則（独立性・非保証業務の提供が中心）"),
-        ("11/14", "<b>監査 答練 第3回</b>（3時間）＋総仕上げ", "答練の復習 → 2週間分の×の問だけ3周目")]
+# 日付, 内容, 対象の節（接頭辞）
+PLAN = [("11/1", "品質管理・監査実施論総論・確認・分析的手続・内部統制", ["k1_2-02", "k1_3-01", "k1_3-02", "k1_3-03", "k1_3-04"]),
+        ("11/2", "リスク・アプローチ総論・重要な虚偽表示リスクの識別と評価・特別な検討を必要とするリスク・重要性", ["k1_3-05", "k1_3-06", "k1_3-08", "k1_3-09"]),
+        ("11/3", "評価したリスクに対応する手続・虚偽表示の評価・監査計画・監査サンプリング", ["k1_3-07", "k1_3-10", "k1_3-11", "k1_3-13"]),
+        ("11/4", "会計上の見積り・経営者確認書・特定項目・項目別監査手続／対策編1 関連当事者Ⅱ〜立会Ⅱ", ["k1_3-14", "k1_3-15", "k1_3-16", "k1_3-17", "k3_1-02", "k3_1-03", "k3_1-04", "k3_1-05"]),
+        ("11/5", "対策編1 勘定科目に関する監査手続（過去問の事例を含む）・確認Ⅱ", ["k3_1-01", "k3_1-06"]),
+        ("11/6", "対策編1 監査手続の不備事例＋1週目の×の問", ["k3_1-07"]),
+        ("11/7", "<b>監査 答練 第1回</b>（3時間・本番形式）＋復習", []),
+        ("11/8", "監査報告論（総論・KAM・その他の記載内容・追記情報・その他の記載事項・諸論点）・グループ監査", ["k2_4", "k2_5-01"]),
+        ("11/9", "専門家の業務の利用・不正への対応・不正リスク対応基準", ["k2_5-02", "k2_6-02", "k2_6-03"]),
+        ("11/10", "監査役等とのコミュニケーション・内部統制の不備・監査人の交代・関連当事者／対策編1 第2章 第1〜2節", ["k2_6-05", "k2_6-06", "k2_6-07", "k2_6-08", "k3_2-01", "k3_2-02"]),
+        ("11/11", "<b>監査 答練 第2回</b>（3時間）＋復習／対策編1 第2章 第3〜9節", ["k3_2-03", "k3_2-04", "k3_2-05", "k3_2-06", "k3_2-07", "k3_2-08", "k3_2-09"]),
+        ("11/12", "対策編2（令和4〜7年改正）／対策編3 第8章（インサイダー取引・協会会則）・付録 監査主体論総論", ["k4", "k5_8", "k5_A2"]),
+        ("11/13", "<b>職業倫理 答練 第1回</b>（1時間）＋復習／対策編3 第7章 倫理規則", ["k5_7"]),
+        ("11/14", "<b>監査 答練 第3回</b>（3時間）＋復習／付録 公認会計士法・倫理規則／2週間分の×の問", ["k5_A8"])]
 
 def build(secs, pages=None):
     total = sum(len(s["items"]) for s in secs)
     ta = sum(1 for s in secs for x in s["items"] if x[0] == "A")
-    plan = "".join(f"<tr><td>{d}</td><td>{r}</td><td>{t}</td></tr>" for d, r, t in PLAN)
+    def cnt(prefs):
+        its = [x for s in secs if any(s["key"].startswith(p) for p in prefs) for x in s["items"]]
+        a = sum(1 for x in its if x[0] == "A")
+        return f"A{a}・B{len(its)-a}" if its else "－"
+    plan = "".join(f"<tr><td>{d}</td><td>{t}</td><td class=\"c\">{cnt(p)}</td></tr>" for d, t, p in PLAN)
     toc = []
     for book, bname in BOOKS:
         ss = [s for s in secs if s["book"] == book]
@@ -134,16 +157,18 @@ def build(secs, pages=None):
         body += [section_html(s) for s in ss]
     return f"""<!DOCTYPE html><html lang="ja"><head><meta charset="utf-8"><title>監査論ドリル</title><style>{CSS}</style></head><body>
 <h1 class="cover">監査論ドリル（監査に関する理論及び実務）</h1>
-<div class="cover-sub">基本論点編1・2／修了考査対策編1〜3｜テキストの重要度〔Ａ〕〔Ｂ〕の見出しを全部問題化｜全{total}問（A{ta}・B{total-ta}）</div>
+<div class="cover-sub">基本論点編1・2／修了考査対策編1〜3｜修了考査の重要度で選んだ見出しを全部問題化｜全{total}問（A{ta}・B{total-ta}）</div>
 <div class="cover-wrap"><div class="lead"><b>使い方</b><br>
 ①見開き構成。左が問題、右が解答。右を隠して左だけ見て、答えを書く（Aは全文、Bは骨子）。<br>
 ②解答はテキストの文章そのまま。赤字の語句が書けていれば正解。書けなかった問に×を付ける。<br>
 ③×の問だけ、テキストの該当ページ（問の右上の印字ページ）に戻って前後の文脈を読む。<br>
 ④並びは教科書の記載順。各節の見出しに、修了考査での出題実績（平成28年〜令和7年の10回）を付けている。</div>
-<div class="lead" style="background:#f4f4f4;border-color:#888"><b>重要度の意味（テキストの表示どおり）</b><br>
-A＝テキストで〔Ａ〕の見出し。白紙に書けるまで。B＝〔Ｂ〕の見出し。骨子が書ければよい。〔Ｃ〕は収録していない。</div></div>
+<div class="lead" style="background:#f4f4f4;border-color:#888"><b>重要度の決め方（修了考査基準）</b><br>
+・修了考査対策編1〜3：テキストの〔Ａ〕〔Ｂ〕のまま（〔Ｃ〕は収録しない）。<br>
+・基本論点編1・2：テキストの〔Ａ〕〔Ｂ〕〔Ｃ〕は公認会計士試験（短答・論文）向けなので使わず、対策編1 序章①の修了考査の出題実績（平成28年〜令和7年の10回）で決めた。10回中4回以上出た節＝A（テキスト〔Ｃ〕の見出しはB）、1〜3回の節＝B、0回の節（監査総論・監査基準論・全体像・監査調書・報告書の基本形・除外事項・内部監査人・継続企業・法令の検討）は収録しない。各問の「見出し」行に元のテキスト表示を参考として付けた。<br>
+A＝白紙に書けるまで。B＝骨子が書ければよい。</div></div>
 <h2 class="toc">2週間プラン（11/1〜11/14）</h2>
-<table class="plan"><tr><th>日</th><th>範囲</th><th>主な論点（ ）は10回中の出題回数</th></tr>{plan}</table>
+<table class="plan"><tr><th>日</th><th>範囲</th><th>問題数</th></tr>{plan}</table>
 <div class="lead">毎日：その日の範囲の問題を解く → ×の問だけテキストに戻る → 寝る前に×の問をもう一度。<br>答練の日：時間を計って本番どおり解く → 解説で採点 → 書けなかった論点をこのドリルの目次から探して解き直す。答練の答案は採点に出せる（Web提出、期限11/22）。</div>
 <h2 class="toc">目次</h2>
 <table class="toc">{''.join(toc)}</table>
