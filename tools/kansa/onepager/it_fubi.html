@@ -7,7 +7,6 @@ html, body { margin: 0; padding: 0; }
 body { font-family: "Noto Sans CJK JP", sans-serif; color: #1f2933; font-size: 8.1pt; line-height: 1.45; }
 .page { width: 210mm; height: 297mm; padding: 7mm 9mm 8mm; position: relative; overflow: hidden; break-after: page; }
 .page:last-child { break-after: auto; }
-/* header */
 .hd { display: flex; align-items: center; gap: 4mm; border-radius: 3mm; padding: 2.6mm 5mm; color: #fff; }
 .hd .no { font-size: 20pt; font-weight: 900; opacity: .9; }
 .hd h1 { margin: 0; font-size: 17pt; font-weight: 900; letter-spacing: .5pt; }
@@ -15,293 +14,279 @@ body { font-family: "Noto Sans CJK JP", sans-serif; color: #1f2933; font-size: 8
 .hd .src { margin-left: auto; text-align: right; font-size: 7.4pt; line-height: 1.55; opacity: .95; }
 .p1 .hd { background: linear-gradient(90deg, #1d4e89, #2a7ab0); }
 .p2 .hd { background: linear-gradient(90deg, #8a1c2b, #c2410c); }
-/* generic */
 .row { display: grid; gap: 3.2mm; margin-top: 3mm; }
 .box { border-radius: 2.5mm; padding: 2.3mm 3mm; background: #f6f8fb; border: .35mm solid #d7dee8; }
-.box h2 { margin: 0 0 1.2mm; font-size: 9.8pt; font-weight: 900; display: flex; align-items: center; gap: 2mm; }
+.box h2 { margin: 0 0 1.2mm; font-size: 9.8pt; font-weight: 900; display: flex; align-items: center; gap: 2mm; flex-wrap: wrap; }
 .box h2 .tag { white-space: nowrap; font-size: 7pt; font-weight: 700; padding: .3mm 2mm; border-radius: 5mm; color: #fff; }
-.q { font-size: 7.4pt; color: #475569; }
-.q b { color: #1f2933; }
-.cite { font-size: 6.9pt; color: #64748b; }
-.kw { font-weight: 900; }
-.p1 .kw, .p1 .box h2 { color: #1d4e89; }
-.p2 .kw, .p2 .box h2 { color: #8a1c2b; }
+.q { font-size: 7.5pt; color: #334155; }
+.q b { color: #111827; }
+.cite { font-size: 6.9pt; color: #64748b; font-weight: 400; }
+.rk { display: inline-block; font-size: 6.6pt; font-weight: 900; border-radius: 1mm; padding: 0 1.2mm; color: #fff; vertical-align: .4mm; }
+.rA { background: #dc2626; } .rB { background: #d97706; }
+.p1 .box h2 { color: #1d4e89; } .p2 .box h2 { color: #8a1c2b; }
 .p1 .tag { background: #1d4e89; } .p2 .tag { background: #8a1c2b; }
-.alert { border-left: 1.6mm solid; border-radius: 1.5mm; padding: 1.8mm 2.6mm; font-size: 7.8pt; }
+.alert { border-left: 1.6mm solid; border-radius: 1.5mm; padding: 1.8mm 2.6mm; font-size: 7.6pt; }
 .p1 .alert { border-color: #2a7ab0; background: #e8f1fa; }
 .p2 .alert { border-color: #c2410c; background: #fdf0e8; }
-.alert .big { font-size: 10pt; font-weight: 900; display: block; margin-bottom: .8mm; }
+.alert .big { font-size: 10pt; font-weight: 900; display: block; margin-bottom: .6mm; }
 .p1 .alert .big { color: #1d4e89; } .p2 .alert .big { color: #8a1c2b; }
-/* steps (page1) */
-.steps { display: grid; grid-template-columns: 1fr; gap: 0; margin-top: 3mm; }
-.step { display: grid; grid-template-columns: 14mm 1fr 31mm; align-items: stretch; margin-bottom: 1.5mm; }
+.step { display: grid; grid-template-columns: 14mm 1fr 30mm; align-items: stretch; margin-bottom: 1.4mm; }
 .step .n { border-radius: 2.5mm 0 0 2.5mm; color: #fff; display: flex; flex-direction: column; align-items: center; justify-content: center; font-weight: 900; }
-.step .n .d { font-size: 16pt; line-height: 1; }
-.step .n .s { font-size: 6.6pt; font-weight: 700; margin-top: .8mm; opacity: .95; }
-.step .c { background: #fff; border: .35mm solid #cbd5e1; border-left: none; border-right: none; padding: 1.5mm 2.6mm; }
-.step .c .t { font-size: 9.2pt; font-weight: 900; color: #0f2e52; }
-.step .c .e { font-size: 7.3pt; color: #334155; margin-top: .6mm; }
+.step .n .d { font-size: 15pt; line-height: 1; }
+.step .n .s { font-size: 6.4pt; font-weight: 700; margin-top: .8mm; }
+.step .c { background: #fff; border: .35mm solid #cbd5e1; border-left: none; border-right: none; padding: 1.4mm 2.6mm; }
+.step .c .t { font-size: 8.8pt; font-weight: 900; color: #0f2e52; }
+.step .c .e { font-size: 7pt; line-height: 1.38; color: #334155; margin-top: .4mm; }
 .step .c .e b { color: #1d4e89; }
-.step .ok { border-radius: 0 2.5mm 2.5mm 0; border: .35mm solid #9fd3b4; background: #e9f7ef; display: flex; flex-direction: column; justify-content: center; padding: 1.5mm 2.4mm; font-size: 7.4pt; color: #14532d; }
-.step .ok .h { font-weight: 900; font-size: 8pt; }
-.step .ng { border-radius: 0 2.5mm 2.5mm 0; border: .35mm solid #f3b4b4; background: #fdecec; display: flex; flex-direction: column; justify-content: center; padding: 1.5mm 2.4mm; font-size: 7.4pt; color: #7f1d1d; }
-.step .ng .h { font-weight: 900; font-size: 8pt; }
+.step .ok, .step .ng { border-radius: 0 2.5mm 2.5mm 0; display: flex; flex-direction: column; justify-content: center; padding: 1.4mm 2.2mm; font-size: 7.1pt; }
+.step .ok { border: .35mm solid #9fd3b4; background: #e9f7ef; color: #14532d; }
+.step .ng { border: .35mm solid #f3b4b4; background: #fdecec; color: #7f1d1d; }
+.step .ok .h, .step .ng .h { font-weight: 900; font-size: 7.8pt; }
 .s1 .n { background: #2a7ab0; } .s2 .n { background: #2563a6; } .s3 .n { background: #1d4e89; } .s4 .n { background: #0f2e52; }
-.down { text-align: center; font-size: 6.8pt; color: #64748b; margin: -1mm 0 .4mm 14mm; width: calc(100% - 45mm); line-height: 1.2; }
+.down { text-align: center; font-size: 6.8pt; color: #64748b; margin: -.9mm 0 .3mm 14mm; width: calc(100% - 44mm); line-height: 1.2; }
 .down::before { content: "▼ "; color: #94a3b8; }
-/* table */
-table.cmp { width: 100%; border-collapse: collapse; font-size: 7.2pt; }
-table.cmp th, table.cmp td { border: .3mm solid #cbd5e1; padding: .9mm 1.6mm; vertical-align: top; }
-table.cmp th { background: #eef2f7; font-weight: 900; text-align: left; white-space: nowrap; }
-table.cmp td.hl { background: #fff7e6; font-weight: 700; }
-/* flow page2 */
-.flow2 { display: grid; grid-template-columns: 1fr; gap: 0; margin-top: 2.5mm; }
+table.cs { width: 100%; border-collapse: collapse; font-size: 6.9pt; line-height: 1.38; }
+table.cs th, table.cs td { border: .3mm solid #cbd5e1; padding: .7mm 1.4mm; vertical-align: top; }
+table.cs thead th { background: #1d4e89; color: #fff; font-weight: 900; text-align: left; }
+table.cs td.k { font-weight: 900; color: #0f2e52; background: #eef4fb; width: 34mm; }
+table.cs td.pr { writing-mode: vertical-rl; text-align: center; font-weight: 900; color: #fff; background: #2a7ab0; width: 6mm; padding: 1mm .5mm; letter-spacing: 1pt; }
+table.cs b { color: #1d4e89; }
+.two { display: grid; grid-template-columns: 1fr 1fr; gap: 2.4mm; }
+.kind { border-radius: 2mm; padding: 1.8mm 2.4mm; background: #fff; border: .35mm solid #e5c3c3; font-size: 7.3pt; }
+.kind .h { font-weight: 900; color: #8a1c2b; font-size: 8.4pt; margin-bottom: .5mm; }
+.kind ul { margin: .4mm 0 0; padding-left: 3.6mm; } .kind li { margin: .2mm 0; }
 .fbox { border-radius: 2.5mm; padding: 1.8mm 3mm; border: .4mm solid; background: #fff; }
 .f-start { border-color: #c2410c; background: #fff4ec; }
 .f-q { border-color: #8a1c2b; }
 .fbox .t { font-weight: 900; font-size: 9.2pt; color: #7a1b26; }
-.fbox .e { font-size: 7.3pt; color: #334155; margin-top: .5mm; }
-.arrow { text-align: center; color: #b45309; font-size: 8pt; line-height: 1; margin: .6mm 0; }
-.judge { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2mm; margin-top: 1.6mm; }
-.judge div { background: #fdf2f2; border-radius: 1.8mm; padding: 1.2mm 2mm; font-size: 7.3pt; border: .3mm dashed #e2a3a3; }
-.judge div b { color: #8a1c2b; }
-.branch { display: grid; grid-template-columns: 1fr 1.15fr 1.3fr; gap: 2mm; }
-.br { border-radius: 2.5mm; padding: 1.8mm 2.6mm; font-size: 7.3pt; }
-.br .h { font-weight: 900; font-size: 8.8pt; margin-bottom: .8mm; display: flex; align-items: center; gap: 1.5mm; }
+.fbox .e { font-size: 7.4pt; color: #334155; margin-top: .4mm; }
+.arrow { text-align: center; color: #b45309; font-size: 8pt; line-height: 1; margin: .7mm 0; }
+.branch { display: grid; grid-template-columns: 1fr 1fr; gap: 2.4mm; }
+.br { border-radius: 2.5mm; padding: 2mm 2.8mm; font-size: 7.5pt; }
+.br .h { font-weight: 900; font-size: 9pt; margin-bottom: .6mm; display: flex; align-items: center; gap: 1.5mm; }
 .br .h .ic { width: 5.2mm; height: 5.2mm; border-radius: 50%; color: #fff; display: inline-flex; align-items: center; justify-content: center; font-size: 8pt; }
-.b-ok { background: #e9f7ef; border: .4mm solid #86c9a0; } .b-ok .h { color: #14532d; } .b-ok .ic { background: #16a34a; }
 .b-add { background: #fff8e6; border: .4mm solid #f0c76a; } .b-add .h { color: #7c4a03; } .b-add .ic { background: #d97706; }
 .b-ng { background: #fdecec; border: .4mm solid #f0a3a3; } .b-ng .h { color: #7f1d1d; } .b-ng .ic { background: #dc2626; }
-.br ul { margin: .6mm 0 0; padding-left: 4mm; } .br li { margin: .3mm 0; }
-.sub-ng { margin-top: 1.6mm; border-top: .3mm dashed #e8a0a0; padding-top: 1.3mm; font-size: 7.4pt; }
-.report { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 2.4mm; }
-.rp { border-radius: 2mm; background: #fff; border: .35mm solid #e5c3c3; padding: 1.6mm 2.2mm; font-size: 7.2pt; }
-.rp .h { font-weight: 900; color: #8a1c2b; font-size: 8.4pt; }
-.foot { position: absolute; left: 10mm; right: 10mm; bottom: 2.6mm; font-size: 6.6pt; color: #94a3b8; display: flex; justify-content: space-between; }
-.ex { display: inline-block; font-size: 6.6pt; font-weight: 900; color: #fff; background: #64748b; border-radius: 1mm; padding: 0 1.3mm; margin-right: 1mm; vertical-align: .3mm; }
+.type { display: grid; grid-template-columns: 1fr 1.25fr; gap: 2.4mm; }
+.tp { border-radius: 2.5mm; padding: 2mm 2.8mm; background: #fff; border: .4mm solid #d7dee8; font-size: 7.5pt; }
+.tp .h { font-weight: 900; font-size: 8.8pt; color: #7a1b26; margin-bottom: .5mm; }
+.tp .flow { display: flex; align-items: center; gap: 1.2mm; flex-wrap: wrap; margin-top: 1mm; }
+.tp .chip { border-radius: 1.5mm; padding: .6mm 1.8mm; font-size: 7.2pt; font-weight: 700; }
+.c1 { background: #fde7d9; color: #7a1b26; } .c2 { background: #e2e8f0; color: #1f2933; } .c3 { background: #fee2e2; color: #7f1d1d; }
+table.cmp { width: 100%; border-collapse: collapse; font-size: 7.2pt; }
+table.cmp th, table.cmp td { border: .3mm solid #cbd5e1; padding: .9mm 1.6mm; vertical-align: top; }
+table.cmp th { background: #eef2f7; font-weight: 900; text-align: left; white-space: nowrap; }
 .exam { border: .4mm dashed; border-radius: 2.5mm; padding: 2mm 3mm; font-size: 7.4pt; }
 .p1 .exam { border-color: #2a7ab0; background: #fbfdff; } .p2 .exam { border-color: #c2410c; background: #fffcfa; }
 .exam .h { font-weight: 900; font-size: 9pt; }
 .p1 .exam .h { color: #1d4e89; } .p2 .exam .h { color: #8a1c2b; }
+.ex { display: inline-block; font-size: 6.6pt; font-weight: 900; color: #fff; background: #64748b; border-radius: 1mm; padding: 0 1.3mm; margin-right: 1mm; vertical-align: .3mm; }
+.foot { position: absolute; left: 10mm; right: 10mm; bottom: 2.6mm; font-size: 6.6pt; color: #94a3b8; display: flex; justify-content: space-between; }
 </style></head><body>
 
 <!-- ============================ PAGE 1 ============================ -->
 <section class="page p1">
   <div class="hd">
     <div class="no">①</div>
-    <div><h1>IT全般統制の不備への対応</h1><div class="sub">土台にヒビ ＝ 上に乗る情報処理統制が「ずっと効いていた」と言えなくなる</div></div>
-    <div class="src">315実務ガイダンス第1号 Q36<br>監基報315 A170・A171／330 A37<br>基本論点編3 ⑩-1-6〜7　問題集 315-24</div>
+    <div><h1>IT全般統制の不備への対応</h1><div class="sub">土台にヒビ ＝ 上に乗る情報処理統制が「継続して」効いていたと言えなくなる</div></div>
+    <div class="src">経営実務-ITテキスト1<br>第7章 ＩＴ全般統制（不備対応）<br>⑦-2〜⑦-15（Q&amp;A36・38・40・41）</div>
   </div>
 
-  <div class="row" style="grid-template-columns: 82mm 1fr;">
-    <!-- 図：土台と柱 -->
+  <div class="row" style="grid-template-columns: 68mm 1fr;">
     <div class="box" style="background:#fff;">
       <h2><span class="tag">イメージ</span>ITGCは「土台」、情報処理統制は「柱」</h2>
       <svg viewBox="0 0 300 214" width="100%" style="display:block;margin-top:1mm">
-        <!-- roof -->
         <polygon points="20,62 150,10 280,62" fill="#0f2e52"/>
         <text x="150" y="50" text-anchor="middle" fill="#fff" font-size="14" font-weight="900">財務諸表</text>
-        <!-- pillars -->
         <g font-size="10.5" font-weight="700" fill="#0f2e52" text-anchor="middle">
           <rect x="34" y="66" width="62" height="64" rx="4" fill="#dbeafe" stroke="#2a7ab0" stroke-width="2"/>
-          <text x="65" y="98">入力</text><text x="65" y="112">チェック</text>
+          <text x="65" y="94">単価</text><text x="65" y="108">チェック</text>
           <rect x="119" y="66" width="62" height="64" rx="4" fill="#dbeafe" stroke="#2a7ab0" stroke-width="2"/>
-          <text x="150" y="98">マスタ</text><text x="150" y="112">管理</text>
+          <text x="150" y="94">マッチ</text><text x="150" y="108">ング</text>
           <rect x="204" y="66" width="62" height="64" rx="4" fill="#dbeafe" stroke="#2a7ab0" stroke-width="2"/>
-          <text x="235" y="98">自動計算</text><text x="235" y="112">・照合</text>
+          <text x="235" y="94">自動計算</text><text x="235" y="108">・照合</text>
         </g>
-        <text x="150" y="148" text-anchor="middle" font-size="9.5" fill="#1d4e89" font-weight="900">情報処理統制（虚偽表示を直接防止）</text>
-        <!-- foundation -->
+        <text x="150" y="148" text-anchor="middle" font-size="9.5" fill="#1d4e89" font-weight="900">情報処理統制（取引ごとに誤りを止める）</text>
         <rect x="14" y="158" width="272" height="44" rx="5" fill="#94a3b8"/>
         <g font-size="10" font-weight="900" fill="#fff" text-anchor="middle">
           <text x="62" y="178">アクセス管理</text><text x="150" y="178">変更管理</text><text x="238" y="178">IT業務管理</text>
         </g>
-        <text x="150" y="195" text-anchor="middle" font-size="9" fill="#f8fafc">IT全般統制（直接は防止しない／柱を支え続ける）</text>
-        <!-- crack -->
+        <text x="150" y="195" text-anchor="middle" font-size="9" fill="#f8fafc">IT全般統制（柱が効き続ける環境を支える）</text>
         <polyline points="104,158 111,168 105,178 114,190 108,202" fill="none" stroke="#dc2626" stroke-width="3"/>
         <text x="150" y="212" text-anchor="middle" font-size="9.5" fill="#dc2626" font-weight="900">ヒビ＝不備 → 柱が効き続けていた保証が揺らぐ</text>
       </svg>
-      <div class="cite">ITGCの3区分：アクセス管理／プログラム等の変更管理／IT業務管理（問題集315-19、監基報315付録6）</div>
     </div>
 
     <div style="display:flex;flex-direction:column;gap:2.4mm;">
+      <div class="box">
+        <h2>不備がある状態 <span class="rk rA">A</span> <span class="cite">⑦-2</span></h2>
+        <div class="q">情報処理統制及び企業の情報システム内の情報のインテグリティ（以下、情報処理統制等）が<b>ある一時点で有効に機能していたとしても</b>、ＩＴ全般統制に不備があれば、当該情報処理統制等が<b>継続的に有効に機能していることの心証は得られず</b>、情報システムの内部統制に依拠できない可能性があると考えられる。</div>
+      </div>
       <div class="alert">
-        <span class="big">不備あり ≠ 直ちに依拠できない</span>
-        「ＩＴ全般統制の不備の存在が、直ちに情報システムの内部統制に依拠できないという結論につながるものではなく、<b>当該不備が情報処理統制等の有効性に影響を与えているか否かを検討することが必要</b>です。」<span class="cite">（Q36）</span>
-      </div>
-      <div class="box">
-        <h2>なぜ影響するのか</h2>
-        <div class="q">「たとえ情報処理統制及び企業の情報システム内の情報のインテグリティ…がある一時点で有効に機能していたとしても、ＩＴ全般統制に不備があれば、当該情報処理統制等が<b>継続的に</b>有効に機能していることの心証は得られず情報システムの内部統制に依拠できない可能性があります。」<span class="cite">（Q36）</span></div>
-      </div>
-      <div class="box">
-        <h2>不備そのものの性質</h2>
-        <div class="q">「ＩＴ全般統制の不備は、それ自体が財務報告の重要な事項に虚偽表示が発生するリスクに<b>直接繋がるものではない</b>…ため、業務プロセスに関連する情報処理統制が現に有効に機能していることが検証できれば、ＩＴ全般統制の不備が<b>直ちに重要な不備と評価されるものではない</b>」<span class="cite">（基本論点編3 ⑩-1-6）</span></div>
+        <span class="big">ただし、不備 ≠ 直ちに依拠できない</span>
+        ＩＴ全般統制の不備の存在が、直ちに情報システムの内部統制に依拠できないという結論につながるものではない点に留意する。これは、当該ＩＴ全般統制の不備が、財務諸表の虚偽表示を防止ないし発見できる情報処理統制等の有効性に影響を与えているかを検討し、<b>影響が乏しい場合には情報処理統制等に依拠できる余地がある</b>ためである。<span class="cite">（⑦-2）</span>
       </div>
     </div>
   </div>
 
-  <!-- 4 steps -->
   <div class="box" style="margin-top:3mm;background:#fff;">
-    <h2><span class="tag">対応フロー</span>上から順に試す → どこかで心証が得られれば依拠できる <span class="cite" style="font-weight:400">（Q36 1〜4）</span></h2>
-    <div class="steps">
-      <div class="step s1">
-        <div class="n"><span class="d">1</span><span class="s">代わりを探す</span></div>
-        <div class="c"><div class="t">不備の発見されたＩＴ全般統制を代替又は補完する他のＩＴ全般統制を識別し、評価する</div>
-          <div class="e"><span class="ex">例</span>防止的なＩＴ全般統制の不備を発見した場合において、<b>事後の承認やログのレビュー等の発見的なＩＴ全般統制</b>が有効に機能しているときは、当該リスクが低減されていると判断できることがある。</div></div>
-        <div class="ok"><span class="h">◎ 有効なら</span>リスクは低減されている</div>
-      </div>
-      <div class="down">代わりがない／不十分なら</div>
-      <div class="step s2">
-        <div class="n"><span class="d">2</span><span class="s">実害を確認</span></div>
-        <div class="c"><div class="t">発見された不備によりＩＴの利用から生じるリスクが発現していないことを確かめる</div>
-          <div class="e"><span class="ex">例</span>プログラムの変更管理に不備 → 対象となる業務処理プログラムが<b>期間中変更されていない</b>ことを、対象プログラムごとの<b>変更履歴</b>や、当該プログラムの<b>登録日付</b>により確認する。</div></div>
-        <div class="ok"><span class="h">◎ 発現なしなら</span>情報システムの内部統制に依拠できる場合あり</div>
-      </div>
-      <div class="down">確かめられないなら</div>
-      <div class="step s3">
-        <div class="n"><span class="d">3</span><span class="s">柱を直接見る</span></div>
-        <div class="c"><div class="t">関連する情報処理統制等の評価手続の実施範囲を拡大する</div>
-          <div class="e">影響を受ける情報処理統制等の範囲を特定し、運用評価手続の範囲（<b>件数、期間等</b>）を拡大する。また、<b>インプットデータとアウトプットデータの突合</b>、データ間の整合性の検討、<b>計算結果の再計算</b>などにより、結果が正しく処理されているかを検証することもできる。<br>※ 財務報告の作成に影響する部分について必要な手続を実施する。</div></div>
-        <div class="ok"><span class="h">◎ 心証が得られれば</span>依拠できる</div>
-      </div>
-      <div class="down">それでも十分な心証が得られないなら</div>
-      <div class="step s4">
-        <div class="n"><span class="d">4</span><span class="s">最後の砦</span></div>
-        <div class="c"><div class="t">実証手続を拡大する</div>
-          <div class="e">上述の対応により十分な心証を得られない場合には、財務諸表項目レベルの重要な虚偽表示を発見するための実証手続（取引、勘定残高、注記事項等に対する<b>詳細テストと分析的実証手続</b>）を拡大して実施する。<span class="cite">（330 A41〜A57）</span></div></div>
-        <div class="ng"><span class="h">✕ 依拠しない</span>実証手続で十分かつ適切な監査証拠を入手</div>
-      </div>
+    <h2><span class="tag">対応フロー</span>ＩＴ全般統制に不備が存在する場合の対応 <span class="rk rA">A</span> <span class="cite">⑦-2〜⑦-4　上から順に。どこかで心証が得られれば依拠できる</span></h2>
+    <div class="step s1">
+      <div class="n"><span class="d">①</span><span class="s">代わりを探す</span></div>
+      <div class="c"><div class="t">不備の発見されたＩＴ全般統制を代替または補完する他のＩＴ全般統制を識別し、評価する</div>
+        <div class="e"><span class="ex">例</span>防止的なＩＴ全般統制の不備を発見した場合において、<b>事後の承認やログのレビュー等の発見的なＩＴ全般統制</b>が有効に機能している場合は、当該リスクが低減されていると判断できることがある。</div></div>
+      <div class="ok"><span class="h">◎ 有効なら</span>リスクは低減されている</div>
     </div>
+    <div class="down">代わりがない／不十分なら</div>
+    <div class="step s2">
+      <div class="n"><span class="d">②</span><span class="s">実害を確認</span></div>
+      <div class="c"><div class="t">発見された不備によりＩＴの利用から生じるリスクが発現していないことを確かめる</div>
+        <div class="e"><span class="ex">例</span>プログラムの変更管理に不備 → 対象となる業務処理プログラムが<b>期間中変更されていない</b>ことを、対象プログラムごとの<b>変更履歴</b>や、当該プログラムの<b>登録日付</b>により確認する。</div></div>
+      <div class="ok"><span class="h">◎ 発現なしなら</span>情報処理統制等に依拠できると判断する場合あり</div>
+    </div>
+    <div class="down">確かめられないなら</div>
+    <div class="step s3">
+      <div class="n"><span class="d">③</span><span class="s">柱を直接見る</span></div>
+      <div class="c"><div class="t">関連する情報処理統制等の評価手続の実施範囲を拡大する</div>
+        <div class="e">影響を受ける情報処理統制等の範囲を特定し、運用評価手続の範囲（<b>件数、期間等</b>）を拡大する。また、<b>インプットデータとアウトプットデータの突合</b>や、データ間の整合性の検討、<b>計算結果の再計算</b>等により、結果が正確かつ網羅的に処理されているかを検証することもできる。※財務報告の作成に影響する部分について必要な手続を実施する。</div></div>
+      <div class="ok"><span class="h">◎ 心証が得られれば</span>依拠できる</div>
+    </div>
+    <div class="down">上記対応により十分な心証を得られないなら</div>
+    <div class="step s4">
+      <div class="n"><span class="d">④</span><span class="s">最後の砦</span></div>
+      <div class="c"><div class="t">実証手続を拡大する</div>
+        <div class="e">財務諸表項目レベルの重要な虚偽表示を発見するために実施する実証手続（取引、勘定残高、注記事項等に対する<b>詳細テストと分析的実証手続</b>）を拡大して実施する。</div></div>
+      <div class="ng"><span class="h">✕ 依拠しない</span>実証手続で対応</div>
+    </div>
+    <div class="q" style="margin-top:.6mm">● 個別のＩＴ全般統制の不備は重要な不備ではないと評価された場合であっても、<b>それらの不備を組み合わせて評価すると、異なる評価になる場合がある</b>。<span class="cite">（⑦-4）</span>　● 重要な不備となるかどうかの判断は、職業的専門家としての判断事項。<span class="cite">（⑦-3）</span></div>
   </div>
 
-  <div class="row" style="grid-template-columns: 1fr 1fr;">
-    <div class="box">
-      <h2>あわせて押さえる3点</h2>
-      <div class="q">
-        <b>● 組み合わせ評価</b>：個別のＩＴ全般統制の不備は重要な不備ではないと評価された場合であっても、<b>それらの不備を組み合わせて評価すると、異なる評価になる場合がある</b>。<span class="cite">（Q36）</span><br>
-        <b>● 重要な不備の判断</b>：内部統制の不備が、単独で又は複数組み合わさって重要な不備となるかどうかを判断（監基報265）。判断は職業的専門家としての判断事項。<span class="cite">（315 A171）</span><br>
-        <b>● 過年度の証拠</b>：ＩＴ全般統制の不備は、運用評価手続のインターバルを短くする要因、又は過年度の監査において入手した監査証拠に<b>全く依拠できなくなる要因</b>。<span class="cite">（330 A37）</span>
-      </div>
-    </div>
-    <div class="exam">
-      <div class="h">✎ 出題パターン</div>
-      <b>「ＩＴ全般統制に不備があった場合の対応を四つ答えなさい」</b>（問題集315-24）<br>
-      → 上の <b>1 代替・補完ITGC／2 リスクの不発現／3 情報処理統制等の範囲拡大／4 実証手続の拡大</b> をそのまま書く。<br>
-      <span style="color:#64748b">4は「上記三つの対応により十分な心証を得られない場合」と添えると順序が伝わる。</span><br>
-      <b>覚え方：「代わり → 実害 → 柱 → 実証」</b>
-    </div>
+  <div class="box" style="margin-top:3mm;background:#fff;padding:2mm 2.6mm;">
+    <h2><span class="tag">ケース別</span>不備の例と対応例 <span class="cite">（⑦-5〜⑦-14）</span></h2>
+    <table class="cs">
+      <thead><tr><th></th><th>不備のケース</th><th>想定されるリスク</th><th>不備が存在した場合の対応例</th></tr></thead>
+      <tr><td class="pr">アクセス</td>
+        <td class="k">特権ＩＤの管理が不十分で、必要最小限のユーザ以外にも権限付与 <span class="rk rA">A</span></td>
+        <td>内部統制を無効化して直接修正／なりすまして自ら起票した伝票を自身で承認／共有され誰が修正したか特定困難 等</td>
+        <td>① <b>代替的または補完的な統制</b>により、リスクが低減される程度を評価（押印された紙の伝票、月次締めでの他の帳票との照合、<b>ログの適時かつ適切なモニタリング</b>）<br>② <b>不正や誤謬がないことの直接的な検証</b>（会計帳簿・伝票の閲覧、<b>アクセスログの検証</b>）</td></tr>
+      <tr><td class="pr" rowspan="3">変更管理</td>
+        <td class="k">開発過程でユーザ受入れテストが未実施 <span class="rk rB">B</span></td>
+        <td>ユーザ部門が要求する業務要件を満たしていないシステムが本番環境にリリースされる</td>
+        <td>① <b>システム部門のテスト結果の確認</b>（ユーザ受入れテストと同等とみなせる場合）<br>② <b>本番移行後の修正記録の確認</b></td></tr>
+      <tr><td class="k">システム部門がなく担当者1名のみで管理 <span class="rk rB">B</span></td>
+        <td>データの不適切な修正／検証不十分・バージョン違いのプログラムが本番環境に適用</td>
+        <td><b>作業記録</b>に重要な変更が適切に記載され、<b>権限者の承認</b>あり → 不備の影響は小さいと判断できることがある。作業記録なし → <b>情報処理統制の運用評価手続または実証手続を拡大</b></td></tr>
+      <tr><td class="k">開発・保守担当者と運用担当者の職務の分離なし <span class="rk rB">B</span></td>
+        <td>プログラムの改竄／不適切な内容、バージョン違いのプログラムやデータの本番適用</td>
+        <td>① <b>システム部門における作業記録の検証</b>　② <b>各種ログ及び事後レビューの検証</b><br>これらが実施できない → 情報処理統制の運用評価手続または実証手続を拡大</td></tr>
+    </table>
   </div>
-  <div class="foot"><span>監査論 IT統制の不備 ①／2</span><span>出典の「」内は原文どおり。「例」は原文の例示。</span></div>
+
+  <div class="exam" style="margin-top:2.4mm;">
+    <div class="h">✎ 出題パターン</div>
+    <b>「対応を四つ答えなさい」</b>（問題集315-24）→ フロー①〜④をそのまま。<b>覚え方「代わり→実害→柱→実証」</b>。事例で特定の不備が出たら、ケース別の型（補完統制・ログ・作業記録で低減 → だめなら情報処理統制の運用評価か実証手続を拡大）で書く。
+  </div>
+  <div class="foot"><span>監査論 IT統制の不備 ①／2</span><span>本文は経営実務-ITテキスト1（第7章）の記述による。〔A〕〔B〕は教科書の重要度。〔C〕の論点は省略。</span></div>
 </section>
 
 <!-- ============================ PAGE 2 ============================ -->
 <section class="page p2">
   <div class="hd">
     <div class="no">②</div>
-    <div><h1>情報処理統制の不備への対応</h1><div class="sub">門番が通してしまう ＝ 誤ったデータがそのまま帳簿へ。虚偽表示に「直接」つながる</div></div>
-    <div class="src">監基報330 第7・16項、A39・A40<br>監基報530 A21・A23／265 第7〜9項<br>基本論点編3 ⑩-1-6</div>
+    <div><h1>情報処理統制の不備への対応</h1><div class="sub">門番が通してしまう ＝ 業務プロセスの内部統制が有効でない状態</div></div>
+    <div class="src">経営実務-ITテキスト1<br>第9章 情報処理統制<br>⑨-2〜⑨-5、⑨-16（第5節 不備対応）</div>
   </div>
 
-  <div class="row" style="grid-template-columns: 86mm 1fr;">
+  <div class="row" style="grid-template-columns: 84mm 1fr;">
     <div class="box" style="background:#fff;">
       <h2><span class="tag">イメージ</span>情報処理統制は「門番」</h2>
       <svg viewBox="0 0 300 146" width="100%" style="display:block;margin-top:1mm">
         <defs><marker id="ar" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#64748b"/></marker>
         <marker id="arr" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#dc2626"/></marker></defs>
-        <!-- data -->
         <g font-size="9.5" font-weight="700" text-anchor="middle">
           <rect x="6" y="22" width="62" height="26" rx="4" fill="#ecfdf5" stroke="#16a34a"/><text x="37" y="39" fill="#14532d">正しい取引</text>
           <rect x="6" y="88" width="62" height="26" rx="4" fill="#fef2f2" stroke="#dc2626"/><text x="37" y="105" fill="#7f1d1d">誤り・未承認</text>
         </g>
-        <!-- gate -->
         <rect x="118" y="10" width="54" height="118" rx="6" fill="#fde7d9" stroke="#c2410c" stroke-width="2"/>
         <g font-size="8.2" font-weight="900" fill="#7a1b26" text-anchor="middle">
-          <text x="145" y="32">門番</text><text x="145" y="52">入力チェック</text><text x="145" y="66">照合・承認</text><text x="145" y="80">マスタ</text><text x="145" y="94">アクセス制限</text>
+          <text x="145" y="30">門番</text><text x="145" y="48">単価チェック</text><text x="145" y="62">マッチング</text><text x="145" y="76">トータル</text><text x="145" y="88">チェック</text><text x="145" y="102">権限制限</text>
         </g>
-        <!-- crack on gate -->
-        <polyline points="150,100 141,110 151,118 143,128" fill="none" stroke="#dc2626" stroke-width="3"/>
-        <!-- ledger -->
+        <polyline points="150,104 141,112 151,119 143,127" fill="none" stroke="#dc2626" stroke-width="3"/>
         <rect x="226" y="38" width="66" height="62" rx="4" fill="#f1f5f9" stroke="#475569"/>
         <g font-size="10" font-weight="900" fill="#334155" text-anchor="middle"><text x="259" y="64">帳簿</text><text x="259" y="80">財務諸表</text></g>
         <line x1="68" y1="35" x2="114" y2="35" stroke="#64748b" stroke-width="2" marker-end="url(#ar)"/>
         <line x1="172" y1="35" x2="222" y2="55" stroke="#64748b" stroke-width="2" marker-end="url(#ar)"/>
         <line x1="68" y1="101" x2="114" y2="101" stroke="#dc2626" stroke-width="2" marker-end="url(#arr)"/>
         <line x1="172" y1="112" x2="222" y2="86" stroke="#dc2626" stroke-width="2.4" stroke-dasharray="5,3" marker-end="url(#arr)"/>
-        <text x="200" y="140" text-anchor="middle" font-size="9.2" fill="#dc2626" font-weight="900">門が壊れる → 誤りが素通りして虚偽表示に</text>
+        <text x="200" y="140" text-anchor="middle" font-size="9.2" fill="#dc2626" font-weight="900">門が壊れる → 誤りが素通りして帳簿へ</text>
       </svg>
-      <div class="cite">情報のインテグリティ（網羅性、正確性、正当性）のリスクに直接対応する内部統制（⑩-1-6）</div>
     </div>
-
-    <div style="display:flex;flex-direction:column;gap:2.6mm;">
-      <div class="box" style="padding:2.4mm 3mm;">
-        <h2>ITGCの不備との違い（⑩-1-6）</h2>
-        <table class="cmp">
-          <tr><th></th><th>IT全般統制</th><th>情報処理統制</th></tr>
-          <tr><th>特徴</th><td>財務報告の重要な事項に虚偽表示が発生するリスクに<b>直接繋がるものではない</b></td><td class="hl">虚偽表示が発生するリスクに<b>直接繋がるもの</b> ⇒ 虚偽表示を直接防止する</td></tr>
-          <tr><th>不備の<br>意味</th><td>柱が「継続して」効いていたかが不明に → まず影響の有無を検討</td><td class="hl">その統制が守るアサーションの<b>リスクがそのまま残る</b></td></tr>
-        </table>
-      </div>
-      <div class="alert">
-        <span class="big">「逸脱あり」＝ 即アウト ではない</span>
-        「内部統制が有効に運用されているということは、内部統制からの<b>逸脱が全くないことを意味しているわけではない</b>。」 ただし、予想した逸脱率と比較した実際の逸脱率によっては、内部統制に依拠できないことを示すことがある。<span class="cite">（330 A40）</span>
-      </div>
+    <div class="box">
+      <h2>情報処理統制とは <span class="rk rB">B</span> <span class="cite">⑨-2</span></h2>
+      <div class="q">情報のインテグリティ（すなわち、取引及びその他の情報（データ）の<b>網羅性、正確性、正当性</b>）のリスクに<b>直接対応する</b>、企業の情報システムにおけるＩＴアプリケーションの情報処理または手作業による情報処理に関連した内部統制であり、<br><b>① ＩＴアプリケーションに組み込まれている自動化された情報処理統制</b>と、<br><b>② ＩＴから自動生成される情報を利用して実施される手作業による内部統制</b><br>との組み合わせにより構成され、他の内部統制に依拠する場合がある。</div>
+      <div class="q" style="margin-top:1mm;color:#7a1b26">「情報処理統制＝自動化された内部統制」と短絡的に理解しないように留意が必要である。<span class="cite">（⑨-3）</span></div>
     </div>
   </div>
 
-  <!-- flow -->
+  <div class="two" style="margin-top:3mm;">
+    <div class="kind"><div class="h">① 自動化された情報処理統制の例 <span class="cite">⑨-3</span></div>
+      <ul><li>受注データ入力時の<b>単価チェック</b>（マスタと突合し、不一致なら受け付けない）</li><li>入力必須項目の<b>網羅性チェック</b></li><li>システム間インターフェースの<b>データ件数等の整合確認</b></li><li><b>端末メニューの使用制限</b>（ユーザＩＤの操作権限）</li><li><b>例外リスト</b>の出力／利息・減価償却・外貨換算等の<b>自動計算</b></li></ul></div>
+    <div class="kind"><div class="h">② 手作業による情報処理統制の例 <span class="cite">⑨-3</span></div>
+      <ul><li>インターフェースの受渡処理が想定通りに行われなかった場合に、ＩＴアプリケーション外で<b>是正</b>する統制</li><li><b>エラーリスト</b>を利用して、想定通りに処理を行うよう是正する統制</li><li>事前登録の仕訳パターンに該当しない仕訳データを出力し、<b>修正仕訳の要否を判断</b>するため取引内容を確認する統制</li></ul></div>
+  </div>
+
   <div class="box" style="margin-top:3mm;background:#fff;">
-    <h2><span class="tag">対応フロー</span>運用評価手続で逸脱（不備）を発見したら</h2>
-    <div class="flow2">
-      <div class="fbox f-start">
-        <div class="t">STEP 1　質問して「原因」と「潜在的な影響」を理解する　<span class="cite">（330 第16項）</span></div>
-        <div class="e">「監査人は、依拠しようとする内部統制からの逸脱を発見した場合には、<b>逸脱が生じた原因及びその潜在的な影響を理解するために質問を実施</b>し、以下の事項について判断しなければならない。」<br><span class="ex">例</span>出荷・請求データの自動照合の不一致が放置されていた → 設定ミスか、一時的か、意図的か？</div>
+    <h2><span class="tag">対応フロー</span>情報処理統制の不備対応 <span class="rk rA">A</span> <span class="cite">⑨-16</span></h2>
+    <div class="fbox f-start">
+      <div class="t">STEP 1　不備の意味をつかむ</div>
+      <div class="e">取引種類、勘定残高または注記事項に関連する情報処理統制が有効に機能していなかった場合、<b>業務プロセスにおいて識別された内部統制が有効でない状態</b>を意味する。</div>
+    </div>
+    <div class="arrow">▼</div>
+    <div class="fbox f-q">
+      <div class="t">STEP 2　重要な虚偽表示リスクに及ぼす影響を検討する</div>
+      <div class="e">監査人は<b>当該不備が重要な虚偽表示リスクに及ぼす影響を検討</b>することになる。</div>
+    </div>
+    <div class="arrow">▼　影響が重要であると判断した場合は、どちらかを検討</div>
+    <div class="branch">
+      <div class="br b-add">
+        <div class="h"><span class="ic">＋</span>代わりの内部統制に依拠する</div>
+        これに<b>代わる他の内部統制の有無を確かめ</b>、その<b>有効性を評価する監査手続の実施（運用評価手続）</b>を検討する。
       </div>
-      <div class="arrow">▼</div>
-      <div class="fbox f-q">
-        <div class="t">STEP 2　3つを判断する　<span class="cite">（330 第16項(1)〜(3)）</span></div>
-        <div class="judge">
-          <div><b>(1)</b> 実施した運用評価手続は<b>内部統制への依拠に関する適切な基礎を提供するか</b></div>
-          <div><b>(2)</b> <b>追加的な運用評価手続</b>が必要か</div>
-          <div><b>(3)</b> 重要な虚偽表示リスクに対応する<b>実証手続</b>が必要か</div>
-        </div>
-      </div>
-      <div class="arrow">▼　結論は3方向に分かれる</div>
-      <div class="branch">
-        <div class="br b-ok">
-          <div class="h"><span class="ic">✓</span>依拠できる</div>
-          逸脱が担当者の交代・季節的変動・過失など<b>一時的な要因</b>で、逸脱率が<b>予想の範囲内</b>。<br>→ 計画どおり内部統制に依拠し、実証手続の範囲を絞れる。
-          <div class="cite" style="margin-top:.8mm">（330 A40）</div>
-        </div>
-        <div class="br b-add">
-          <div class="h"><span class="ic">＋</span>追加して確かめる</div>
-          運用評価手続の場合、例えば：
-          <ul><li><b>サンプル数を増やす</b></li><li><b>代替的な内部統制をテストする</b>（例：手作業による事後チェック）</li><li><b>関連する実証手続を修正する</b></li></ul>
-          <div class="cite">（530 A23）</div>
-        </div>
-        <div class="br b-ng">
-          <div class="h"><span class="ic">✕</span>依拠できない</div>
-          予想を超えた高い逸脱率は、評価した重要な虚偽表示リスクの程度を<b>より高くする</b>ことにつながる可能性がある。<span class="cite">（530 A21）</span>
-          <ul><li>リスク評価を見直す（315 第36項）</li><li><b>実証手続のみ</b>で対応：<b>詳細テスト</b>の範囲拡大、期末日基準での実施など</li></ul>
-          <div class="sub-ng"><b>実証手続のみでは十分かつ適切な監査証拠を入手できない場合</b>（大量の自動処理取引など）は運用評価が必須（330 第7項(2)）。それでも証拠が得られなければ → <b>監査範囲の制約</b>として意見への影響を検討（705）。</div>
-        </div>
+      <div class="br b-ng">
+        <div class="h"><span class="ic">✕</span>依拠せず実証手続で対応する</div>
+        当該情報処理統制に<b>依拠せず</b>、<b>実証手続の範囲の拡大</b>を検討する。
       </div>
     </div>
   </div>
 
-  <div class="box" style="margin-top:2.4mm;">
-    <h2><span class="tag">並行して</span>不備の評価と報告（ITGCの不備でも同じ）</h2>
-    <div class="report">
-      <div class="rp"><div class="h">① 重要な不備か判断</div>内部統制の不備が、<b>単独で又は複数組み合わさって重要な不備</b>となるかどうかを判断しなければならない。<span class="cite">（265 第7項）</span><br>監査人の手続によって発見された重要な虚偽表示は、内部統制の重要な不備の存在を<b>強く示唆</b>する。<span class="cite">（330 A39）</span></div>
-      <div class="rp"><div class="h">② 監査役等へ報告</div>監査の過程で識別した重要な不備を、<b>適時に、書面又は電磁的記録により</b>監査役等に報告しなければならない。<span class="cite">（265 第8項）</span></div>
-      <div class="rp"><div class="h">③ 経営者へ報告</div>適切な階層の経営者に、<b>重要な不備</b>（直接報告が適切でない場合を除く）と、注意を促すに値する<b>その他の不備</b>を適時に報告する。<span class="cite">（265 第9項）</span></div>
+  <div class="box" style="margin-top:3mm;">
+    <h2><span class="tag">留意点</span>どちらのタイプの不備かで見方が変わる <span class="cite">⑨-16</span></h2>
+    <div class="type">
+      <div class="tp"><div class="h">自動化された内部統制の不備</div>
+        監査人は<b>同様の誤りが繰り返されている可能性が高い</b>ことに留意する。
+        <div class="flow"><span class="chip c1">プログラムの誤り</span>→<span class="chip c3">同じ条件の取引すべてで同じ誤り</span></div></div>
+      <div class="tp"><div class="h">ＩＴから自動生成される情報を利用した手作業による内部統制の不備</div>
+        その不備の内容が<b>手作業に関する部分</b>から生じているものなのか、<b>ＩＴに関する部分</b>から生じているものなのかを識別する。
+        <div class="flow"><span class="chip c2">手作業の部分</span>→ 手作業の統制として対応　／　<span class="chip c1">ＩＴの部分</span>→<span class="chip c3">自動化された内部統制の不備と同様に対応</span></div></div>
     </div>
+    <div class="q" style="margin-top:1.4mm">● 自動化された情報処理統制が正しく機能していた場合でも、処理結果を記録したデータが簡単に変更される可能性があっては、十分な信頼性は得られない。そのため、<b>データが適切なアクセス・コントロールの下に運用されていることも確かめる</b>必要がある。<span class="cite">（⑨-5 <span class="rk rB">B</span>）</span></div>
   </div>
 
-  <div class="exam" style="margin-top:2.4mm;">
-    <div class="h">✎ 答案の型（事例で「逸脱を発見した。どう対応するか」）</div>
-    ① 逸脱の<b>原因と潜在的な影響</b>を質問で理解する → ② 運用評価手続が<b>依拠の適切な基礎</b>となるか、<b>追加の運用評価手続</b>、<b>実証手続</b>の要否を判断する → ③ 依拠できなければ<b>リスク評価を見直し、実証手続（詳細テスト）を拡大</b>する → ④ 不備が<b>重要な不備</b>なら監査役等・経営者へ書面で報告する。<br>
-    <span style="color:#64748b">①との違い：ITGCは「まず柱（情報処理統制）に影響したか」から確かめる。情報処理統制はリスクに直接対応するので「原因→追加・代替の統制→実証手続」。</span>
+  <div class="row" style="grid-template-columns: 1fr 1fr;">
+    <div class="box" style="padding:2mm 2.6mm;">
+      <h2>①ITGCの不備との違い <span class="cite">（まとめ）</span></h2>
+      <table class="cmp">
+        <tr><th></th><th>IT全般統制の不備</th><th>情報処理統制の不備</th></tr>
+        <tr><th>まず見ること</th><td>情報処理統制等の有効性に影響を与えているか</td><td>重要な虚偽表示リスクに及ぼす影響</td></tr>
+        <tr><th>次の一手</th><td>代替・補完ITGC → リスク不発現 → 情報処理統制等の範囲拡大 → 実証手続拡大</td><td>代わる他の内部統制の運用評価 または 依拠せず実証手続の範囲拡大</td></tr>
+      </table>
+    </div>
+    <div class="exam">
+      <div class="h">✎ 答案の型</div>
+      「（情報処理統制）が有効に機能していないため、業務プロセスで識別された内部統制が有効でない。<b>重要な虚偽表示リスクへの影響を検討</b>し、重要であれば、<b>代わる他の内部統制の有無を確かめ運用評価手続を実施</b>するか、<b>当該統制に依拠せず実証手続の範囲を拡大</b>する。」<br>
+      <span style="color:#64748b">自動化の不備なら「同様の誤りが繰り返されている可能性」にも触れる。</span>
+    </div>
   </div>
-  <div class="foot"><span>監査論 IT統制の不備 ②／2</span><span>出典の「」内は原文どおり。「例」のうち出典表示のないものは理解用の補足例。</span></div>
+  <div class="foot"><span>監査論 IT統制の不備 ②／2</span><span>本文は経営実務-ITテキスト1（第9章）の記述による。〔A〕〔B〕は教科書の重要度。〔C〕（仕様書等の不備）は省略。</span></div>
 </section>
 </body></html>
