@@ -2,291 +2,261 @@
 <html lang="ja"><head><meta charset="utf-8"><title>IT統制の不備への対応</title>
 <style>
 @page { size: A4; margin: 0; }
-* { box-sizing: border-box; }
 html, body { margin: 0; padding: 0; }
-body { font-family: "Noto Sans CJK JP", sans-serif; color: #1f2933; font-size: 8.1pt; line-height: 1.45; }
-.page { width: 210mm; height: 297mm; padding: 7mm 9mm 8mm; position: relative; overflow: hidden; break-after: page; }
+.page { width: 210mm; height: 297mm; overflow: hidden; break-after: page; }
 .page:last-child { break-after: auto; }
-.hd { display: flex; align-items: center; gap: 4mm; border-radius: 3mm; padding: 2.6mm 5mm; color: #fff; }
-.hd .no { font-size: 20pt; font-weight: 900; opacity: .9; }
-.hd h1 { margin: 0; font-size: 17pt; font-weight: 900; letter-spacing: .5pt; }
-.hd .sub { font-size: 8.3pt; opacity: .95; margin-top: .5mm; }
-.hd .src { margin-left: auto; text-align: right; font-size: 7.4pt; line-height: 1.55; opacity: .95; }
-.p1 .hd { background: linear-gradient(90deg, #1d4e89, #2a7ab0); }
-.p2 .hd { background: linear-gradient(90deg, #8a1c2b, #c2410c); }
-.row { display: grid; gap: 3.2mm; margin-top: 3mm; }
-.box { border-radius: 2.5mm; padding: 2.3mm 3mm; background: #f6f8fb; border: .35mm solid #d7dee8; }
-.box h2 { margin: 0 0 1.2mm; font-size: 9.8pt; font-weight: 900; display: flex; align-items: center; gap: 2mm; flex-wrap: wrap; }
-.box h2 .tag { white-space: nowrap; font-size: 7pt; font-weight: 700; padding: .3mm 2mm; border-radius: 5mm; color: #fff; }
-.q { font-size: 7.5pt; color: #334155; }
-.q b { color: #111827; }
-.cite { font-size: 6.9pt; color: #64748b; font-weight: 400; }
-.rk { display: inline-block; font-size: 6.6pt; font-weight: 900; border-radius: 1mm; padding: 0 1.2mm; color: #fff; vertical-align: .4mm; }
-.rA { background: #dc2626; } .rB { background: #d97706; }
-.p1 .box h2 { color: #1d4e89; } .p2 .box h2 { color: #8a1c2b; }
-.p1 .tag { background: #1d4e89; } .p2 .tag { background: #8a1c2b; }
-.alert { border-left: 1.6mm solid; border-radius: 1.5mm; padding: 1.8mm 2.6mm; font-size: 7.6pt; }
-.p1 .alert { border-color: #2a7ab0; background: #e8f1fa; }
-.p2 .alert { border-color: #c2410c; background: #fdf0e8; }
-.alert .big { font-size: 10pt; font-weight: 900; display: block; margin-bottom: .6mm; }
-.p1 .alert .big { color: #1d4e89; } .p2 .alert .big { color: #8a1c2b; }
-.step { display: grid; grid-template-columns: 14mm 1fr 30mm; align-items: stretch; margin-bottom: 1.4mm; }
-.step .n { border-radius: 2.5mm 0 0 2.5mm; color: #fff; display: flex; flex-direction: column; align-items: center; justify-content: center; font-weight: 900; }
-.step .n .d { font-size: 15pt; line-height: 1; }
-.step .n .s { font-size: 6.4pt; font-weight: 700; margin-top: .8mm; }
-.step .c { background: #fff; border: .35mm solid #cbd5e1; border-left: none; border-right: none; padding: 1.4mm 2.6mm; }
-.step .c .t { font-size: 8.8pt; font-weight: 900; color: #0f2e52; }
-.step .c .e { font-size: 7pt; line-height: 1.38; color: #334155; margin-top: .4mm; }
-.step .c .e b { color: #1d4e89; }
-.step .ok, .step .ng { border-radius: 0 2.5mm 2.5mm 0; display: flex; flex-direction: column; justify-content: center; padding: 1.4mm 2.2mm; font-size: 7.1pt; }
-.step .ok { border: .35mm solid #9fd3b4; background: #e9f7ef; color: #14532d; }
-.step .ng { border: .35mm solid #f3b4b4; background: #fdecec; color: #7f1d1d; }
-.step .ok .h, .step .ng .h { font-weight: 900; font-size: 7.8pt; }
-.s1 .n { background: #2a7ab0; } .s2 .n { background: #2563a6; } .s3 .n { background: #1d4e89; } .s4 .n { background: #0f2e52; }
-.down { text-align: center; font-size: 6.8pt; color: #64748b; margin: -.9mm 0 .3mm 14mm; width: calc(100% - 44mm); line-height: 1.2; }
-.down::before { content: "▼ "; color: #94a3b8; }
-table.cs { width: 100%; border-collapse: collapse; font-size: 6.9pt; line-height: 1.38; }
-table.cs th, table.cs td { border: .3mm solid #cbd5e1; padding: .7mm 1.4mm; vertical-align: top; }
-table.cs thead th { background: #1d4e89; color: #fff; font-weight: 900; text-align: left; }
-table.cs td.k { font-weight: 900; color: #0f2e52; background: #eef4fb; width: 34mm; }
-table.cs td.pr { writing-mode: vertical-rl; text-align: center; font-weight: 900; color: #fff; background: #2a7ab0; width: 6mm; padding: 1mm .5mm; letter-spacing: 1pt; }
-table.cs b { color: #1d4e89; }
-.two { display: grid; grid-template-columns: 1fr 1fr; gap: 2.4mm; }
-.kind { border-radius: 2mm; padding: 1.8mm 2.4mm; background: #fff; border: .35mm solid #e5c3c3; font-size: 7.3pt; }
-.kind .h { font-weight: 900; color: #8a1c2b; font-size: 8.4pt; margin-bottom: .5mm; }
-.kind ul { margin: .4mm 0 0; padding-left: 3.6mm; } .kind li { margin: .2mm 0; }
-.fbox { border-radius: 2.5mm; padding: 1.8mm 3mm; border: .4mm solid; background: #fff; }
-.f-start { border-color: #c2410c; background: #fff4ec; }
-.f-q { border-color: #8a1c2b; }
-.fbox .t { font-weight: 900; font-size: 9.2pt; color: #7a1b26; }
-.fbox .e { font-size: 7.4pt; color: #334155; margin-top: .4mm; }
-.arrow { text-align: center; color: #b45309; font-size: 8pt; line-height: 1; margin: .7mm 0; }
-.branch { display: grid; grid-template-columns: 1fr 1fr; gap: 2.4mm; }
-.br { border-radius: 2.5mm; padding: 2mm 2.8mm; font-size: 7.5pt; }
-.br .h { font-weight: 900; font-size: 9pt; margin-bottom: .6mm; display: flex; align-items: center; gap: 1.5mm; }
-.br .h .ic { width: 5.2mm; height: 5.2mm; border-radius: 50%; color: #fff; display: inline-flex; align-items: center; justify-content: center; font-size: 8pt; }
-.b-add { background: #fff8e6; border: .4mm solid #f0c76a; } .b-add .h { color: #7c4a03; } .b-add .ic { background: #d97706; }
-.b-ng { background: #fdecec; border: .4mm solid #f0a3a3; } .b-ng .h { color: #7f1d1d; } .b-ng .ic { background: #dc2626; }
-.type { display: grid; grid-template-columns: 1fr 1.25fr; gap: 2.4mm; }
-.tp { border-radius: 2.5mm; padding: 2mm 2.8mm; background: #fff; border: .4mm solid #d7dee8; font-size: 7.5pt; }
-.tp .h { font-weight: 900; font-size: 8.8pt; color: #7a1b26; margin-bottom: .5mm; }
-.tp .flow { display: flex; align-items: center; gap: 1.2mm; flex-wrap: wrap; margin-top: 1mm; }
-.tp .chip { border-radius: 1.5mm; padding: .6mm 1.8mm; font-size: 7.2pt; font-weight: 700; }
-.c1 { background: #fde7d9; color: #7a1b26; } .c2 { background: #e2e8f0; color: #1f2933; } .c3 { background: #fee2e2; color: #7f1d1d; }
-table.cmp { width: 100%; border-collapse: collapse; font-size: 7.2pt; }
-table.cmp th, table.cmp td { border: .3mm solid #cbd5e1; padding: .9mm 1.6mm; vertical-align: top; }
-table.cmp th { background: #eef2f7; font-weight: 900; text-align: left; white-space: nowrap; }
-.exam { border: .4mm dashed; border-radius: 2.5mm; padding: 2mm 3mm; font-size: 7.4pt; }
-.p1 .exam { border-color: #2a7ab0; background: #fbfdff; } .p2 .exam { border-color: #c2410c; background: #fffcfa; }
-.exam .h { font-weight: 900; font-size: 9pt; }
-.p1 .exam .h { color: #1d4e89; } .p2 .exam .h { color: #8a1c2b; }
-.ex { display: inline-block; font-size: 6.6pt; font-weight: 900; color: #fff; background: #64748b; border-radius: 1mm; padding: 0 1.3mm; margin-right: 1mm; vertical-align: .3mm; }
-.foot { position: absolute; left: 10mm; right: 10mm; bottom: 2.6mm; font-size: 6.6pt; color: #94a3b8; display: flex; justify-content: space-between; }
+svg { display: block; font-family: "Noto Sans CJK JP", sans-serif; }
+.b { font-weight: 900; } .m { font-weight: 700; }
+.w { fill: #fff; } .g { fill: #64748b; } .dk { fill: #1f2933; }
+.nv { fill: #1d4e89; } .rd { fill: #dc2626; } .gr { fill: #15803d; } .br { fill: #8a1c2b; } .or { fill: #b45309; }
 </style></head><body>
 
 <!-- ============================ PAGE 1 ============================ -->
-<section class="page p1">
-  <div class="hd">
-    <div class="no">①</div>
-    <div><h1>IT全般統制の不備への対応</h1><div class="sub">土台にヒビ ＝ 上に乗る情報処理統制が「継続して」効いていたと言えなくなる</div></div>
-    <div class="src">経営実務-ITテキスト1<br>第7章 ＩＴ全般統制（不備対応）<br>⑦-2〜⑦-15（Q&amp;A36・38・40・41）</div>
-  </div>
+<section class="page">
+<svg viewBox="0 0 1000 1414" width="210mm" height="297mm">
+  <defs>
+    <linearGradient id="h1" x1="0" x2="1"><stop offset="0" stop-color="#1d4e89"/><stop offset="1" stop-color="#2a7ab0"/></linearGradient>
+    <marker id="dn" markerWidth="10" markerHeight="10" refX="5" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#94a3b8"/></marker>
+  </defs>
+  <!-- header -->
+  <rect x="20" y="18" width="960" height="92" rx="18" fill="url(#h1)"/>
+  <text x="50" y="80" font-size="46" class="b w">①</text>
+  <text x="112" y="72" font-size="38" class="b w">IT全般統制の不備への対応</text>
+  <text x="114" y="99" font-size="16" class="w">経営実務-ITテキスト1　第7章 ＩＴ全般統制（不備対応）⑦-2〜⑦-15</text>
 
-  <div class="row" style="grid-template-columns: 68mm 1fr;">
-    <div class="box" style="background:#fff;">
-      <h2><span class="tag">イメージ</span>ITGCは「土台」、情報処理統制は「柱」</h2>
-      <svg viewBox="0 0 300 214" width="100%" style="display:block;margin-top:1mm">
-        <polygon points="20,62 150,10 280,62" fill="#0f2e52"/>
-        <text x="150" y="50" text-anchor="middle" fill="#fff" font-size="14" font-weight="900">財務諸表</text>
-        <g font-size="10.5" font-weight="700" fill="#0f2e52" text-anchor="middle">
-          <rect x="34" y="66" width="62" height="64" rx="4" fill="#dbeafe" stroke="#2a7ab0" stroke-width="2"/>
-          <text x="65" y="94">単価</text><text x="65" y="108">チェック</text>
-          <rect x="119" y="66" width="62" height="64" rx="4" fill="#dbeafe" stroke="#2a7ab0" stroke-width="2"/>
-          <text x="150" y="94">マッチ</text><text x="150" y="108">ング</text>
-          <rect x="204" y="66" width="62" height="64" rx="4" fill="#dbeafe" stroke="#2a7ab0" stroke-width="2"/>
-          <text x="235" y="94">自動計算</text><text x="235" y="108">・照合</text>
-        </g>
-        <text x="150" y="148" text-anchor="middle" font-size="9.5" fill="#1d4e89" font-weight="900">情報処理統制（取引ごとに誤りを止める）</text>
-        <rect x="14" y="158" width="272" height="44" rx="5" fill="#94a3b8"/>
-        <g font-size="10" font-weight="900" fill="#fff" text-anchor="middle">
-          <text x="62" y="178">アクセス管理</text><text x="150" y="178">変更管理</text><text x="238" y="178">IT業務管理</text>
-        </g>
-        <text x="150" y="195" text-anchor="middle" font-size="9" fill="#f8fafc">IT全般統制（柱が効き続ける環境を支える）</text>
-        <polyline points="104,158 111,168 105,178 114,190 108,202" fill="none" stroke="#dc2626" stroke-width="3"/>
-        <text x="150" y="212" text-anchor="middle" font-size="9.5" fill="#dc2626" font-weight="900">ヒビ＝不備 → 柱が効き続けていた保証が揺らぐ</text>
-      </svg>
-    </div>
+  <!-- A: image -->
+  <rect x="30" y="128" width="120" height="30" rx="15" fill="#1d4e89"/><text x="90" y="149" font-size="16" class="b w" text-anchor="middle">全体イメージ</text>
+  <polygon points="50,252 250,172 450,252" fill="#0f2e52"/>
+  <text x="250" y="236" font-size="28" class="b w" text-anchor="middle">財務諸表</text>
+  <g font-size="19" class="m" text-anchor="middle" fill="#0f2e52">
+    <rect x="72" y="260" width="96" height="100" rx="8" fill="#dbeafe" stroke="#2a7ab0" stroke-width="3"/><text x="120" y="304">単価</text><text x="120" y="328">チェック</text>
+    <rect x="202" y="260" width="96" height="100" rx="8" fill="#dbeafe" stroke="#2a7ab0" stroke-width="3"/><text x="250" y="304">マッチ</text><text x="250" y="328">ング</text>
+    <rect x="332" y="260" width="96" height="100" rx="8" fill="#dbeafe" stroke="#2a7ab0" stroke-width="3"/><text x="380" y="304">自動</text><text x="380" y="328">計算</text>
+  </g>
+  <text x="250" y="388" font-size="19" class="b nv" text-anchor="middle">柱 ＝ 情報処理統制</text>
+  <rect x="40" y="400" width="420" height="82" rx="10" fill="#64748b"/>
+  <g font-size="19" class="b w" text-anchor="middle"><text x="112" y="436">アクセス管理</text><text x="250" y="436">変更管理</text><text x="388" y="436">IT業務管理</text></g>
+  <text x="250" y="466" font-size="16" class="w" text-anchor="middle">土台 ＝ IT全般統制（柱が効き続ける環境）</text>
+  <polyline points="183,400 194,414 184,428 195,446" fill="none" stroke="#dc2626" stroke-width="6"/>
+  <text x="250" y="512" font-size="19" class="b rd" text-anchor="middle">ヒビ（不備）→ 柱が効き続けていたか分からない</text>
 
-    <div style="display:flex;flex-direction:column;gap:2.4mm;">
-      <div class="box">
-        <h2>不備がある状態 <span class="rk rA">A</span> <span class="cite">⑦-2</span></h2>
-        <div class="q">情報処理統制及び企業の情報システム内の情報のインテグリティ（以下、情報処理統制等）が<b>ある一時点で有効に機能していたとしても</b>、ＩＴ全般統制に不備があれば、当該情報処理統制等が<b>継続的に有効に機能していることの心証は得られず</b>、情報システムの内部統制に依拠できない可能性があると考えられる。</div>
-      </div>
-      <div class="alert">
-        <span class="big">ただし、不備 ≠ 直ちに依拠できない</span>
-        ＩＴ全般統制の不備の存在が、直ちに情報システムの内部統制に依拠できないという結論につながるものではない点に留意する。これは、当該ＩＴ全般統制の不備が、財務諸表の虚偽表示を防止ないし発見できる情報処理統制等の有効性に影響を与えているかを検討し、<b>影響が乏しい場合には情報処理統制等に依拠できる余地がある</b>ためである。<span class="cite">（⑦-2）</span>
-      </div>
-    </div>
-  </div>
+  <!-- A right -->
+  <rect x="500" y="170" width="470" height="150" rx="16" fill="#f1f5f9"/>
+  <text x="522" y="206" font-size="22" class="b nv">ITGCに不備があると…</text>
+  <rect x="522" y="226" width="180" height="50" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="2"/>
+  <text x="612" y="258" font-size="18" class="b gr" text-anchor="middle">一時点では有効</text>
+  <text x="724" y="261" font-size="28" class="b g" text-anchor="middle">→</text>
+  <rect x="748" y="226" width="205" height="50" rx="10" fill="#fee2e2" stroke="#dc2626" stroke-width="2"/>
+  <text x="850" y="258" font-size="18" class="b rd" text-anchor="middle">継続的に有効？ ✕</text>
+  <text x="522" y="304" font-size="17" class="dk">→ 情報処理統制に依拠できない<tspan class="b">可能性</tspan></text>
 
-  <div class="box" style="margin-top:3mm;background:#fff;">
-    <h2><span class="tag">対応フロー</span>ＩＴ全般統制に不備が存在する場合の対応 <span class="rk rA">A</span> <span class="cite">⑦-2〜⑦-4　上から順に。どこかで心証が得られれば依拠できる</span></h2>
-    <div class="step s1">
-      <div class="n"><span class="d">①</span><span class="s">代わりを探す</span></div>
-      <div class="c"><div class="t">不備の発見されたＩＴ全般統制を代替または補完する他のＩＴ全般統制を識別し、評価する</div>
-        <div class="e"><span class="ex">例</span>防止的なＩＴ全般統制の不備を発見した場合において、<b>事後の承認やログのレビュー等の発見的なＩＴ全般統制</b>が有効に機能している場合は、当該リスクが低減されていると判断できることがある。</div></div>
-      <div class="ok"><span class="h">◎ 有効なら</span>リスクは低減されている</div>
-    </div>
-    <div class="down">代わりがない／不十分なら</div>
-    <div class="step s2">
-      <div class="n"><span class="d">②</span><span class="s">実害を確認</span></div>
-      <div class="c"><div class="t">発見された不備によりＩＴの利用から生じるリスクが発現していないことを確かめる</div>
-        <div class="e"><span class="ex">例</span>プログラムの変更管理に不備 → 対象となる業務処理プログラムが<b>期間中変更されていない</b>ことを、対象プログラムごとの<b>変更履歴</b>や、当該プログラムの<b>登録日付</b>により確認する。</div></div>
-      <div class="ok"><span class="h">◎ 発現なしなら</span>情報処理統制等に依拠できると判断する場合あり</div>
-    </div>
-    <div class="down">確かめられないなら</div>
-    <div class="step s3">
-      <div class="n"><span class="d">③</span><span class="s">柱を直接見る</span></div>
-      <div class="c"><div class="t">関連する情報処理統制等の評価手続の実施範囲を拡大する</div>
-        <div class="e">影響を受ける情報処理統制等の範囲を特定し、運用評価手続の範囲（<b>件数、期間等</b>）を拡大する。また、<b>インプットデータとアウトプットデータの突合</b>や、データ間の整合性の検討、<b>計算結果の再計算</b>等により、結果が正確かつ網羅的に処理されているかを検証することもできる。※財務報告の作成に影響する部分について必要な手続を実施する。</div></div>
-      <div class="ok"><span class="h">◎ 心証が得られれば</span>依拠できる</div>
-    </div>
-    <div class="down">上記対応により十分な心証を得られないなら</div>
-    <div class="step s4">
-      <div class="n"><span class="d">④</span><span class="s">最後の砦</span></div>
-      <div class="c"><div class="t">実証手続を拡大する</div>
-        <div class="e">財務諸表項目レベルの重要な虚偽表示を発見するために実施する実証手続（取引、勘定残高、注記事項等に対する<b>詳細テストと分析的実証手続</b>）を拡大して実施する。</div></div>
-      <div class="ng"><span class="h">✕ 依拠しない</span>実証手続で対応</div>
-    </div>
-    <div class="q" style="margin-top:.6mm">● 個別のＩＴ全般統制の不備は重要な不備ではないと評価された場合であっても、<b>それらの不備を組み合わせて評価すると、異なる評価になる場合がある</b>。<span class="cite">（⑦-4）</span>　● 重要な不備となるかどうかの判断は、職業的専門家としての判断事項。<span class="cite">（⑦-3）</span></div>
-  </div>
+  <rect x="500" y="338" width="470" height="176" rx="16" fill="#e8f1fa"/>
+  <rect x="500" y="338" width="12" height="176" fill="#2a7ab0"/>
+  <text x="530" y="390" font-size="32" class="b nv">でも 不備 ≠ 即アウト</text>
+  <rect x="530" y="410" width="420" height="42" rx="21" fill="#fff" stroke="#2a7ab0" stroke-width="2"/>
+  <text x="740" y="438" font-size="18" class="b nv" text-anchor="middle">柱（情報処理統制等）への影響を検討</text>
+  <text x="740" y="476" font-size="22" class="b g" text-anchor="middle">↓</text>
+  <text x="740" y="502" font-size="19" class="b gr" text-anchor="middle">影響が乏しければ 依拠できる余地あり</text>
 
-  <div class="box" style="margin-top:3mm;background:#fff;padding:2mm 2.6mm;">
-    <h2><span class="tag">ケース別</span>不備の例と対応例 <span class="cite">（⑦-5〜⑦-14）</span></h2>
-    <table class="cs">
-      <thead><tr><th></th><th>不備のケース</th><th>想定されるリスク</th><th>不備が存在した場合の対応例</th></tr></thead>
-      <tr><td class="pr">アクセス</td>
-        <td class="k">特権ＩＤの管理が不十分で、必要最小限のユーザ以外にも権限付与 <span class="rk rA">A</span></td>
-        <td>内部統制を無効化して直接修正／なりすまして自ら起票した伝票を自身で承認／共有され誰が修正したか特定困難 等</td>
-        <td>① <b>代替的または補完的な統制</b>により、リスクが低減される程度を評価（押印された紙の伝票、月次締めでの他の帳票との照合、<b>ログの適時かつ適切なモニタリング</b>）<br>② <b>不正や誤謬がないことの直接的な検証</b>（会計帳簿・伝票の閲覧、<b>アクセスログの検証</b>）</td></tr>
-      <tr><td class="pr" rowspan="3">変更管理</td>
-        <td class="k">開発過程でユーザ受入れテストが未実施 <span class="rk rB">B</span></td>
-        <td>ユーザ部門が要求する業務要件を満たしていないシステムが本番環境にリリースされる</td>
-        <td>① <b>システム部門のテスト結果の確認</b>（ユーザ受入れテストと同等とみなせる場合）<br>② <b>本番移行後の修正記録の確認</b></td></tr>
-      <tr><td class="k">システム部門がなく担当者1名のみで管理 <span class="rk rB">B</span></td>
-        <td>データの不適切な修正／検証不十分・バージョン違いのプログラムが本番環境に適用</td>
-        <td><b>作業記録</b>に重要な変更が適切に記載され、<b>権限者の承認</b>あり → 不備の影響は小さいと判断できることがある。作業記録なし → <b>情報処理統制の運用評価手続または実証手続を拡大</b></td></tr>
-      <tr><td class="k">開発・保守担当者と運用担当者の職務の分離なし <span class="rk rB">B</span></td>
-        <td>プログラムの改竄／不適切な内容、バージョン違いのプログラムやデータの本番適用</td>
-        <td>① <b>システム部門における作業記録の検証</b>　② <b>各種ログ及び事後レビューの検証</b><br>これらが実施できない → 情報処理統制の運用評価手続または実証手続を拡大</td></tr>
-    </table>
-  </div>
+  <!-- B: flow -->
+  <rect x="30" y="540" width="150" height="30" rx="15" fill="#1d4e89"/><text x="105" y="561" font-size="16" class="b w" text-anchor="middle">対応フロー〔A〕</text>
+  <text x="194" y="562" font-size="17" class="g">上から順に試す。どこかで確かめられれば依拠できる</text>
 
-  <div class="exam" style="margin-top:2.4mm;">
-    <div class="h">✎ 出題パターン</div>
-    <b>「対応を四つ答えなさい」</b>（問題集315-24）→ フロー①〜④をそのまま。<b>覚え方「代わり→実害→柱→実証」</b>。事例で特定の不備が出たら、ケース別の型（補完統制・ログ・作業記録で低減 → だめなら情報処理統制の運用評価か実証手続を拡大）で書く。
-  </div>
-  <div class="foot"><span>監査論 IT統制の不備 ①／2</span><span>本文は経営実務-ITテキスト1（第7章）の記述による。〔A〕〔B〕は教科書の重要度。〔C〕の論点は省略。</span></div>
+  <g>
+    <rect x="30" y="582" width="940" height="92" rx="14" fill="#fff" stroke="#cbd5e1" stroke-width="2"/>
+    <circle cx="80" cy="628" r="32" fill="#2a7ab0"/><text x="80" y="640" font-size="32" class="b w" text-anchor="middle">1</text>
+    <text x="130" y="618" font-size="25" class="b dk">代わりのITGCを探す<tspan font-size="18" class="g">（代替・補完）</tspan></text>
+    <rect x="130" y="632" width="590" height="30" rx="8" fill="#f1f5f9"/>
+    <text x="142" y="653" font-size="16" class="g">例　防止的統制の不備 → 事後承認・ログレビュー（発見的統制）が有効</text>
+    <rect x="770" y="602" width="185" height="52" rx="26" fill="#dcfce7" stroke="#16a34a" stroke-width="2"/>
+    <text x="862" y="635" font-size="19" class="b gr" text-anchor="middle">OK → 依拠</text>
+  </g>
+  <text x="80" y="694" font-size="22" class="g" text-anchor="middle">▼</text><text x="100" y="694" font-size="15" class="g">ダメなら</text>
+  <g>
+    <rect x="30" y="704" width="940" height="92" rx="14" fill="#fff" stroke="#cbd5e1" stroke-width="2"/>
+    <circle cx="80" cy="750" r="32" fill="#2563a6"/><text x="80" y="762" font-size="32" class="b w" text-anchor="middle">2</text>
+    <text x="130" y="740" font-size="25" class="b dk">リスクが発現していないか確かめる</text>
+    <rect x="130" y="754" width="590" height="30" rx="8" fill="#f1f5f9"/>
+    <text x="142" y="775" font-size="16" class="g">例　変更管理の不備 → 変更履歴・登録日付で「期間中変更なし」</text>
+    <rect x="770" y="724" width="185" height="52" rx="26" fill="#dcfce7" stroke="#16a34a" stroke-width="2"/>
+    <text x="862" y="757" font-size="19" class="b gr" text-anchor="middle">OK → 依拠</text>
+  </g>
+  <text x="80" y="816" font-size="22" class="g" text-anchor="middle">▼</text><text x="100" y="816" font-size="15" class="g">ダメなら</text>
+  <g>
+    <rect x="30" y="826" width="940" height="92" rx="14" fill="#fff" stroke="#cbd5e1" stroke-width="2"/>
+    <circle cx="80" cy="872" r="32" fill="#1d4e89"/><text x="80" y="884" font-size="32" class="b w" text-anchor="middle">3</text>
+    <text x="130" y="862" font-size="25" class="b dk">柱（情報処理統制等）の評価範囲を拡大</text>
+    <rect x="130" y="876" width="590" height="30" rx="8" fill="#f1f5f9"/>
+    <text x="142" y="897" font-size="16" class="g">例　件数・期間を拡大／インプットとアウトプットの突合・再計算</text>
+    <rect x="770" y="846" width="185" height="52" rx="26" fill="#dcfce7" stroke="#16a34a" stroke-width="2"/>
+    <text x="862" y="879" font-size="19" class="b gr" text-anchor="middle">OK → 依拠</text>
+  </g>
+  <text x="80" y="938" font-size="22" class="g" text-anchor="middle">▼</text><text x="100" y="938" font-size="15" class="g">それでも十分な心証が得られないなら</text>
+  <g>
+    <rect x="30" y="948" width="940" height="80" rx="14" fill="#0f2e52"/>
+    <circle cx="80" cy="988" r="32" fill="#fff"/><text x="80" y="1000" font-size="32" class="b nv" text-anchor="middle">4</text>
+    <text x="130" y="985" font-size="25" class="b w">実証手続を拡大</text>
+    <text x="130" y="1012" font-size="16" fill="#cbd5e1">詳細テスト・分析的実証手続</text>
+    <rect x="770" y="962" width="185" height="52" rx="26" fill="#fee2e2" stroke="#dc2626" stroke-width="2"/>
+    <text x="862" y="995" font-size="19" class="b rd" text-anchor="middle">依拠しない</text>
+  </g>
+
+  <!-- C: cases -->
+  <rect x="30" y="1048" width="180" height="30" rx="15" fill="#1d4e89"/><text x="120" y="1069" font-size="16" class="b w" text-anchor="middle">ケース別の対応例</text>
+  <g font-size="16">
+    <!-- card 1 -->
+    <rect x="30" y="1088" width="465" height="100" rx="12" fill="#f6f8fb" stroke="#d7dee8" stroke-width="2"/>
+    <rect x="44" y="1100" width="110" height="26" rx="13" fill="#2a7ab0"/><text x="99" y="1119" font-size="14" class="b w" text-anchor="middle">アクセス管理</text>
+    <rect x="160" y="1100" width="28" height="26" rx="5" fill="#dc2626"/><text x="174" y="1119" font-size="15" class="b w" text-anchor="middle">A</text>
+    <text x="198" y="1120" font-size="19" class="b dk">特権IDの管理不十分</text>
+    <text x="48" y="1152" class="nv b">→ 補完統制（ログのモニタリング等）</text>
+    <text x="48" y="1176" class="nv b">→ アクセスログ等で直接検証</text>
+    <!-- card 2 -->
+    <rect x="505" y="1088" width="465" height="100" rx="12" fill="#f6f8fb" stroke="#d7dee8" stroke-width="2"/>
+    <rect x="519" y="1100" width="90" height="26" rx="13" fill="#2563a6"/><text x="564" y="1119" font-size="14" class="b w" text-anchor="middle">変更管理</text>
+    <rect x="615" y="1100" width="28" height="26" rx="5" fill="#d97706"/><text x="629" y="1119" font-size="15" class="b w" text-anchor="middle">B</text>
+    <text x="653" y="1120" font-size="19" class="b dk">受入れテスト未実施</text>
+    <text x="523" y="1152" class="nv b">→ システム部門のテスト結果</text>
+    <text x="523" y="1176" class="nv b">→ 本番移行後の修正記録</text>
+    <!-- card 3 -->
+    <rect x="30" y="1198" width="465" height="100" rx="12" fill="#f6f8fb" stroke="#d7dee8" stroke-width="2"/>
+    <rect x="44" y="1210" width="90" height="26" rx="13" fill="#2563a6"/><text x="89" y="1229" font-size="14" class="b w" text-anchor="middle">変更管理</text>
+    <rect x="140" y="1210" width="28" height="26" rx="5" fill="#d97706"/><text x="154" y="1229" font-size="15" class="b w" text-anchor="middle">B</text>
+    <text x="178" y="1230" font-size="19" class="b dk">担当者1名でシステム管理</text>
+    <text x="48" y="1262" class="nv b">→ 作業記録 ＋ 権限者の承認</text>
+    <text x="48" y="1286" class="g">（あれば不備の影響は小さい）</text>
+    <!-- card 4 -->
+    <rect x="505" y="1198" width="465" height="100" rx="12" fill="#f6f8fb" stroke="#d7dee8" stroke-width="2"/>
+    <rect x="519" y="1210" width="90" height="26" rx="13" fill="#2563a6"/><text x="564" y="1229" font-size="14" class="b w" text-anchor="middle">変更管理</text>
+    <rect x="615" y="1210" width="28" height="26" rx="5" fill="#d97706"/><text x="629" y="1229" font-size="15" class="b w" text-anchor="middle">B</text>
+    <text x="653" y="1230" font-size="19" class="b dk">開発と運用の職務分離なし</text>
+    <text x="523" y="1262" class="nv b">→ 作業記録の検証</text>
+    <text x="523" y="1286" class="nv b">→ 各種ログ・事後レビューの検証</text>
+  </g>
+  <rect x="30" y="1306" width="940" height="38" rx="10" fill="#fdecec"/>
+  <text x="500" y="1332" font-size="18" class="b rd" text-anchor="middle">確かめられなければ → 情報処理統制の運用評価 or 実証手続を拡大</text>
+
+  <!-- D: remember -->
+  <rect x="30" y="1352" width="940" height="50" rx="12" fill="#0f2e52"/>
+  <rect x="44" y="1362" width="96" height="30" rx="15" fill="#facc15"/><text x="92" y="1383" font-size="16" class="b dk" text-anchor="middle">覚える</text>
+  <text x="156" y="1386" font-size="25" class="b w">代わり → 実害 → 柱 → 実証</text>
+  <text x="960" y="1385" font-size="16" fill="#cbd5e1" text-anchor="end">＋ 不備は組み合わせても評価</text>
+</svg>
 </section>
 
 <!-- ============================ PAGE 2 ============================ -->
-<section class="page p2">
-  <div class="hd">
-    <div class="no">②</div>
-    <div><h1>情報処理統制の不備への対応</h1><div class="sub">門番が通してしまう ＝ 業務プロセスの内部統制が有効でない状態</div></div>
-    <div class="src">経営実務-ITテキスト1<br>第9章 情報処理統制<br>⑨-2〜⑨-5、⑨-16（第5節 不備対応）</div>
-  </div>
+<section class="page">
+<svg viewBox="0 0 1000 1414" width="210mm" height="297mm">
+  <defs>
+    <linearGradient id="h2" x1="0" x2="1"><stop offset="0" stop-color="#8a1c2b"/><stop offset="1" stop-color="#c2410c"/></linearGradient>
+    <marker id="ag" markerWidth="10" markerHeight="10" refX="6" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#64748b"/></marker>
+    <marker id="ar" markerWidth="10" markerHeight="10" refX="6" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#dc2626"/></marker>
+    <marker id="ab" markerWidth="10" markerHeight="10" refX="6" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#8a1c2b"/></marker>
+  </defs>
+  <rect x="20" y="18" width="960" height="92" rx="18" fill="url(#h2)"/>
+  <text x="50" y="80" font-size="46" class="b w">②</text>
+  <text x="112" y="72" font-size="38" class="b w">情報処理統制の不備への対応</text>
+  <text x="114" y="99" font-size="16" class="w">経営実務-ITテキスト1　第9章 情報処理統制 ⑨-2〜⑨-5、⑨-16</text>
 
-  <div class="row" style="grid-template-columns: 84mm 1fr;">
-    <div class="box" style="background:#fff;">
-      <h2><span class="tag">イメージ</span>情報処理統制は「門番」</h2>
-      <svg viewBox="0 0 300 146" width="100%" style="display:block;margin-top:1mm">
-        <defs><marker id="ar" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#64748b"/></marker>
-        <marker id="arr" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#dc2626"/></marker></defs>
-        <g font-size="9.5" font-weight="700" text-anchor="middle">
-          <rect x="6" y="22" width="62" height="26" rx="4" fill="#ecfdf5" stroke="#16a34a"/><text x="37" y="39" fill="#14532d">正しい取引</text>
-          <rect x="6" y="88" width="62" height="26" rx="4" fill="#fef2f2" stroke="#dc2626"/><text x="37" y="105" fill="#7f1d1d">誤り・未承認</text>
-        </g>
-        <rect x="118" y="10" width="54" height="118" rx="6" fill="#fde7d9" stroke="#c2410c" stroke-width="2"/>
-        <g font-size="8.2" font-weight="900" fill="#7a1b26" text-anchor="middle">
-          <text x="145" y="30">門番</text><text x="145" y="48">単価チェック</text><text x="145" y="62">マッチング</text><text x="145" y="76">トータル</text><text x="145" y="88">チェック</text><text x="145" y="102">権限制限</text>
-        </g>
-        <polyline points="150,104 141,112 151,119 143,127" fill="none" stroke="#dc2626" stroke-width="3"/>
-        <rect x="226" y="38" width="66" height="62" rx="4" fill="#f1f5f9" stroke="#475569"/>
-        <g font-size="10" font-weight="900" fill="#334155" text-anchor="middle"><text x="259" y="64">帳簿</text><text x="259" y="80">財務諸表</text></g>
-        <line x1="68" y1="35" x2="114" y2="35" stroke="#64748b" stroke-width="2" marker-end="url(#ar)"/>
-        <line x1="172" y1="35" x2="222" y2="55" stroke="#64748b" stroke-width="2" marker-end="url(#ar)"/>
-        <line x1="68" y1="101" x2="114" y2="101" stroke="#dc2626" stroke-width="2" marker-end="url(#arr)"/>
-        <line x1="172" y1="112" x2="222" y2="86" stroke="#dc2626" stroke-width="2.4" stroke-dasharray="5,3" marker-end="url(#arr)"/>
-        <text x="200" y="140" text-anchor="middle" font-size="9.2" fill="#dc2626" font-weight="900">門が壊れる → 誤りが素通りして帳簿へ</text>
-      </svg>
-    </div>
-    <div class="box">
-      <h2>情報処理統制とは <span class="rk rB">B</span> <span class="cite">⑨-2</span></h2>
-      <div class="q">情報のインテグリティ（すなわち、取引及びその他の情報（データ）の<b>網羅性、正確性、正当性</b>）のリスクに<b>直接対応する</b>、企業の情報システムにおけるＩＴアプリケーションの情報処理または手作業による情報処理に関連した内部統制であり、<br><b>① ＩＴアプリケーションに組み込まれている自動化された情報処理統制</b>と、<br><b>② ＩＴから自動生成される情報を利用して実施される手作業による内部統制</b><br>との組み合わせにより構成され、他の内部統制に依拠する場合がある。</div>
-      <div class="q" style="margin-top:1mm;color:#7a1b26">「情報処理統制＝自動化された内部統制」と短絡的に理解しないように留意が必要である。<span class="cite">（⑨-3）</span></div>
-    </div>
-  </div>
+  <!-- A: gate -->
+  <rect x="30" y="128" width="120" height="30" rx="15" fill="#8a1c2b"/><text x="90" y="149" font-size="16" class="b w" text-anchor="middle">全体イメージ</text>
+  <rect x="36" y="196" width="140" height="54" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="2"/><text x="106" y="230" font-size="19" class="b gr" text-anchor="middle">正しい取引</text>
+  <rect x="36" y="360" width="140" height="54" rx="10" fill="#fee2e2" stroke="#dc2626" stroke-width="2"/><text x="106" y="394" font-size="19" class="b rd" text-anchor="middle">誤り・未承認</text>
+  <rect x="216" y="172" width="120" height="268" rx="14" fill="#fde7d9" stroke="#c2410c" stroke-width="3"/>
+  <text x="276" y="210" font-size="24" class="b br" text-anchor="middle">門番</text>
+  <g font-size="16" class="m br" text-anchor="middle"><text x="276" y="250">単価チェック</text><text x="276" y="278">マッチング</text><text x="276" y="306">トータル</text><text x="276" y="326">チェック</text><text x="276" y="354">権限制限</text></g>
+  <polyline points="290,364 272,384 292,402 276,426" fill="none" stroke="#dc2626" stroke-width="6"/>
+  <rect x="396" y="250" width="124" height="110" rx="10" fill="#f1f5f9" stroke="#475569" stroke-width="2"/>
+  <text x="458" y="298" font-size="22" class="b dk" text-anchor="middle">帳簿</text><text x="458" y="328" font-size="18" class="b dk" text-anchor="middle">財務諸表</text>
+  <line x1="176" y1="223" x2="210" y2="223" stroke="#64748b" stroke-width="4" marker-end="url(#ag)"/>
+  <line x1="336" y1="223" x2="390" y2="278" stroke="#64748b" stroke-width="4" marker-end="url(#ag)"/>
+  <line x1="176" y1="387" x2="210" y2="387" stroke="#dc2626" stroke-width="4" marker-end="url(#ar)"/>
+  <line x1="336" y1="400" x2="390" y2="340" stroke="#dc2626" stroke-width="4" stroke-dasharray="10,6" marker-end="url(#ar)"/>
+  <text x="278" y="476" font-size="19" class="b rd" text-anchor="middle">門が壊れる → 誤りが素通りして帳簿へ</text>
 
-  <div class="two" style="margin-top:3mm;">
-    <div class="kind"><div class="h">① 自動化された情報処理統制の例 <span class="cite">⑨-3</span></div>
-      <ul><li>受注データ入力時の<b>単価チェック</b>（マスタと突合し、不一致なら受け付けない）</li><li>入力必須項目の<b>網羅性チェック</b></li><li>システム間インターフェースの<b>データ件数等の整合確認</b></li><li><b>端末メニューの使用制限</b>（ユーザＩＤの操作権限）</li><li><b>例外リスト</b>の出力／利息・減価償却・外貨換算等の<b>自動計算</b></li></ul></div>
-    <div class="kind"><div class="h">② 手作業による情報処理統制の例 <span class="cite">⑨-3</span></div>
-      <ul><li>インターフェースの受渡処理が想定通りに行われなかった場合に、ＩＴアプリケーション外で<b>是正</b>する統制</li><li><b>エラーリスト</b>を利用して、想定通りに処理を行うよう是正する統制</li><li>事前登録の仕訳パターンに該当しない仕訳データを出力し、<b>修正仕訳の要否を判断</b>するため取引内容を確認する統制</li></ul></div>
-  </div>
+  <!-- A right -->
+  <text x="560" y="190" font-size="22" class="b br">情報処理統制とは<tspan font-size="15" class="g"> 〔B〕⑨-2</tspan></text>
+  <rect x="560" y="204" width="410" height="66" rx="12" fill="#fdf0e8" stroke="#c2410c" stroke-width="2"/>
+  <text x="765" y="232" font-size="17" class="b br" text-anchor="middle">情報のインテグリティに直接対応</text>
+  <text x="765" y="258" font-size="16" class="dk" text-anchor="middle">（網羅性・正確性・正当性）</text>
+  <!-- two kinds -->
+  <rect x="560" y="286" width="200" height="150" rx="12" fill="#fff" stroke="#e5c3c3" stroke-width="2"/>
+  <circle cx="600" cy="320" r="22" fill="#c2410c"/><text x="600" y="327" font-size="17" class="b w" text-anchor="middle">自動</text>
+  <text x="632" y="327" font-size="19" class="b br">自動化</text>
+  <g font-size="15" class="dk"><text x="576" y="364">・単価チェック</text><text x="576" y="388">・マッチング</text><text x="576" y="412">・自動計算 など</text></g>
+  <rect x="770" y="286" width="200" height="150" rx="12" fill="#fff" stroke="#e5c3c3" stroke-width="2"/>
+  <circle cx="810" cy="320" r="22" fill="#475569"/><text x="810" y="327" font-size="17" class="b w" text-anchor="middle">手</text>
+  <text x="842" y="327" font-size="19" class="b br">手作業</text>
+  <g font-size="15" class="dk"><text x="786" y="364">・エラーリストで是正</text><text x="786" y="388">・IFの不具合を是正</text><text x="786" y="412">・パターン外仕訳の確認</text></g>
+  <text x="765" y="470" font-size="18" class="b rd" text-anchor="middle">情報処理統制 ＝ 自動 だけ ではない！</text>
 
-  <div class="box" style="margin-top:3mm;background:#fff;">
-    <h2><span class="tag">対応フロー</span>情報処理統制の不備対応 <span class="rk rA">A</span> <span class="cite">⑨-16</span></h2>
-    <div class="fbox f-start">
-      <div class="t">STEP 1　不備の意味をつかむ</div>
-      <div class="e">取引種類、勘定残高または注記事項に関連する情報処理統制が有効に機能していなかった場合、<b>業務プロセスにおいて識別された内部統制が有効でない状態</b>を意味する。</div>
-    </div>
-    <div class="arrow">▼</div>
-    <div class="fbox f-q">
-      <div class="t">STEP 2　重要な虚偽表示リスクに及ぼす影響を検討する</div>
-      <div class="e">監査人は<b>当該不備が重要な虚偽表示リスクに及ぼす影響を検討</b>することになる。</div>
-    </div>
-    <div class="arrow">▼　影響が重要であると判断した場合は、どちらかを検討</div>
-    <div class="branch">
-      <div class="br b-add">
-        <div class="h"><span class="ic">＋</span>代わりの内部統制に依拠する</div>
-        これに<b>代わる他の内部統制の有無を確かめ</b>、その<b>有効性を評価する監査手続の実施（運用評価手続）</b>を検討する。
-      </div>
-      <div class="br b-ng">
-        <div class="h"><span class="ic">✕</span>依拠せず実証手続で対応する</div>
-        当該情報処理統制に<b>依拠せず</b>、<b>実証手続の範囲の拡大</b>を検討する。
-      </div>
-    </div>
-  </div>
+  <!-- B: flow -->
+  <rect x="30" y="500" width="150" height="30" rx="15" fill="#8a1c2b"/><text x="105" y="521" font-size="16" class="b w" text-anchor="middle">対応フロー〔A〕</text>
+  <rect x="190" y="540" width="620" height="62" rx="14" fill="#fff4ec" stroke="#c2410c" stroke-width="3"/>
+  <text x="500" y="580" font-size="23" class="b br" text-anchor="middle">不備 ＝ 業務プロセスの内部統制が有効でない</text>
+  <line x1="500" y1="602" x2="500" y2="628" stroke="#8a1c2b" stroke-width="4" marker-end="url(#ab)"/>
+  <polygon points="500,636 760,694 500,752 240,694" fill="#fff" stroke="#8a1c2b" stroke-width="3"/>
+  <text x="500" y="690" font-size="20" class="b br" text-anchor="middle">重要な虚偽表示リスクへの</text>
+  <text x="500" y="716" font-size="20" class="b br" text-anchor="middle">影響を検討</text>
+  <text x="500" y="778" font-size="17" class="g" text-anchor="middle">影響が重要なら、どちらか</text>
+  <line x1="300" y1="736" x2="250" y2="800" stroke="#b45309" stroke-width="4" marker-end="url(#ag)"/>
+  <line x1="700" y1="736" x2="750" y2="800" stroke="#dc2626" stroke-width="4" marker-end="url(#ar)"/>
+  <rect x="40" y="806" width="440" height="110" rx="14" fill="#fff8e6" stroke="#f0c76a" stroke-width="3"/>
+  <circle cx="84" cy="850" r="24" fill="#d97706"/><text x="84" y="859" font-size="26" class="b w" text-anchor="middle">＋</text>
+  <text x="120" y="858" font-size="24" class="b or">代わりの内部統制</text>
+  <text x="62" y="896" font-size="17" class="dk">他の内部統制の有無 → <tspan class="b">運用評価手続</tspan></text>
+  <rect x="520" y="806" width="440" height="110" rx="14" fill="#fdecec" stroke="#f0a3a3" stroke-width="3"/>
+  <circle cx="564" cy="850" r="24" fill="#dc2626"/><text x="564" y="858" font-size="24" class="b w" text-anchor="middle">✕</text>
+  <text x="600" y="858" font-size="24" class="b rd">依拠しない</text>
+  <text x="542" y="896" font-size="17" class="dk"><tspan class="b">実証手続の範囲を拡大</tspan></text>
 
-  <div class="box" style="margin-top:3mm;">
-    <h2><span class="tag">留意点</span>どちらのタイプの不備かで見方が変わる <span class="cite">⑨-16</span></h2>
-    <div class="type">
-      <div class="tp"><div class="h">自動化された内部統制の不備</div>
-        監査人は<b>同様の誤りが繰り返されている可能性が高い</b>ことに留意する。
-        <div class="flow"><span class="chip c1">プログラムの誤り</span>→<span class="chip c3">同じ条件の取引すべてで同じ誤り</span></div></div>
-      <div class="tp"><div class="h">ＩＴから自動生成される情報を利用した手作業による内部統制の不備</div>
-        その不備の内容が<b>手作業に関する部分</b>から生じているものなのか、<b>ＩＴに関する部分</b>から生じているものなのかを識別する。
-        <div class="flow"><span class="chip c2">手作業の部分</span>→ 手作業の統制として対応　／　<span class="chip c1">ＩＴの部分</span>→<span class="chip c3">自動化された内部統制の不備と同様に対応</span></div></div>
-    </div>
-    <div class="q" style="margin-top:1.4mm">● 自動化された情報処理統制が正しく機能していた場合でも、処理結果を記録したデータが簡単に変更される可能性があっては、十分な信頼性は得られない。そのため、<b>データが適切なアクセス・コントロールの下に運用されていることも確かめる</b>必要がある。<span class="cite">（⑨-5 <span class="rk rB">B</span>）</span></div>
-  </div>
+  <!-- C: type -->
+  <rect x="30" y="940" width="250" height="30" rx="15" fill="#8a1c2b"/><text x="155" y="961" font-size="16" class="b w" text-anchor="middle">不備のタイプで見方が変わる</text>
+  <!-- auto -->
+  <rect x="30" y="980" width="460" height="210" rx="14" fill="#fff" stroke="#d7dee8" stroke-width="2"/>
+  <circle cx="72" cy="1016" r="22" fill="#c2410c"/><text x="72" y="1023" font-size="17" class="b w" text-anchor="middle">自動</text>
+  <text x="106" y="1024" font-size="21" class="b br">自動化された統制の不備</text>
+  <rect x="50" y="1046" width="96" height="60" rx="10" fill="#fde7d9" stroke="#c2410c" stroke-width="2"/>
+  <text x="98" y="1072" font-size="15" class="b br" text-anchor="middle">プログラム</text><text x="98" y="1093" font-size="15" class="b br" text-anchor="middle">の誤り</text>
+  <line x1="146" y1="1076" x2="176" y2="1076" stroke="#dc2626" stroke-width="4" marker-end="url(#ar)"/>
+  <g stroke="#dc2626" stroke-width="4">
+    <rect x="186" y="1050" width="44" height="54" rx="4" fill="#fff" stroke="#94a3b8" stroke-width="2"/><line x1="196" y1="1064" x2="220" y2="1090"/><line x1="220" y1="1064" x2="196" y2="1090"/>
+    <rect x="240" y="1050" width="44" height="54" rx="4" fill="#fff" stroke="#94a3b8" stroke-width="2"/><line x1="250" y1="1064" x2="274" y2="1090"/><line x1="274" y1="1064" x2="250" y2="1090"/>
+    <rect x="294" y="1050" width="44" height="54" rx="4" fill="#fff" stroke="#94a3b8" stroke-width="2"/><line x1="304" y1="1064" x2="328" y2="1090"/><line x1="328" y1="1064" x2="304" y2="1090"/>
+    <rect x="348" y="1050" width="44" height="54" rx="4" fill="#fff" stroke="#94a3b8" stroke-width="2"/><line x1="358" y1="1064" x2="382" y2="1090"/><line x1="382" y1="1064" x2="358" y2="1090"/>
+    <rect x="402" y="1050" width="44" height="54" rx="4" fill="#fff" stroke="#94a3b8" stroke-width="2"/><line x1="412" y1="1064" x2="436" y2="1090"/><line x1="436" y1="1064" x2="412" y2="1090"/>
+  </g>
+  <rect x="50" y="1124" width="420" height="48" rx="10" fill="#fee2e2"/>
+  <text x="260" y="1155" font-size="20" class="b rd" text-anchor="middle">同じ誤りが繰り返されている可能性大</text>
+  <!-- manual -->
+  <rect x="510" y="980" width="460" height="210" rx="14" fill="#fff" stroke="#d7dee8" stroke-width="2"/>
+  <circle cx="552" cy="1016" r="22" fill="#475569"/><text x="552" y="1023" font-size="17" class="b w" text-anchor="middle">手</text>
+  <text x="586" y="1024" font-size="19" class="b br">IT情報を使う手作業の統制の不備</text>
+  <rect x="530" y="1074" width="110" height="52" rx="10" fill="#f1f5f9" stroke="#475569" stroke-width="2"/>
+  <text x="585" y="1106" font-size="17" class="b dk" text-anchor="middle">原因は？</text>
+  <line x1="640" y1="1090" x2="680" y2="1062" stroke="#64748b" stroke-width="3" marker-end="url(#ag)"/>
+  <line x1="640" y1="1112" x2="680" y2="1142" stroke="#dc2626" stroke-width="3" marker-end="url(#ar)"/>
+  <rect x="688" y="1042" width="266" height="42" rx="10" fill="#e2e8f0"/>
+  <text x="821" y="1069" font-size="16" class="b dk" text-anchor="middle">手作業の部分 → 手作業として</text>
+  <rect x="688" y="1122" width="266" height="52" rx="10" fill="#fee2e2"/>
+  <text x="821" y="1145" font-size="16" class="b rd" text-anchor="middle">ITの部分 → 自動化の</text>
+  <text x="821" y="1166" font-size="16" class="b rd" text-anchor="middle">不備と同じ対応</text>
 
-  <div class="row" style="grid-template-columns: 1fr 1fr;">
-    <div class="box" style="padding:2mm 2.6mm;">
-      <h2>①ITGCの不備との違い <span class="cite">（まとめ）</span></h2>
-      <table class="cmp">
-        <tr><th></th><th>IT全般統制の不備</th><th>情報処理統制の不備</th></tr>
-        <tr><th>まず見ること</th><td>情報処理統制等の有効性に影響を与えているか</td><td>重要な虚偽表示リスクに及ぼす影響</td></tr>
-        <tr><th>次の一手</th><td>代替・補完ITGC → リスク不発現 → 情報処理統制等の範囲拡大 → 実証手続拡大</td><td>代わる他の内部統制の運用評価 または 依拠せず実証手続の範囲拡大</td></tr>
-      </table>
-    </div>
-    <div class="exam">
-      <div class="h">✎ 答案の型</div>
-      「（情報処理統制）が有効に機能していないため、業務プロセスで識別された内部統制が有効でない。<b>重要な虚偽表示リスクへの影響を検討</b>し、重要であれば、<b>代わる他の内部統制の有無を確かめ運用評価手続を実施</b>するか、<b>当該統制に依拠せず実証手続の範囲を拡大</b>する。」<br>
-      <span style="color:#64748b">自動化の不備なら「同様の誤りが繰り返されている可能性」にも触れる。</span>
-    </div>
-  </div>
-  <div class="foot"><span>監査論 IT統制の不備 ②／2</span><span>本文は経営実務-ITテキスト1（第9章）の記述による。〔A〕〔B〕は教科書の重要度。〔C〕（仕様書等の不備）は省略。</span></div>
+  <rect x="30" y="1202" width="940" height="44" rx="10" fill="#f1f5f9"/>
+  <text x="500" y="1231" font-size="17" class="dk" text-anchor="middle">自動の統制がOKでも、データを簡単に変更できれば ✕ → <tspan class="b br">アクセス・コントロールも確認</tspan><tspan class="g" font-size="14">（⑨-5〔B〕）</tspan></text>
+
+  <!-- D: compare -->
+  <rect x="30" y="1258" width="460" height="86" rx="12" fill="#e8f1fa"/>
+  <text x="50" y="1290" font-size="19" class="b nv">①ITGCの不備</text>
+  <text x="50" y="1324" font-size="17" class="dk">まず <tspan class="b">柱への影響</tspan> → 4段階で確かめる</text>
+  <rect x="510" y="1258" width="460" height="86" rx="12" fill="#fdf0e8"/>
+  <text x="530" y="1290" font-size="19" class="b br">②情報処理統制の不備</text>
+  <text x="530" y="1324" font-size="17" class="dk">まず <tspan class="b">虚偽表示リスクへの影響</tspan> → 2択</text>
+
+  <rect x="30" y="1352" width="940" height="50" rx="12" fill="#7a1b26"/>
+  <rect x="44" y="1362" width="96" height="30" rx="15" fill="#facc15"/><text x="92" y="1383" font-size="16" class="b dk" text-anchor="middle">覚える</text>
+  <text x="156" y="1386" font-size="23" class="b w">影響を検討 → 代わりの統制 or 実証手続拡大</text>
+  <text x="960" y="1385" font-size="15" fill="#fde7d9" text-anchor="end">自動の不備＝同じ誤りの繰り返し</text>
+</svg>
 </section>
 </body></html>
