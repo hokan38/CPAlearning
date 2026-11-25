@@ -155,8 +155,8 @@ def chapter_pages(doc, frags):
                 pages[fr["num"]] = i + 1; break
     return pages
 
-def build_outline(doc, frags, pages, ranks=("A", "B"), rank_label="重要度{r}", include_toc=True, depth=1):
-    """GoodNotes等で見えるPDFアウトライン: 章 > 重要度 > 各問。"""
+def build_outline(doc, frags, pages, include_toc=True):
+    """GoodNotes等で見えるPDFアウトライン: 章 > 節（教科書の見出し） > 各問（重要度A・B、教科書の論点順）。"""
     toc = []
     page_texts = [re.sub(r"\s+", "", doc[i].get_text()) for i in range(doc.page_count)]
     if include_toc:
@@ -166,29 +166,24 @@ def build_outline(doc, frags, pages, ranks=("A", "B"), rank_label="重要度{r}"
         if not start:
             continue
         toc.append([1, fr["title"].replace("\u3000", " "), start])
-        if depth < 2:
-            continue
-        cur = start - 1
-        for rank in ranks:
-            items = re.findall(rf'<div class="th">({rank}-\d+)\u3000([^<]*)', fr["html"])
-            if not items:
+        m = re.search(r'<section class="chap" id="(ch\d+)">', fr["html"])
+        key = m.group(1) if m else None
+        titles = dict(re.findall(r'<div class="th">([AB]-\d+)\u3000([^<]*)', fr["html"]))
+        order = [r for r in ORDER.get(key, []) if r["label"] in titles]
+        order += [{"label": l, "ronten": ""} for l in titles if l not in [r["label"] for r in order]]
+        cur, last_sec = start - 1, None
+        for r in order:
+            lab, title = r["label"], titles[r["label"]].strip()
+            k = re.sub(r"\s+", "", lab + title)[:14]
+            pg = next((i for i in range(cur, doc.page_count) if k in page_texts[i]), None)
+            if pg is None:
                 continue
-            rank_entry_idx = len(toc)
-            toc.append([2, rank_label.format(r=rank), start])
-            first = None
-            for label, title in items:
-                key = re.sub(r"\s+", "", label + title)[:12]
-                pg = None
-                for i in range(cur, doc.page_count):
-                    if key in page_texts[i]:
-                        pg = i; break
-                if pg is None:
-                    continue
-                cur = pg
-                if first is None:
-                    first = pg + 1
-                    toc[rank_entry_idx][2] = first
-                toc.append([3, f"{label} {title.strip()}", pg + 1])
+            cur = pg
+            sec = (r.get("ronten") or "").split("›")[0].strip()
+            if sec and sec != last_sec:
+                toc.append([2, sec, pg + 1])
+                last_sec = sec
+            toc.append([3 if sec else 2, f"{lab} {title}", pg + 1])
     doc.set_toc(toc)
     return toc
 
