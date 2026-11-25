@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="ja"><head><meta charset="utf-8"><title>OCI課税</title>
+<style>
+@page { size: A4; margin: 0; }
+html, body { margin: 0; padding: 0; }
+.page { width: 210mm; height: 297mm; overflow: hidden; }
+svg { display: block; font-family: "Noto Sans CJK JP", sans-serif; }
+.b { font-weight: 900; } .m { font-weight: 700; }
+.w { fill: #fff; } .g { fill: #64748b; } .dk { fill: #1f2933; }
+.tl { fill: #0f766e; } .pu { fill: #6d28d9; } .rd { fill: #dc2626; } .gr { fill: #15803d; } .bl { fill: #1d4e89; }
+</style></head><body>
+<section class="page">
+<svg viewBox="0 0 1000 1414" width="210mm" height="297mm">
+  <defs>
+    <linearGradient id="hd" x1="0" x2="1"><stop offset="0" stop-color="#0f766e"/><stop offset="1" stop-color="#0e7490"/></linearGradient>
+    <marker id="a1" markerWidth="10" markerHeight="10" refX="6" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#64748b"/></marker>
+    <marker id="a2" markerWidth="10" markerHeight="10" refX="6" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#6d28d9"/></marker>
+    <marker id="a3" markerWidth="10" markerHeight="10" refX="6" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#dc2626"/></marker>
+  </defs>
+
+  <!-- header -->
+  <rect x="20" y="18" width="960" height="96" rx="18" fill="url(#hd)"/>
+  <text x="46" y="72" font-size="36" class="b w">OCI課税（その他の包括利益に対する課税）</text>
+  <text x="48" y="100" font-size="16" class="w">会計答練① 第一問 問題3 問4　｜　法人税等会計基準 第5-2項(2)・第5-5項　｜　修了考査対策編1 5-3</text>
+
+  <!-- A: situation -->
+  <rect x="30" y="134" width="130" height="30" rx="15" fill="#0f766e"/><text x="95" y="155" font-size="16" class="b w" text-anchor="middle">何が起きた？</text>
+  <text x="176" y="156" font-size="17" class="dk">B社はグループ通算制度に加入 → 税務でもY社株式を期末に<tspan class="b">時価評価</tspan></text>
+
+  <!-- stock -->
+  <rect x="40" y="180" width="170" height="150" rx="14" fill="#f1f5f9" stroke="#94a3b8" stroke-width="2"/>
+  <text x="125" y="214" font-size="20" class="b dk" text-anchor="middle">Y社株式</text>
+  <text x="125" y="250" font-size="17" class="g" text-anchor="middle">取得 20,000</text>
+  <text x="125" y="276" font-size="17" class="g" text-anchor="middle">↓</text>
+  <text x="125" y="304" font-size="19" class="b dk" text-anchor="middle">時価 25,000</text>
+  <rect x="58" y="314" width="134" height="0" />
+  <text x="125" y="356" font-size="18" class="b gr" text-anchor="middle">含み益 5,000</text>
+
+  <!-- two lanes -->
+  <line x1="214" y1="225" x2="262" y2="210" stroke="#64748b" stroke-width="4" marker-end="url(#a1)"/>
+  <line x1="214" y1="285" x2="262" y2="302" stroke="#64748b" stroke-width="4" marker-end="url(#a1)"/>
+  <rect x="270" y="180" width="320" height="64" rx="12" fill="#ede9fe" stroke="#6d28d9" stroke-width="2"/>
+  <text x="290" y="208" font-size="17" class="b pu">会計</text>
+  <text x="340" y="208" font-size="17" class="dk">含み益 5,000 → <tspan class="b pu">OCI</tspan></text>
+  <text x="340" y="232" font-size="15" class="g">評価差額金。損益には出ない</text>
+  <rect x="270" y="268" width="320" height="64" rx="12" fill="#fef3c7" stroke="#d97706" stroke-width="2"/>
+  <text x="290" y="296" font-size="17" class="b" fill="#b45309">税務</text>
+  <text x="340" y="296" font-size="17" class="dk">含み益 5,000 → <tspan class="b" fill="#b45309">課税所得</tspan></text>
+  <text x="340" y="320" font-size="15" class="g">税金 5,000×30％ ＝ <tspan class="b dk">1,500</tspan></text>
+
+  <!-- problem bubble -->
+  <rect x="620" y="180" width="350" height="152" rx="14" fill="#fdecec" stroke="#f0a3a3" stroke-width="2"/>
+  <text x="640" y="212" font-size="18" class="b rd">税金1,500を損益に入れると…</text>
+  <rect x="640" y="226" width="140" height="44" rx="8" fill="#fff"/><text x="710" y="254" font-size="16" class="dk" text-anchor="middle">損益：利益 0</text>
+  <rect x="810" y="226" width="140" height="44" rx="8" fill="#fff"/><text x="880" y="254" font-size="16" class="dk" text-anchor="middle">税金 1,500</text>
+  <text x="795" y="306" font-size="19" class="b rd" text-anchor="middle">利益がないのに税金だけ ✕</text>
+
+  <!-- B: rule -->
+  <rect x="30" y="374" width="940" height="64" rx="14" fill="#0f766e"/>
+  <text x="500" y="416" font-size="27" class="b w" text-anchor="middle">税金は「課税の原因になった取引」と同じ場所に置く</text>
+  <g font-size="17">
+    <rect x="30" y="450" width="300" height="74" rx="12" fill="#f1f5f9"/>
+    <text x="180" y="480" class="b dk" text-anchor="middle">損益の取引</text>
+    <text x="180" y="508" class="g" text-anchor="middle">→ 法人税等（損益）</text>
+    <rect x="350" y="450" width="300" height="74" rx="12" fill="#f1f5f9"/>
+    <text x="500" y="480" class="b dk" text-anchor="middle">株主資本の取引</text>
+    <text x="500" y="508" class="g" text-anchor="middle">→ 株主資本から控除</text>
+    <rect x="670" y="450" width="300" height="74" rx="12" fill="#ede9fe" stroke="#6d28d9" stroke-width="3"/>
+    <text x="820" y="480" class="b pu" text-anchor="middle">OCIの取引（今回）</text>
+    <text x="820" y="508" class="b pu" text-anchor="middle">→ OCI（評価差額金）から控除</text>
+  </g>
+
+  <!-- C: (1) -->
+  <rect x="30" y="552" width="170" height="30" rx="15" fill="#0f766e"/><text x="115" y="573" font-size="16" class="b w" text-anchor="middle">(1) 当期の仕訳</text>
+  <rect x="30" y="592" width="560" height="150" rx="14" fill="#fff" stroke="#cbd5e1" stroke-width="2"/>
+  <g font-size="19">
+    <text x="54" y="630" class="b dk">法人税等</text><text x="300" y="630" class="dk" text-anchor="end">12,000</text>
+    <text x="330" y="630" class="b dk">未払法人税等</text><text x="570" y="630" class="dk" text-anchor="end">13,500</text>
+    <rect x="44" y="648" width="270" height="40" rx="8" fill="#ede9fe"/>
+    <text x="54" y="675" class="b pu">評価差額金</text><text x="300" y="675" class="b pu" text-anchor="end">1,500</text>
+  </g>
+  <line x1="316" y1="604" x2="316" y2="696" stroke="#cbd5e1" stroke-width="2"/>
+  <text x="54" y="724" font-size="15" class="g">12,000 ＝ 含み益以外の所得 40,000×30％　／　<tspan class="b pu">1,500 ＝ 含み益 5,000×30％</tspan></text>
+
+  <rect x="610" y="592" width="360" height="150" rx="14" fill="#f0fdfa" stroke="#99f6e4" stroke-width="2"/>
+  <text x="630" y="626" font-size="18" class="b tl">税効果は出てこない</text>
+  <text x="630" y="660" font-size="16" class="dk">会計も税務も簿価 25,000</text>
+  <text x="630" y="686" font-size="16" class="dk">→ 一時差異なし</text>
+  <text x="630" y="718" font-size="16" class="dk">→ <tspan class="b">当期の税金</tspan>の置き場所の話</text>
+
+  <!-- D: (2) -->
+  <rect x="30" y="772" width="270" height="30" rx="15" fill="#0f766e"/><text x="165" y="793" font-size="16" class="b w" text-anchor="middle">(2) 翌期首に売却したら</text>
+  <text x="316" y="794" font-size="17" class="dk">含み益と一緒に、税金も <tspan class="b pu">リサイクリング</tspan></text>
+
+  <!-- timeline lanes -->
+  <rect x="30" y="814" width="940" height="270" rx="14" fill="#fff" stroke="#cbd5e1" stroke-width="2"/>
+  <text x="210" y="846" font-size="18" class="b g" text-anchor="middle">当期末（時価評価）</text>
+  <text x="760" y="846" font-size="18" class="b g" text-anchor="middle">翌期（売却）</text>
+  <line x1="485" y1="826" x2="485" y2="1072" stroke="#cbd5e1" stroke-width="2" stroke-dasharray="6,6"/>
+  <!-- labels -->
+  <text x="50" y="900" font-size="17" class="b dk">含み益</text>
+  <text x="50" y="1010" font-size="17" class="b dk">税金</text>
+  <!-- gain lane -->
+  <rect x="120" y="866" width="200" height="56" rx="10" fill="#ede9fe" stroke="#6d28d9" stroke-width="2"/>
+  <text x="220" y="901" font-size="18" class="b pu" text-anchor="middle">OCI ＋5,000</text>
+  <line x1="320" y1="894" x2="640" y2="894" stroke="#6d28d9" stroke-width="4" marker-end="url(#a2)"/>
+  <text x="480" y="884" font-size="15" class="pu" text-anchor="middle">リサイクリング</text>
+  <rect x="650" y="866" width="300" height="56" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="2"/>
+  <text x="800" y="901" font-size="18" class="b gr" text-anchor="middle">損益：売却益 ＋5,000</text>
+  <!-- tax lane -->
+  <rect x="120" y="976" width="200" height="56" rx="10" fill="#ede9fe" stroke="#6d28d9" stroke-width="2"/>
+  <text x="220" y="1011" font-size="18" class="b pu" text-anchor="middle">OCI △1,500</text>
+  <line x1="320" y1="1004" x2="640" y2="1004" stroke="#dc2626" stroke-width="4" marker-end="url(#a3)"/>
+  <text x="480" y="994" font-size="15" class="rd b" text-anchor="middle">一緒に移す（第5-5項）</text>
+  <rect x="650" y="976" width="300" height="56" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="2"/>
+  <text x="800" y="1011" font-size="18" class="b gr" text-anchor="middle">損益：法人税等 △1,500</text>
+  <text x="500" y="1064" font-size="16" class="g" text-anchor="middle">税務では当期に課税済み（簿価25,000）→ 売っても新たな税金は出ない。だから OCI の1,500を損益へ移す</text>
+
+  <!-- recycling journal + result -->
+  <rect x="30" y="1098" width="420" height="120" rx="14" fill="#fff" stroke="#6d28d9" stroke-width="3"/>
+  <text x="50" y="1130" font-size="17" class="b pu">税金のリサイクリング仕訳</text>
+  <text x="50" y="1172" font-size="20" class="b dk">法人税等 1,500</text>
+  <text x="250" y="1172" font-size="20" class="b dk">／ 評価差額金 1,500</text>
+  <text x="50" y="1202" font-size="14" class="g">※売却価額25,000と仮定した例</text>
+
+  <rect x="470" y="1098" width="500" height="120" rx="14" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+  <g font-size="17">
+    <text x="640" y="1128" class="b g" text-anchor="middle">当期</text><text x="840" y="1128" class="b g" text-anchor="middle">翌期</text>
+    <text x="490" y="1164" class="b dk">損益</text>
+    <text x="640" y="1164" class="dk" text-anchor="middle">0</text>
+    <text x="840" y="1164" class="b gr" text-anchor="middle">5,000−1,500＝＋3,500</text>
+    <text x="490" y="1200" class="b dk">OCI</text>
+    <text x="640" y="1200" class="pu b" text-anchor="middle">＋3,500</text>
+    <text x="840" y="1200" class="pu b" text-anchor="middle">△3,500（残高0）</text>
+  </g>
+
+  <!-- E: remember -->
+  <rect x="30" y="1240" width="940" height="150" rx="14" fill="#134e4a"/>
+  <rect x="50" y="1258" width="96" height="30" rx="15" fill="#facc15"/><text x="98" y="1279" font-size="16" class="b dk" text-anchor="middle">覚える</text>
+  <text x="166" y="1282" font-size="22" class="b w">① OCIで課税された → 税金もOCIから控除（第5-2項(2)）</text>
+  <text x="166" y="1322" font-size="22" class="b w">② OCIが損益へ振り替わる → 税金も損益へ（第5-5項）</text>
+  <text x="166" y="1362" font-size="18" fill="#99f6e4">＝ 利益と税金を、いつも同じ場所に並べる</text>
+</svg>
+</section>
+</body></html>
