@@ -54,6 +54,8 @@ h2 { break-after:avoid; }
 .a ol, .a ul { margin:0 0 4pt; padding-left:18pt; }
 .a li { margin:0 0 2pt; }
 k { color:#c1121f; font-weight:bold; font-style:normal; }
+.nt { margin:3pt 0 0; padding:3pt 8pt; background:#f4f6f8; border-radius:2pt; font-size:8.2pt; color:#555; }
+.nt b { color:#334155; margin-right:5pt; }
 .pt { margin:4pt 0 0; padding:4pt 9pt; border-top:0.6pt dotted #c1121f; font-size:8.3pt; color:#555; }
 .pt b { color:#c1121f; margin-right:4pt; }
 table.toc { border-collapse:collapse; width:100%; font-size:9.5pt; }
