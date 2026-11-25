@@ -41,7 +41,7 @@ for m in re.finditer(r'<div class="item">(.*?)(?=<div class="item">|<h2|</sectio
     if "<p>" not in ah:
         err.append(f"{tag} 段落<p>がない")
     body = strip(ah).replace("解答例", "", 1)
-    multi = bool(re.search(r"\(\d\)|（\d）|\([a-e]\)|（[a-eａ-ｅ]）|[①②③]|二つ|三つ|四つ|それぞれ|場合", strip(qh)))
+    multi = bool(re.search(r"\(\d\)|（\d）|\([a-e]\)|（[a-eａ-ｅ]）|[①②③]|二つ|三つ|四つ|[2-5２-５二三四五]点|それぞれ|場合", strip(qh)))
     lim = LIM[r][1] if multi else LIM[r][0]
     lens.append(len(body))
     if len(body) > lim:
